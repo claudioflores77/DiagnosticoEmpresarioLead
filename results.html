@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de tu Diagnóstico - Claudio Flores</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #c0392b;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .score-display {
+            font-size: 1.8em;
+            color: #2980b9;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .impact-section {
+            background-color: #f9e6e6;
+            border: 3px solid #c0392b;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .cost-value {
+            font-size: 4em;
+            font-weight: 900;
+            color: #c0392b;
+            line-height: 1;
+            margin: 20px 0;
+        }
+
+        .cost-subtitle {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .cost-details {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+
+        .solution-section {
+            background-color: #e6f7ff;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .solution-section h2 {
+            color: #2980b9;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .pillar-highlight {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #27ae60;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .cta-section {
+            background-color: #27ae60;
+            color: #fff;
+            padding: 40px;
+            margin-top: 40px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .cta-section h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background-color: #f39c12;
+            color: #fff;
+            padding: 18px 40px;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-cta:hover {
+            background-color: #e67e22;
+        }
+
+        .diagnosis-box {
+            background-color: #f0f0f0;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .diagnosis-box strong {
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .cost-value {
+                font-size: 2.5em;
+            }
+
+            .cta-section {
+                padding: 20px;
+            }
+
+            .btn-cta {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>¡ATENCIÓN! Tu Diagnóstico Revela una Crisis Empresarial</h1>
+            <div class="score-display">Tu Puntuación de Madurez Empresarial es: <span id="score">--</span>/100</div>
+            <p id="category-text" style="font-size: 1.2em; color: #666; margin-top: 15px;"></p>
+        </div>
+
+        <!-- Diagnosis -->
+        <div class="diagnosis-box">
+            <p><strong>Causa de Muerte Empresarial Principal:</strong> <span id="main-cme">--</span></p>
+            <p><strong>Pilar P.U.D.E.R. Más Débil:</strong> <span id="weakest-pillar">--</span></p>
+        </div>
+
+        <!-- Cost of Chaos -->
+        <div class="impact-section">
+            <h2>💸 El Costo Oculto de la Inacción</h2>
+            <p class="cost-subtitle">Basado en tu propia valoración, el costo de tu ineficiencia es:</p>
+            <div class="cost-value" id="monthly-cost">--</div>
+            <p class="cost-subtitle">/ Mes</p>
+            <p style="font-size: 1.1em; color: #555; margin-top: 15px;">
+                <strong id="yearly-cost-text">--</strong> al año
+            </p>
+            <div class="cost-details">
+                <p><strong>Tu Causa de Muerte Empresarial Principal te está costando el equivalente a:</strong></p>
+                <p id="cost-example" style="margin-top: 10px; font-weight: bold;">--</p>
+            </div>
+        </div>
+
+        <!-- Solution -->
+        <div class="solution-section">
+            <h2>💉 Tu Vacuna Estratégica: El Método P.U.D.E.R.</h2>
+            <p>La solución para detener esta hemorragia y transformar tu negocio está en el <strong>Método P.U.D.E.R.</strong>, un sistema probado que te permite recuperar el control y la rentabilidad.</p>
+            <p>Tu diagnóstico indica que debes aplicar la <strong>Vacuna P.U.D.E.R.</strong> enfocándote urgentemente en el pilar:</p>
+            <div class="pillar-highlight" id="pillar-name">--</div>
+            <p><em>Este pilar es la clave para neutralizar tu principal riesgo y comenzar a construir un negocio que trabaje para ti.</em></p>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h3>¡El Reloj Sigue Corriendo! Detén la Pérdida de <span id="cta-cost">--</span> USD Ahora.</h3>
+            <p>No dejes que el caos te cueste un mes más.</p>
+            <p><strong>Agenda tu Sesión Estratégica 1:1 Gratuita con Claudio Flores.</strong></p>
+            <p>En solo <strong>15 minutos</strong>, utilizaremos este diagnóstico para:</p>
+            <ol style="text-align: left; display: inline-block; margin: 20px 0;">
+                <li style="margin: 10px 0;">Confirmar el origen exacto de tu Causa de Muerte Empresarial.</li>
+                <li style="margin: 10px 0;">Diseñar tu Plan de Vacunación Empresarial personalizado.</li>
+                <li style="margin: 10px 0;">Mostrarte el primer paso para implementar tu Pilar P.U.D.E.R. y recuperar tu vida.</li>
+            </ol>
+            <p style="margin-top: 20px;"><strong>Esta sesión no tiene costo ni compromiso. Solo tienes <span id="cta-cost-2">--</span> USD que perder si no actúas.</strong></p>
+            <button class="btn-cta" onclick="agendarSesion()">AGENDA TU SESIÓN GRATUITA Y RECUPERA TU VIDA</button>
+        </div>
+
+        <!-- Back Link -->
+        <div class="back-link">
+            <a href="index.html">← Volver al Diagnóstico</a>
+        </div>
+    </div>
+
+    <script>
+        // Cargar datos desde localStorage
+        function loadResults() {
+            const data = JSON.parse(localStorage.getItem('diagnosticResults'));
+            
+            if (!data) {
+                document.body.innerHTML = '<div style="text-align: center; padding: 50px;"><h1>Error: No se encontraron resultados</h1><p><a href="index.html">Volver al diagnóstico</a></p></div>';
+                return;
+            }
+
+            // Mostrar puntuación
+            document.getElementById('score').textContent = data.totalScore;
+            document.getElementById('category-text').textContent = data.category;
+
+            // Mostrar diagnóstico
+            document.getElementById('main-cme').textContent = data.mainCME;
+            document.getElementById('weakest-pillar').textContent = data.weakestPillar;
+
+            // Mostrar costo del caos
+            document.getElementById('monthly-cost').textContent = '$' + data.monthlyCost.toLocaleString();
+            document.getElementById('yearly-cost-text').textContent = '$' + data.yearlyCost.toLocaleString();
+            document.getElementById('cta-cost').textContent = data.monthlyCost.toLocaleString();
+            document.getElementById('cta-cost-2').textContent = data.monthlyCost.toLocaleString();
+
+            // Ejemplos de costo
+            const costExamples = [
+                'el sueldo anual de un Gerente de Operaciones',
+                'un año de colegio privado para tus hijos',
+                'el capital para invertir en una nueva línea de negocio'
+            ];
+            document.getElementById('cost-example').textContent = '• ' + costExamples.join('\n• ');
+
+            // Mostrar pilar
+            document.getElementById('pillar-name').textContent = data.weakestPillar;
+        }
+
+        // Función para agendar sesión (placeholder)
+        function agendarSesion() {
+            alert('Redirigiendo a agendamiento de sesión...\n\nEn una implementación real, esto abriría tu calendario de Calendly o similar.');
+            // En producción, aquí iría la URL de Calendly o similar
+            // window.location.href = 'https://calendly.com/claudioflores/sesion-estrategica';
+        }
+
+        // Cargar resultados al abrir la página
+        window.addEventListener('load', loadResults);
+    </script>
+</body>
+</html>
