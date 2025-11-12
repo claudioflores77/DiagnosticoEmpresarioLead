@@ -936,7 +936,7 @@
 
         function proceedToContactForm() {
             // Validar que se hayan respondido todas las preguntas de radio
-            const radioQuestions = ['q1_1', 'q1_2', 'q1_3', 'q1_4', 'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 'q3_1_a', 'q3_1_b', 'q3_1_c', 'q3_1_d', 'q3_1_e', 'q3_2', 'q3_4', 'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'];
+            const radioQuestions = ['q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 'q3_1', 'q3_2', 'q3_4', 'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'];
             
             let allAnswered = true;
             for (let q of radioQuestions) {
@@ -960,7 +960,7 @@
             const data = {};
             
             // Recopilar todas las respuestas de radio
-            const radioQuestions = ['q1_1', 'q1_2', 'q1_3', 'q1_4', 'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 'q3_1_a', 'q3_1_b', 'q3_1_c', 'q3_1_d', 'q3_1_e', 'q3_2', 'q3_4', 'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'];
+            const radioQuestions = ['q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 'q3_1', 'q3_2', 'q3_4', 'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'];
             
             radioQuestions.forEach(q => {
                 const selected = document.querySelector(`input[name="${q}"]:checked`);
