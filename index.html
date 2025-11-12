@@ -430,9 +430,8 @@
                     </label>
                 </div>
                 
-            </div>
-            
-            <!-- Sección 2 --> <h3>1.2 Delegación Efectiva</h3>
+                <div class="question">
+                    <h3>1.2 Delegación Efectiva</h3>
                     <label class="option">
                         <input type="radio" name="q1_2" value="0">
                         Mi equipo toma decisiones alineadas autónomamente
@@ -1032,13 +1031,16 @@
                 yearlyCost: costOfChaos.yearlyCost
             };
 
-            // Enviar a Google Sheets de forma síncrona
-            sendToGoogleSheets(completeData);
+            // Enviar a Google Sheets de forma asíncrona (sin esperar respuesta)
+            try {
+                sendToGoogleSheets(completeData);
+            } catch (error) {
+                console.error('Error enviando a Google Sheets:', error);
+            }
 
-            // Redirigir a la página de resultados
-            setTimeout(() => {
-                redirectToResults(results, costOfChaos, diagnosis);
-            }, 500);
+            // Redirigir a la página de resultados inmediatamente (no esperar)
+            console.log('Redirigiendo a results.html...');
+            redirectToResults(results, costOfChaos, diagnosis);
         }
 
         function sendToGoogleSheets(data) {
