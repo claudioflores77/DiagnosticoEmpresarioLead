@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #3d1a1a 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
             line-height: 1.6;
         }
@@ -50,7 +50,7 @@
 }
         .company-info h1 {
             font-size: 1.4em;
-            color: #DC143C;
+            color: #667eea;
             margin-bottom: 5px;
             font-weight: bold;
         }
@@ -92,7 +92,7 @@
         }
 
         .hero {
-            background: linear-gradient(135deg, rgba(220, 20, 60, 0.95), rgba(61, 26, 26, 0.95));
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95), rgba(118, 75, 162, 0.95));
             color: white;
             padding: 60px 20px;
             text-align: center;
@@ -126,10 +126,10 @@
         }
 
         .section h2 {
-            color: #DC143C;
+            color: #667eea;
             margin-bottom: 25px;
             font-size: 1.8em;
-            border-bottom: 3px solid #DC143C;
+            border-bottom: 3px solid #667eea;
             padding-bottom: 10px;
         }
 
@@ -138,7 +138,7 @@
             padding: 20px;
             background: #f8f9fa;
             border-radius: 10px;
-            border-left: 4px solid #DC143C;
+            border-left: 4px solid #667eea;
         }
 
         .question h3 {
@@ -159,7 +159,7 @@
         }
 
         .option:hover {
-            border-color: #DC143C;
+            border-color: #667eea;
             background: #f0f4ff;
             transform: translateX(5px);
         }
@@ -192,7 +192,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #DC143C, #8B0000);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             padding: 18px 40px;
             border: none;
@@ -200,7 +200,7 @@
             font-size: 1.2em;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
             display: block;
             margin: 30px auto;
             font-weight: bold;
@@ -208,8 +208,7 @@
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.6);
-            background: linear-gradient(135deg, #8B0000, #DC143C);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
         }
 
         .btn-primary:disabled {
@@ -239,7 +238,7 @@
         .result-score {
             font-size: 3em;
             font-weight: bold;
-            color: #DC143C;
+            color: #667eea;
         }
 
         .result-category {
@@ -262,7 +261,7 @@
         }
 
         .result-details h3 {
-            color: #DC143C;
+            color: #667eea;
             margin-bottom: 15px;
         }
 
@@ -278,13 +277,13 @@
 
         .result-details li:before {
             content: "✓ ";
-            color: #DC143C;
+            color: #667eea;
             font-weight: bold;
             margin-right: 10px;
         }
 
         .cta-box {
-            background: linear-gradient(135deg, #DC143C, #8B0000);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             padding: 40px;
             border-radius: 15px;
@@ -305,7 +304,7 @@
 
         .btn-cta {
             background: white;
-            color: #DC143C;
+            color: #667eea;
             padding: 18px 50px;
             border: none;
             border-radius: 50px;
@@ -326,7 +325,7 @@
         .loading {
             text-align: center;
             padding: 20px;
-            color: #DC143C;
+            color: #667eea;
             font-size: 1.2em;
         }
 
@@ -821,8 +820,12 @@
                     </label>
                 </div>
                 
-                <button type="button" class="btn-primary" onclick="proceedToContactForm()">📊 Calcular Mis Resultados</button>
+                <button type="submit" class="btn-primary">📊 Calcular Mis Resultados</button> sólo en esto)
+                    </label>
+                </div>
             </div>
+
+            <button class="btn-primary" onclick="proceedToContactForm()">📊 Calcular Mis Resultados</button>
         </div>
 
         <!-- Formulario de contacto (aparece después del diagnóstico) -->
@@ -901,7 +904,7 @@
                 <div id="loneliness-index"></div>
             </div>
 
-            <div class="result-details" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-left: 4px solid #DC143C;">
+            <div class="result-details" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-left: 4px solid #667eea;">
                 <h3>🎯 Resultados que Empresarios como Tú han Logrado</h3>
                 <ul style="list-style: none; padding: 0;">
                     <li style="padding: 12px 0; border-bottom: 1px solid #dee2e6;">✓ <strong>50% reducción</strong> en horas de trabajo semanales</li>
@@ -1210,7 +1213,7 @@
                 <p><strong>Tiempo perdido mensual:</strong> ${monthlyHours} horas (≈ ${Math.round(monthlyHours/40)} semanas completas de trabajo)</p>
                 <p><strong>Tiempo perdido anual:</strong> ${yearlyHours} horas (≈ ${Math.round(yearlyHours/168)} semanas completas de vida)</p>
                 ${timeLost >= 30 ? '<p style="color: #dc3545; font-weight: bold; margin-top: 15px;">⚠️ REVELACIÓN IMPORTANTE: Si tu tiempo perdido supera las 30 horas semanales, significa que podrías trabajar menos de la mitad del tiempo actual manteniendo los mismos resultados, o duplicar tus resultados con el mismo tiempo si ese tiempo se dedicara a estrategia.</p>' : ''}
-                ${timeLost > 0 ? '<p style="color: #DC143C; font-weight: bold; margin-top: 15px;">💡 Si recuperaras este tiempo, podrías dedicarlo a estrategia, crecimiento, familia o descanso.</p>' : ''}
+                ${timeLost > 0 ? '<p style="color: #667eea; font-weight: bold; margin-top: 15px;">💡 Si recuperaras este tiempo, podrías dedicarlo a estrategia, crecimiento, familia o descanso.</p>' : ''}
             `;
 
             economicDiv.innerHTML = `
