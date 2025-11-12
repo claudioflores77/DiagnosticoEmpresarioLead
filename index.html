@@ -1099,6 +1099,7 @@
             totalScore += parseInt(document.querySelector('input[name="q1_2"]:checked').value);
             totalScore += parseInt(document.querySelector('input[name="q1_3"]:checked').value);
             totalScore += parseInt(document.querySelector('input[name="q1_4"]:checked').value);
+            totalScore += parseInt(document.querySelector('input[name="q1_5"]:checked').value);
             
             // Sección 2
             totalScore += parseInt(document.querySelector('input[name="q2_1"]:checked').value);
@@ -1109,8 +1110,10 @@
             totalScore += parseInt(document.querySelector('input[name="q2_6"]:checked').value);
             
             // Sección 3
+            totalScore += parseInt(document.querySelector('input[name="q3_1"]:checked').value);
             const checkboxes = document.querySelectorAll('input[name="q3_3"]:checked');
             totalScore += checkboxes.length;
+            totalScore += parseInt(document.querySelector('input[name="q3_2"]:checked').value);
             totalScore += parseInt(document.querySelector('input[name="q3_4"]:checked').value);
             
             // Sección 4
@@ -1121,12 +1124,7 @@
             totalScore += parseInt(document.querySelector('input[name="q4_5"]:checked').value);
 
             // Calcular tiempo perdido
-            const timeLost = 
-                parseInt(document.querySelector('input[name="q3_1_a"]:checked').value) +
-                parseInt(document.querySelector('input[name="q3_1_b"]:checked').value) +
-                parseInt(document.querySelector('input[name="q3_1_c"]:checked').value) +
-                parseInt(document.querySelector('input[name="q3_1_d"]:checked').value) +
-                parseInt(document.querySelector('input[name="q3_1_e"]:checked').value);
+            const timeLost = parseInt(document.querySelector('input[name="q3_1"]:checked').value);
 
             const hourlyValue = parseFloat(document.querySelector('input[name="q3_2"]:checked').value);
             const durationYears = parseInt(document.querySelector('input[name="q3_4"]:checked').value);
