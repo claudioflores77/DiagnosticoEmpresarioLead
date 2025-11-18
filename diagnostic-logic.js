@@ -3,8 +3,7 @@ function identifyMainCauseAndPillar() {
     const data = {};
     
     // Recopilar todas las respuestas
-    const questions = ['q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 'q3_1', 'q3_2', 'q3_4', 'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'];
-    
+  const questions = ['q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 'q3_4', 'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'];    
     questions.forEach(q => {
         const selected = document.querySelector(`input[name="${q}"]:checked`);
         data[q] = selected ? parseInt(selected.value) : 0;
@@ -14,8 +13,8 @@ function identifyMainCauseAndPillar() {
     const cmeScores = {
         'CME1_PlanLargoPlazo': data.q1_1,
         'CME2_SerUnico': data.q1_5,
-        'CME3_AdaptacionRoles': data.q1_2 + data.q1_3 + data.q1_4 + data.q2_3 + data.q3_1,
-        'CME4_GestionFinanciera': data.q3_2 + data.q4_1,
+    'CME3_AdaptacionRoles': data.q1_2 + data.q1_3 + data.q1_4 + data.q2_3,
+    'CME4_GestionFinanciera': data.q4_1,
         'CME5_Innovacion': data.q2_1
     };
     
@@ -23,8 +22,8 @@ function identifyMainCauseAndPillar() {
     const pillarScores = {
         'P_Planear': data.q1_1,
         'U_Unico': data.q1_5,
-        'D_Desarrollarse': data.q1_2 + data.q1_3 + data.q1_4 + data.q3_2 + data.q4_1 + data.q4_2,
-        'E_Estandarizar': data.q3_1 + data.q2_4,
+    'D_Desarrollarse': data.q1_2 + data.q1_3 + data.q1_4 + data.q4_1 + data.q4_2,
+    'E_Estandarizar': data.q2_4,
         'R_Repetir': data.q2_1
     };
     
