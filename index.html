@@ -409,7 +409,7 @@
                         Debo estar disponible constantemente para decisiones importantes
                     </label>
                     <label class="option">
-                            <input type="radio" name="q1_4" value="4"> Nada funciona si no estoy presente - soy indispensable
+                            <input type="radio" name="q1_1" value="4"> Nada funciona si no estoy presente - soy indispensable
                     </label>
                 </div>
                 
@@ -873,7 +873,7 @@
             <div class="result-header">
                 <h2>Tus Resultados del Diagnóstico Estratégico Empresarial</h2>
                 <div class="result-score" id="score-display"></div>
-                <p style="color: #666; margin-top: 10px;">de 115 puntos totales</p>
+                <p style="color: #666; margin-top: 10px;">de 141 puntos totales</p>
             </div>
 
             <div id="category-result" class="result-category"></div>
@@ -1119,7 +1119,7 @@
             totalScore += parseInt(document.querySelector('input[name="q3_1"]:checked').value);
             const checkboxes = document.querySelectorAll('input[name="q3_3"]:checked');
             totalScore += checkboxes.length;
-            totalScore += parseInt(document.querySelector('input[name="q3_2"]:checked').value);
+            // totalScore += parseInt(document.querySelector('input[name="q3_2"]:checked').value);
             totalScore += parseInt(document.querySelector('input[name="q3_4"]:checked').value);
             
             // Sección 4
@@ -1143,17 +1143,23 @@
                 parseInt(document.querySelector('input[name="q4_3"]:checked').value);
 
             // Cálculos económicos
-            const monthlyHours = Math.round(timeLost * 4.33);
-            const yearlyHours = timeLost * 52;
+            const monthlyHours = Math.round((timeLost / 100) * 40 * 4.33);
+            const yearlyHours = Math.round((timeLost / 100) * 40 * 52);
             const monthlyLoss = Math.round(monthlyHours * hourlyValue);
             const yearlyLoss = Math.round(yearlyHours * hourlyValue);
             const accumulatedLoss = yearlyLoss * durationYears;
 
             // Determinar categoría
             let category = '';
-            if (totalScore <= 18) category = 'LÍDER ESTRATÉGICO CONSOLIDADO';
-            else if (totalScore <= 37) category = 'EMPRESARIO EN EVOLUCIÓN';
-            else if (totalScore <= 56) category = 'CRISIS DE CRECIMIENTO ACTIVA';
+            if (totalScore <= 25) {
+    category = 'LÍDER ESTRATÉGICO CONSOLIDADO';
+} else if (totalScore <= 53) {
+    category = 'EMPRESARIO EN EVOLUCIÓN';
+} else if (totalScore <= 85) {
+    category = 'CRISIS DE CRECIMIENTO ACTIVA';
+} else {
+    category = 'EMPRENDEDOR|EMPRESARIO EN CRISIS SEVERA';
+}
             else category = 'EMPRENDEDOR|EMPRESARIO EN CRISIS SEVERA';
 
             return {
@@ -1184,17 +1190,17 @@
             const economicDiv = document.getElementById('economic-impact');
 
             // Determinar categoría y contenido
-            if (totalScore <= 18) {
+            if (totalScore <= 25) {
                 categoryDiv.className = 'result-category result-green';
                 categoryDiv.innerHTML = '<img src="LÍDER ESTRATÉGICO CONSOLIDADO.png" alt="LÍDER ESTRATÉGICO CONSOLIDADO" style="max-width: 300px; display: block; margin: 0 auto 20px;"><strong>🟢 LÍDER ESTRATÉGICO CONSOLIDADO</strong>';
                 situationDiv.innerHTML = '<p><strong>Situación Actual:</strong> Liderazgo maduro con sistemas eficientes y red de apoyo sólida</p><p><strong>Etapa de Desarrollo:</strong> Optimización y escalamiento estratégico</p>';
                 nextStepsDiv.innerHTML = '<ul><li>Mentoría ejecutiva para crecimiento acelerado</li><li>Coaching ejecutivo especializado</li><li>Expansión estratégica de tu modelo de negocio</li></ul>';
-            } else if (totalScore <= 37) {
+            } else if (totalScore <= 53) {
                 categoryDiv.className = 'result-category result-yellow';
                 categoryDiv.innerHTML = '<img src="EMPRESARIO EN EVOLUCIÓN.png" alt="EMPRESARIO EN EVOLUCIÓN" style="max-width: 300px; display: block; margin: 0 auto 20px;"><strong>🟡 EMPRESARIO EN EVOLUCIÓN</strong>';
                 situationDiv.innerHTML = '<p><strong>Situación Actual:</strong> Bases sólidas con oportunidades de mejora estructural</p><p><strong>Etapa de Desarrollo:</strong> Transición hacia mayor sistematización</p>';
                 nextStepsDiv.innerHTML = '<ul><li>Refinamiento de delegación efectiva</li><li>Construcción de red estratégica de apoyo</li><li>Consultoría de optimización con coaching de liderazgo</li><li>Implementación de procesos clave</li></ul>';
-            } else if (totalScore <= 56) {
+            } else if (totalScore <= 85) {
                 categoryDiv.className = 'result-category result-orange';
                 categoryDiv.innerHTML = '<img src="CRISIS DE CRECIMIENTO ACTIVA.png" alt="CRISIS DE CRECIMIENTO ACTIVA" style="max-width: 300px; display: block; margin: 0 auto 20px;"><strong>🟠 CRISIS DE CRECIMIENTO ACTIVA</strong>';
                 situationDiv.innerHTML = '<p><strong>Situación Actual:</strong> "Crisis de cacicazgo" con síntomas de soledad del líder</p><p><strong>Etapa de Desarrollo:</strong> Urgente necesidad de liberación operativa</p><p style="color: #cc5500; margin-top: 15px;"><strong>⚠️ ATENCIÓN:</strong> Estás en un punto crítico donde la intervención estratégica puede marcar la diferencia entre el estancamiento y el crecimiento exponencial.</p>';
@@ -1326,7 +1332,7 @@ La diferencia entre crecer y quedarte donde estás no es una cuestión de invers
             const timeLostPercentage = parseInt(document.querySelector('input[name="q3_1"]:checked').value);
             const hourlyValue = parseFloat(document.querySelector('input[name="q3_2"]:checked').value);
             const weeksPerMonth = 4.33;
-            const monthlyHours = (timeLostPercentage / 100) * 40 * weeksPerMonth;
+            const monthlyHours = Math.round((timeLostPercentage / 100) * 40 * weeksPerMonth);
             const monthlyCost = Math.round(monthlyHours * hourlyValue);
             const yearlyCost = Math.round(monthlyCost * 12);
             return {
@@ -1349,6 +1355,10 @@ La diferencia entre crecer y quedarte donde estás no es una cuestión de invers
                 yearlyCost: costOfChaos.yearlyCost,
                 monthlyHours: costOfChaos.monthlyHours,
                 timeLostPercentage: costOfChaos.timeLostPercentage
+                accumulatedLoss: results.accumulatedLoss,
+                hourlyValue: results.hourlyValue,
+                durationYears: results.durationYears,
+                lonelinessIndex: results.lonelinessIndex
             };
             localStorage.setItem('diagnosticResults', JSON.stringify(resultData));
             window.location.href = 'results.html';
