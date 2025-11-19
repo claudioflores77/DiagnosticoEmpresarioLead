@@ -202,7 +202,7 @@
         <!-- Header -->
         <div class="header">
             <h1>¡ATENCIÓN! Tu Diagnóstico Revela una Crisis Empresarial</h1>
-            <div class="score-display">Tu Puntuación de Madurez Empresarial es: <span id="score">--</span>/100</div>
+            <div class="score-display">Tu Puntuación de Madurez Empresarial es: <span id="score">--</span>/141</div>
             <p id="category-text" style="font-size: 1.2em; color: #666; margin-top: 15px;"></p>
         </div>
 
@@ -260,13 +260,81 @@
     <script>
         // Cargar datos desde localStorage
         function loadResults() {
-            const data = JSON.parse(localStorage.getItem('diagnosticResults'));
-            
-            if (!data) {
-                document.body.innerHTML = '<div style="text-align: center; padding: 50px;"><h1>Error: No se encontraron resultados</h1><p><a href="index.html">Volver al diagnóstico</a></p></div>';
-                return;
-            }
+    const data = JSON.parse(localStorage.getItem('diagnosticResults'));
+    
+    if (!data) {
+        document.body.innerHTML = '<div style="text-align: center; padding: 50px;"><h1>Error: No se encontraron resultados</h1><p><a href="index.html">Volver al diagnóstico</a></p></div>';
+        return;
+    }
 
+    console.log('Datos cargados desde localStorage:', data);
+
+    // Validar que tenemos los datos necesarios
+    if (!data.totalScore && data.totalScore !== 0) {
+        console.error('Error: totalScore no está definido');
+        alert('Hubo un error al cargar los resultados. Por favor, realiza el diagnóstico nuevamente.');
+        window.location.href = 'index.html';
+        return;
+    }
+
+    // Mostrar puntuación
+    document.getElementById('score').textContent = data.totalScore;
+    document.getElementById('category-text').textContent = data.category || 'Sin categoría';
+
+    // Mostrar diagnóstico
+    document.getElementById('main-cme').textContent = data.mainCME || 'No disponible';
+    document.getElementById('weakest-pillar').textContent = data.weakestPillar || 'No disponible';
+
+    // Mostrar costo del caos
+    const monthlyCost = data.monthlyCost || data.monthlyLoss || 0;
+    const yearlyCost = data.yearlyCost || data.yearlyLoss || 0;
+    
+    console.log('Costos calculados - Mensual:', monthlyCost, 'Anual:', yearlyCost);
+    
+    document.getElementById('monthly-cost').textContent = '$' + monthlyCost.toLocaleString();
+    document.getElementById('yearly-cost-text').textContent = '$' + yearlyCost.toLocaleString();
+    document.getElementById('cta-cost').textContent = monthlyCost.toLocaleString();
+    document.getElementById('cta-cost-2').textContent = monthlyCost.toLocaleString();
+
+    // Ejemplos de costo
+    let costExamples = [];
+    if (yearlyCost > 100000) {
+        costExamples = [
+            'el sueldo anual de 2-3 empleados clave',
+            'una casa o departamento en una ciudad mediana',
+            'el capital para abrir una nueva sucursal'
+        ];
+    } else if (yearlyCost > 50000) {
+        costExamples = [
+            'el sueldo anual de un Gerente de Operaciones',
+            'dos años de colegio privado para tus hijos',
+            'el capital para invertir en una nueva línea de negocio'
+        ];
+    } else if (yearlyCost > 20000) {
+        costExamples = [
+            'un vehículo nuevo para tu negocio',
+            'un año de colegio privado para tus hijos',
+            'equipamiento tecnológico completo para tu empresa'
+        ];
+    } else if (yearlyCost > 5000) {
+        costExamples = [
+            'varios meses de renta de oficina',
+            'un sistema de software empresarial completo',
+            'capacitación profesional para todo tu equipo'
+        ];
+    } else {
+        costExamples = [
+            'equipamiento de oficina nuevo',
+            'herramientas digitales premium por un año',
+            'consultoría especializada en áreas clave'
+        ];
+    }
+    
+    document.getElementById('cost-example').innerHTML = costExamples.map(e => '• ' + e).join('<br>');
+
+    // Mostrar pilar débil
+    document.getElementById('pillar-name').textContent = data.weakestPillar || 'No disponible';
+}
             // Mostrar puntuación
             document.getElementById('score').textContent = data.totalScore;
             document.getElementById('category-text').textContent = data.category;
