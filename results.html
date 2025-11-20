@@ -173,6 +173,15 @@
             text-decoration: underline;
         }
 
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #f5c6cb;
+            margin: 20px 0;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -248,7 +257,7 @@
                 <li style="margin: 10px 0;">Mostrarte el primer paso para implementar tu Pilar P.U.D.E.R. y recuperar tu vida.</li>
             </ol>
             <p style="margin-top: 20px;"><strong>Esta sesión no tiene costo ni compromiso. Solo tienes <span id="cta-cost-2">--</span> USD que perder si no actúas.</strong></p>
-            <button class="btn-cta" onclick="agendarSesion()">AGENDA TU SESIÓN GRATUITA Y RECUPERA TU VIDA</button>
+            <a href="https://estrategiaempresaria.systeme.io/sesionestrategica1a1" class="btn-cta" target="_blank">AGENDA TU SESIÓN GRATUITA Y RECUPERA TU VIDA</a>
         </div>
 
         <!-- Back Link -->
@@ -260,116 +269,138 @@
     <script>
         // Cargar datos desde localStorage
         function loadResults() {
-    const data = JSON.parse(localStorage.getItem('diagnosticResults'));
-    
-    if (!data) {
-        document.body.innerHTML = '<div style="text-align: center; padding: 50px;"><h1>Error: No se encontraron resultados</h1><p><a href="index.html">Volver al diagnóstico</a></p></div>';
-        return;
-    }
+            console.log('🔍 Iniciando carga de resultados...');
+            
+            // Intentar recuperar datos de localStorage
+            const dataString = localStorage.getItem('diagnosticResults');
+            console.log('📦 Datos recuperados de localStorage:', dataString);
+            
+            if (!dataString) {
+                console.error('❌ No se encontraron datos en localStorage');
+                showError('No se encontraron resultados. Por favor, completa el diagnóstico primero.');
+                return;
+            }
 
-    console.log('Datos cargados desde localStorage:', data);
+            let data;
+            try {
+                data = JSON.parse(dataString);
+                console.log('✅ Datos parseados exitosamente:', data);
+            } catch (e) {
+                console.error('❌ Error al parsear datos:', e);
+                showError('Error al cargar los resultados. Por favor, intenta nuevamente.');
+                return;
+            }
 
-    // Validar que tenemos los datos necesarios
-    if (!data.totalScore && data.totalScore !== 0) {
-        console.error('Error: totalScore no está definido');
-        alert('Hubo un error al cargar los resultados. Por favor, realiza el diagnóstico nuevamente.');
-        window.location.href = 'index.html';
-        return;
-    }
+            // Validar que tenemos los datos necesarios
+            if (data.totalScore === undefined || data.totalScore === null) {
+                console.error('❌ totalScore no está definido en los datos');
+                showError('Datos incompletos. Por favor, completa el diagnóstico nuevamente.');
+                return;
+            }
 
-    // Mostrar puntuación
-    document.getElementById('score').textContent = data.totalScore;
-    document.getElementById('category-text').textContent = data.category || 'Sin categoría';
+            console.log('📊 Procesando resultados con puntuación:', data.totalScore);
 
-    // Mostrar diagnóstico
-    document.getElementById('main-cme').textContent = data.mainCME || 'No disponible';
-    document.getElementById('weakest-pillar').textContent = data.weakestPillar || 'No disponible';
-
-    // Mostrar costo del caos
-    const monthlyCost = data.monthlyCost || data.monthlyLoss || 0;
-    const yearlyCost = data.yearlyCost || data.yearlyLoss || 0;
-    
-    console.log('Costos calculados - Mensual:', monthlyCost, 'Anual:', yearlyCost);
-    
-    document.getElementById('monthly-cost').textContent = '$' + monthlyCost.toLocaleString();
-    document.getElementById('yearly-cost-text').textContent = '$' + yearlyCost.toLocaleString();
-    document.getElementById('cta-cost').textContent = monthlyCost.toLocaleString();
-    document.getElementById('cta-cost-2').textContent = monthlyCost.toLocaleString();
-
-    // Ejemplos de costo
-    let costExamples = [];
-    if (yearlyCost > 100000) {
-        costExamples = [
-            'el sueldo anual de 2-3 empleados clave',
-            'una casa o departamento en una ciudad mediana',
-            'el capital para abrir una nueva sucursal'
-        ];
-    } else if (yearlyCost > 50000) {
-        costExamples = [
-            'el sueldo anual de un Gerente de Operaciones',
-            'dos años de colegio privado para tus hijos',
-            'el capital para invertir en una nueva línea de negocio'
-        ];
-    } else if (yearlyCost > 20000) {
-        costExamples = [
-            'un vehículo nuevo para tu negocio',
-            'un año de colegio privado para tus hijos',
-            'equipamiento tecnológico completo para tu empresa'
-        ];
-    } else if (yearlyCost > 5000) {
-        costExamples = [
-            'varios meses de renta de oficina',
-            'un sistema de software empresarial completo',
-            'capacitación profesional para todo tu equipo'
-        ];
-    } else {
-        costExamples = [
-            'equipamiento de oficina nuevo',
-            'herramientas digitales premium por un año',
-            'consultoría especializada en áreas clave'
-        ];
-    }
-    
-    document.getElementById('cost-example').innerHTML = costExamples.map(e => '• ' + e).join('<br>');
-
-    // Mostrar pilar débil
-    document.getElementById('pillar-name').textContent = data.weakestPillar || 'No disponible';
-}
             // Mostrar puntuación
             document.getElementById('score').textContent = data.totalScore;
-            document.getElementById('category-text').textContent = data.category;
+            document.getElementById('category-text').textContent = data.category || 'Categoría no disponible';
 
             // Mostrar diagnóstico
-            document.getElementById('main-cme').textContent = data.mainCME;
-            document.getElementById('weakest-pillar').textContent = data.weakestPillar;
+            document.getElementById('main-cme').textContent = data.mainCME || 'No disponible';
+            document.getElementById('weakest-pillar').textContent = data.weakestPillar || 'No disponible';
+
+            // Determinar el costo mensual y anual (usar múltiples fuentes por compatibilidad)
+            const monthlyCost = data.monthlyCost || data.monthlyLoss || 0;
+            const yearlyCost = data.yearlyCost || data.yearlyLoss || 0;
+            
+            console.log('💰 Costos calculados:');
+            console.log('  - Mensual:', monthlyCost);
+            console.log('  - Anual:', yearlyCost);
 
             // Mostrar costo del caos
-            document.getElementById('monthly-cost').textContent = '$' + data.monthlyCost.toLocaleString();
-            document.getElementById('yearly-cost-text').textContent = '$' + data.yearlyCost.toLocaleString();
-            document.getElementById('cta-cost').textContent = data.monthlyCost.toLocaleString();
-            document.getElementById('cta-cost-2').textContent = data.monthlyCost.toLocaleString();
+            if (monthlyCost > 0) {
+                document.getElementById('monthly-cost').textContent = '$' + monthlyCost.toLocaleString('en-US');
+                document.getElementById('cta-cost').textContent = monthlyCost.toLocaleString('en-US');
+                document.getElementById('cta-cost-2').textContent = monthlyCost.toLocaleString('en-US');
+            } else {
+                document.getElementById('monthly-cost').textContent = 'Calculando...';
+                document.getElementById('cta-cost').textContent = '---';
+                document.getElementById('cta-cost-2').textContent = '---';
+            }
 
-            // Ejemplos de costo
-            const costExamples = [
-                'el sueldo anual de un Gerente de Operaciones',
-                'un año de colegio privado para tus hijos',
-                'el capital para invertir en una nueva línea de negocio'
-            ];
-            document.getElementById('cost-example').textContent = '• ' + costExamples.join('\n• ');
+            if (yearlyCost > 0) {
+                document.getElementById('yearly-cost-text').textContent = '$' + yearlyCost.toLocaleString('en-US');
+            } else {
+                document.getElementById('yearly-cost-text').textContent = 'Calculando...';
+            }
 
-            // Mostrar pilar
-            document.getElementById('pillar-name').textContent = data.weakestPillar;
+            // Ejemplos de costo según el monto anual
+            let costExamples = [];
+            if (yearlyCost > 100000) {
+                costExamples = [
+                    'El sueldo anual de 2-3 empleados clave',
+                    'Una casa o departamento en una ciudad mediana',
+                    'El capital para abrir una nueva sucursal'
+                ];
+            } else if (yearlyCost > 50000) {
+                costExamples = [
+                    'El sueldo anual de un Gerente de Operaciones',
+                    'Dos años de colegio privado para tus hijos',
+                    'El capital para invertir en una nueva línea de negocio'
+                ];
+            } else if (yearlyCost > 20000) {
+                costExamples = [
+                    'Un vehículo nuevo para tu negocio',
+                    'Un año de colegio privado para tus hijos',
+                    'Equipamiento tecnológico completo para tu empresa'
+                ];
+            } else if (yearlyCost > 5000) {
+                costExamples = [
+                    'Varios meses de renta de oficina',
+                    'Un sistema de software empresarial completo',
+                    'Capacitación profesional para todo tu equipo'
+                ];
+            } else {
+                costExamples = [
+                    'Equipamiento de oficina nuevo',
+                    'Herramientas digitales premium por un año',
+                    'Consultoría especializada en áreas clave'
+                ];
+            }
+
+            document.getElementById('cost-example').innerHTML = costExamples.map(e => '• ' + e).join('<br>');
+
+            // Mostrar pilar débil
+            document.getElementById('pillar-name').textContent = data.weakestPillar || 'No disponible';
+
+            console.log('✅ Resultados cargados exitosamente');
         }
 
-        // Función para agendar sesión (placeholder)
-        function agendarSesion() {
-            alert('Redirigiendo a agendamiento de sesión...\n\nEn una implementación real, esto abriría tu calendario de Calendly o similar.');
-            // En producción, aquí iría la URL de Calendly o similar
-            // window.location.href = 'https://calendly.com/claudioflores/sesion-estrategica';
+        function showError(message) {
+            const container = document.querySelector('.container');
+            container.innerHTML = `
+                <div class="error-message">
+                    <h2>⚠️ Error al Cargar Resultados</h2>
+                    <p>${message}</p>
+                    <p style="margin-top: 20px;">
+                        <a href="index.html" style="color: #721c24; font-weight: bold; text-decoration: underline;">
+                            ← Volver al Diagnóstico
+                        </a>
+                    </p>
+                </div>
+            `;
         }
 
         // Cargar resultados al abrir la página
-        window.addEventListener('load', loadResults);
+        window.addEventListener('load', function() {
+            console.log('🚀 Página cargada, iniciando loadResults()...');
+            loadResults();
+        });
+
+        // También intentar cargar si ya está listo
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            console.log('📄 Documento ya listo, cargando resultados inmediatamente...');
+            loadResults();
+        }
     </script>
 </body>
 </html>
