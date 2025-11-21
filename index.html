@@ -1046,6 +1046,67 @@ function submitAndShowResults() {
         mainCME: diagnosis.mainCME,
         weakestPillar: diagnosis.weakestPillar,
         monthlyCost: costOfChaos.monthlyCost,
+        yearlyCost: costOfChaos.yearlyCost,
+        monthlyHours: costOfChaos.monthlyHours
+    };
+
+    // NUEVO: Guardar email en localStorage para envío posterior
+    localStorage.setItem('userEmail', email);
+    localStorage.setItem('userName', fullName);
+
+    // Enviar a Google Sheets de forma asíncrona
+    try {
+        sendToGoogleSheets(completeData);
+    } catch (error) {
+        console.error('Error enviando a Google Sheets:', error);
+    }
+
+    // Redirigir a la página de resultados
+    redirectToResults(results, costOfChaos, diagnosis);
+}
+    if (!email.includes('@')) {
+        alert('Por favor, ingresa un email válido.');
+        return;
+    }
+
+    // Deshabilitar botón y mostrar loading
+    const submitBtn = document.getElementById('submitBtn');
+    const loadingMsg = document.getElementById('loadingMsg');
+    submitBtn.disabled = true;
+    loadingMsg.style.display = 'block';
+
+    // Calcular resultados
+    const results = calculateResults();
+    
+    // Calcular diagnóstico (CME y Pilar P.U.D.E.R.)
+    const diagnosis = identifyMainCauseAndPillar();
+    
+    // Calcular Costo del Caos
+    const costOfChaos = calculateCostOfChaos();
+
+    // Preparar datos completos para enviar
+    const completeData = {
+        timestamp: new Date().toISOString(),
+        fullName,
+        company,
+        position,
+        email,
+        phone,
+        yearsLeader,
+        employees,
+        ...diagnosticData,
+        totalScore: results.totalScore,
+        timeLost: results.timeLost,
+        lonelinessIndex: results.lonelinessIndex,
+        hourlyValue: results.hourlyValue,
+        durationYears: results.durationYears,
+        category: results.category,
+        monthlyLoss: results.monthlyLoss,
+        yearlyLoss: results.yearlyLoss,
+        accumulatedLoss: results.accumulatedLoss,
+        mainCME: diagnosis.mainCME,
+        weakestPillar: diagnosis.weakestPillar,
+        monthlyCost: costOfChaos.monthlyCost,
         yearlyCost: costOfChaos.yearlyCost
     };
 
