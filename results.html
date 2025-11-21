@@ -16,192 +16,541 @@
             background: linear-gradient(135deg, #1a1a1a 0%, #3d1a1a 100%);
             color: #333;
             line-height: 1.6;
-            padding: 20px;
+            padding: 20px 10px;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
             background-color: #fff;
-            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
         }
 
         .header {
+            background: linear-gradient(135deg, #DC143C, #8B0000);
+            color: white;
             text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 3px solid #DC143C;
-            padding-bottom: 20px;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .header-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-image: url('FBA Logo Sin Fondo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         .header h1 {
-            color: #c0392b;
-            font-size: 2.5em;
+            font-size: 2em;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        /* Severity Meter */
+        .severity-section {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px 20px;
+            background: linear-gradient(to bottom, #fff, #f8f9fa);
+            border-radius: 10px;
+        }
+
+        .severity-meter {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 250px;
+            margin: 30px auto;
+        }
+
+        .meter-arc {
+            width: 100%;
+            height: 100%;
+        }
+
+        .meter-needle {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            height: 45%;
+            background: #333;
+            transform-origin: bottom center;
+            transition: transform 1s ease-out;
+            z-index: 10;
+        }
+
+        .meter-needle::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 15px solid #333;
+        }
+
+        .meter-needle::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            background: #333;
+            border-radius: 50%;
+            border: 3px solid #fff;
         }
 
         .score-display {
-            font-size: 1.8em;
-            color: #2980b9;
-            font-weight: bold;
-            margin: 15px 0;
+            font-size: 3em;
+            font-weight: 900;
+            color: #DC143C;
+            margin: 20px 0 10px;
         }
 
-        .impact-section {
-            background-color: #f9e6e6;
-            border: 3px solid #c0392b;
-            padding: 30px;
+        .category-badge {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+            background: #DC143C;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Cost Impact Section */
+        .cost-impact {
+            background: #fff5e6;
+            border: 3px solid #DC143C;
+            border-radius: 10px;
+            padding: 40px 30px;
             margin: 40px 0;
-            border-radius: 8px;
             text-align: center;
         }
 
-        .cost-value {
-            font-size: 4em;
-            font-weight: 900;
-            color: #c0392b;
-            line-height: 1;
-            margin: 20px 0;
+        .cost-impact h2 {
+            color: #DC143C;
+            font-size: 2em;
+            margin-bottom: 30px;
         }
 
-        .cost-subtitle {
-            font-size: 1.3em;
+        .cost-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .cost-box {
+            background: white;
+            border: 2px solid #DC143C;
+            border-radius: 10px;
+            padding: 25px;
+            min-width: 200px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .cost-box .label {
+            font-size: 0.9em;
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
-        .cost-details {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
+        .cost-box .value {
+            font-size: 2.5em;
+            font-weight: 900;
+            color: #DC143C;
+            line-height: 1;
+        }
+
+        .cost-comparisons {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .cost-comparisons h3 {
+            color: #DC143C;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .comparison-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-item:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+            min-width: 30px;
+        }
+
+        /* Diagnosis Section */
+        .diagnosis-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 40px 30px;
+            margin: 40px 0;
+        }
+
+        .diagnosis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .diagnosis-card {
+            background: white;
+            border-left: 5px solid #DC143C;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .diagnosis-card h3 {
+            color: #DC143C;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .diagnosis-card .value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* P.U.D.E.R. Method Visual */
+        .poder-section {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            color: white;
+            border-radius: 10px;
+            padding: 40px 30px;
+            margin: 40px 0;
+        }
+
+        .poder-section h2 {
+            color: #D4AF37;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .pillars-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .pillar {
+            text-align: center;
+            flex: 1;
+            min-width: 80px;
+            opacity: 0.4;
+            transition: all 0.3s ease;
+        }
+
+        .pillar.weak {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .pillar-bar {
+            width: 100%;
+            background: #666;
+            border-radius: 5px 5px 0 0;
+            margin-bottom: 10px;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .pillar.weak .pillar-bar {
+            background: linear-gradient(to top, #DC143C, #FF6B6B);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .pillar-label {
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .pillar.weak .pillar-label {
+            color: #D4AF37;
             font-size: 1.1em;
         }
 
-        .solution-section {
-            background-color: #fff5e6;
-            border-radius: 8px;
-            padding: 30px;
-            margin: 30px 0;
-            border-left: 5px solid #D4AF37;
+        .vaccine-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #D4AF37;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
         }
 
-        .solution-section h2 {
-            color: #DC143C;
-            font-size: 1.8em;
+        .vaccine-box h3 {
+            color: #D4AF37;
+            font-size: 1.5em;
             margin-bottom: 15px;
         }
 
-        .pillar-highlight {
-            font-size: 2.5em;
-            font-weight: bold;
+        .vaccine-box .pillar-focus {
+            font-size: 2em;
+            font-weight: 900;
             color: #D4AF37;
             margin: 20px 0;
-            text-align: center;
         }
 
-        .cta-section {
-            background-color: #1a1a1a;
-            color: #fff;
-            padding: 40px;
-            margin-top: 40px;
-            border-radius: 8px;
+        /* Before/After Section */
+        .transformation-section {
+            background: white;
+            border-radius: 10px;
+            padding: 40px 30px;
+            margin: 40px 0;
+        }
+
+        .transformation-section h2 {
+            color: #DC143C;
             text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .comparison-box {
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .comparison-box.before {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
             border: 2px solid #DC143C;
         }
 
-        .cta-section h3 {
+        .comparison-box.after {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border: 2px solid #4CAF50;
+        }
+
+        .comparison-box h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .comparison-box.before h3 {
+            color: #DC143C;
+        }
+
+        .comparison-box.after h3 {
+            color: #2e7d32;
+        }
+
+        .comparison-list {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+        }
+
+        .comparison-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            font-size: 1.05em;
+        }
+
+        .comparison-list li:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-box.before .comparison-list li::before {
+            content: "❌ ";
+            margin-right: 10px;
+        }
+
+        .comparison-box.after .comparison-list li::before {
+            content: "✅ ";
+            margin-right: 10px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            color: white;
+            padding: 50px 30px;
+            margin-top: 40px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: #D4AF37;
             font-size: 2em;
             margin-bottom: 20px;
         }
 
-        .cta-section p {
-            font-size: 1.2em;
-            margin-bottom: 25px;
-            line-height: 1.8;
+        .cta-highlight {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #D4AF37;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .cta-steps {
+            text-align: left;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .cta-steps li {
+            padding: 10px 0;
+            font-size: 1.1em;
         }
 
         .btn-cta {
             display: inline-block;
-            background-color: #D4AF37;
+            background: linear-gradient(135deg, #D4AF37, #FFD700);
             color: #000;
-            padding: 18px 40px;
+            padding: 20px 40px;
             text-decoration: none;
-            font-size: 1.5em;
+            font-size: 1.3em;
             font-weight: bold;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            border: none;
-            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            margin-top: 20px;
         }
 
         .btn-cta:hover {
-            background-color: #C19A1B;
-            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
         }
 
-        .diagnosis-box {
-            background-color: #f0f0f0;
-            border-left: 4px solid #DC143C;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 5px;
+        .consultant-badge {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(255,255,255,0.2);
         }
 
-        .diagnosis-box strong {
-            color: #DC143C;
-            font-size: 1.1em;
+        .consultant-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background-image: url('Diseño sin título (1).png');
+            background-size: cover;
+            background-position: center;
+            border: 4px solid #D4AF37;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .back-link {
             text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+            padding: 30px;
+            background: #f8f9fa;
         }
 
         .back-link a {
             color: #DC143C;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.1em;
         }
 
-        .back-link a:hover {
-            text-decoration: underline;
-        }
-
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 20px;
-            border-radius: 5px;
-            border: 1px solid #f5c6cb;
-            margin: 20px 0;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
+            .content {
+                padding: 30px 20px;
             }
 
             .header h1 {
-                font-size: 1.8em;
+                font-size: 1.5em;
             }
 
-            .cost-value {
+            .score-display {
                 font-size: 2.5em;
             }
 
-            .cta-section {
-                padding: 20px;
+            .category-badge {
+                font-size: 1em;
+                padding: 12px 25px;
             }
 
+            .cost-visual {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .cost-box {
+                width: 100%;
+            }
+
+            .pillars-container {
+                justify-content: center;
+            }
+
+            .pillar {
+                min-width: 60px;
+            }
+
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
             .btn-cta {
-                padding: 12px 25px;
-                font-size: 1.1em;
+                display: none;
             }
         }
     </style>
@@ -210,54 +559,192 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>¡ATENCIÓN! Tu Diagnóstico Revela una Crisis Empresarial</h1>
-            <div class="score-display">Tu Puntuación de Madurez Empresarial es: <span id="score">--</span>/141</div>
-            <p id="category-text" style="font-size: 1.2em; color: #666; margin-top: 15px;"></p>
+            <div class="header-logo"></div>
+            <h1>Tu Diagnóstico Estratégico Empresarial</h1>
+            <p style="font-size: 1.1em; opacity: 0.95;">Método P.U.D.E.R. - Análisis Completo</p>
         </div>
 
-        <!-- Diagnosis -->
-        <div class="diagnosis-box">
-            <p><strong>Causa de Muerte Empresarial Principal:</strong> <span id="main-cme">--</span></p>
-            <p><strong>Pilar P.U.D.E.R. Más Débil:</strong> <span id="weakest-pillar">--</span></p>
-        </div>
+        <div class="content">
+            <!-- Severity Meter -->
+            <div class="severity-section">
+                <h2 style="color: #DC143C; font-size: 1.8em; margin-bottom: 20px;">⚠️ Nivel de Crisis Empresarial</h2>
+                
+                <div class="severity-meter">
+                    <svg class="meter-arc" viewBox="0 0 200 100">
+                        <!-- Green Zone -->
+                        <path d="M 10 90 A 80 80 0 0 1 50 20" fill="none" stroke="#4CAF50" stroke-width="20" stroke-linecap="round"/>
+                        <!-- Yellow Zone -->
+                        <path d="M 50 20 A 80 80 0 0 1 100 10" fill="none" stroke="#FFC107" stroke-width="20" stroke-linecap="round"/>
+                        <!-- Orange Zone -->
+                        <path d="M 100 10 A 80 80 0 0 1 150 20" fill="none" stroke="#FF9800" stroke-width="20" stroke-linecap="round"/>
+                        <!-- Red Zone -->
+                        <path d="M 150 20 A 80 80 0 0 1 190 90" fill="none" stroke="#DC143C" stroke-width="20" stroke-linecap="round"/>
+                        
+                        <!-- Labels -->
+                        <text x="20" y="95" font-size="8" fill="#333" font-weight="bold">ÓPTIMO</text>
+                        <text x="170" y="95" font-size="8" fill="#333" font-weight="bold" text-anchor="end">CRISIS</text>
+                    </svg>
+                    <div class="meter-needle" id="needle"></div>
+                </div>
 
-        <!-- Cost of Chaos -->
-        <div class="impact-section">
-            <h2>💸 El Costo Oculto de la Inacción</h2>
-            <p class="cost-subtitle">Basado en tu propia valoración, el costo de tu ineficiencia es:</p>
-            <div class="cost-value" id="monthly-cost">--</div>
-            <p class="cost-subtitle">/ Mes</p>
-            <p style="font-size: 1.1em; color: #555; margin-top: 15px;">
-                <strong id="yearly-cost-text">--</strong> al año
-            </p>
-            <div class="cost-details">
-                <p><strong>Tu Causa de Muerte Empresarial Principal te está costando el equivalente a:</strong></p>
-                <p id="cost-example" style="margin-top: 10px; font-weight: bold;">--</p>
+                <div class="score-display"><span id="score">--</span> / 141</div>
+                <p style="color: #666; font-size: 1.1em;">Puntuación de Madurez Empresarial</p>
+                <div class="category-badge" id="category-badge">--</div>
             </div>
-        </div>
 
-        <!-- Solution -->
-        <div class="solution-section">
-            <h2>💉 Tu Vacuna Estratégica: El Método P.U.D.E.R.</h2>
-            <p>La solución para detener esta hemorragia y transformar tu negocio está en el <strong>Método P.U.D.E.R.</strong>, un sistema probado que te permite recuperar el control y la rentabilidad.</p>
-            <p>Tu diagnóstico indica que debes aplicar la <strong>Vacuna P.U.D.E.R.</strong> enfocándote urgentemente en el pilar:</p>
-            <div class="pillar-highlight" id="pillar-name">--</div>
-            <p><em>Este pilar es la clave para neutralizar tu principal riesgo y comenzar a construir un negocio que trabaje para ti.</em></p>
-        </div>
+            <!-- Cost Impact -->
+            <div class="cost-impact">
+                <h2>💸 El Costo Oculto de la Inacción</h2>
+                <p style="font-size: 1.2em; color: #666; margin-bottom: 30px;">Basado en tu propia valoración</p>
+                
+                <div class="cost-visual">
+                    <div class="cost-box">
+                        <div class="label">Pérdida Mensual</div>
+                        <div class="value">U$D <span id="monthly-cost">--</span></div>
+                    </div>
+                    <div class="cost-box">
+                        <div class="label">Pérdida Anual</div>
+                        <div class="value">U$D <span id="yearly-cost">--</span></div>
+                    </div>
+                </div>
 
-        <!-- CTA -->
-        <div class="cta-section">
-            <h3>¡El Reloj Sigue Corriendo! Detén la Pérdida de <span id="cta-cost">--</span> USD Ahora.</h3>
-            <p>No dejes que el caos te cueste un mes más.</p>
-            <p><strong>Agenda tu Sesión Estratégica 1:1 Gratuita con Claudio Flores.</strong></p>
-            <p>En solo <strong>15 minutos</strong>, utilizaremos este diagnóstico para:</p>
-            <ol style="text-align: left; display: inline-block; margin: 20px 0;">
-                <li style="margin: 10px 0;">Confirmar el origen exacto de tu Causa de Muerte Empresarial.</li>
-                <li style="margin: 10px 0;">Diseñar tu Plan de Vacunación Empresarial personalizado.</li>
-                <li style="margin: 10px 0;">Mostrarte el primer paso para implementar tu Pilar P.U.D.E.R. y recuperar tu vida.</li>
-            </ol>
-            <p style="margin-top: 20px;"><strong>Esta sesión no tiene costo ni compromiso. Solo tienes <span id="cta-cost-2">--</span> USD que perder si no actúas.</strong></p>
-            <a href="https://estrategiaempresaria.systeme.io/sesionestrategica1a1" class="btn-cta" target="_blank">AGENDA TU SESIÓN GRATUITA Y RECUPERA TU VIDA</a>
+                <div class="cost-comparisons">
+                    <h3>Tu crisis te está costando el equivalente a:</h3>
+                    <div id="cost-examples"></div>
+                </div>
+            </div>
+
+            <!-- Diagnosis -->
+            <div class="diagnosis-section">
+                <h2 style="color: #DC143C; font-size: 1.8em; text-align: center; margin-bottom: 20px;">🔍 Tu Diagnóstico Específico</h2>
+                
+                <div class="diagnosis-grid">
+                    <div class="diagnosis-card">
+                        <h3>Causa de Muerte Empresarial Principal</h3>
+                        <div class="value" id="main-cme">--</div>
+                    </div>
+                    <div class="diagnosis-card">
+                        <h3>Pilar P.U.D.E.R. Más Débil</h3>
+                        <div class="value" id="weakest-pillar">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- P.U.D.E.R. Method -->
+            <div class="poder-section">
+                <h2>💉 El Método P.U.D.E.R. - Tu Vacuna Estratégica</h2>
+                <p style="text-align: center; font-size: 1.1em; margin-bottom: 30px;">Sistema probado en 22 países para recuperar el control empresarial</p>
+                
+                <div class="pillars-container">
+                    <div class="pillar" data-pillar="Planear">
+                        <div class="pillar-bar" style="height: 120px;"></div>
+                        <div class="pillar-label">PLANEAR</div>
+                    </div>
+                    <div class="pillar" data-pillar="Único">
+                        <div class="pillar-bar" style="height: 100px;"></div>
+                        <div class="pillar-label">ÚNICO</div>
+                    </div>
+                    <div class="pillar" data-pillar="Desarrollarse">
+                        <div class="pillar-bar" style="height: 140px;"></div>
+                        <div class="pillar-label">DESARROLLARSE</div>
+                    </div>
+                    <div class="pillar" data-pillar="Estandarizar">
+                        <div class="pillar-bar" style="height: 110px;"></div>
+                        <div class="pillar-label">ESTANDARIZAR</div>
+                    </div>
+                    <div class="pillar" data-pillar="Repetir">
+                        <div class="pillar-bar" style="height: 90px;"></div>
+                        <div class="pillar-label">REPETIR</div>
+                    </div>
+                </div>
+
+                <div class="vaccine-box">
+                    <h3>🎯 Tu Pilar de Enfoque Urgente</h3>
+                    <div class="pillar-focus" id="pillar-focus">--</div>
+                    <p style="font-size: 1.1em;">Este pilar es la clave para neutralizar tu principal riesgo y comenzar a construir un negocio que trabaje para ti.</p>
+                </div>
+            </div>
+
+            <!-- Before/After -->
+            <div class="transformation-section">
+                <h2>🚀 La Transformación que te Espera</h2>
+                
+                <div class="comparison-container">
+                    <div class="comparison-box before">
+                        <h3>❌ Tu Situación Actual</h3>
+                        <ul class="comparison-list">
+                            <li>Trabajando 60+ horas semanales</li>
+                            <li>Indispensable en la operación</li>
+                            <li>Estrés y agotamiento constante</li>
+                            <li>Poco tiempo para la familia</li>
+                            <li>Decisiones en soledad</li>
+                            <li id="current-cost">Perdiendo $X mensual</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-box after">
+                        <h3>✅ Tu Potencial</h3>
+                        <ul class="comparison-list">
+                            <li>50% menos horas de trabajo</li>
+                            <li>Empresa funcionando sin ti</li>
+                            <li>Energía y claridad mental</li>
+                            <li>Balance vida-trabajo</li>
+                            <li>Decisiones con respaldo experto</li>
+                            <li>25-40% más de rentabilidad</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #f8f9fa; border-radius: 8px; padding: 25px; margin-top: 30px; text-align: center;">
+                    <h3 style="color: #DC143C; margin-bottom: 15px;">📊 Resultados Reales de Empresarios como Tú</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                        <div>
+                            <div style="font-size: 2.5em; font-weight: bold; color: #4CAF50;">50%</div>
+                            <div style="color: #666;">Reducción en horas de trabajo</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5em; font-weight: bold; color: #4CAF50;">25-40%</div>
+                            <div style="color: #666;">Incremento en rentabilidad</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5em; font-weight: bold; color: #4CAF50;">97%</div>
+                            <div style="color: #666;">Logran independencia operativa</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-section">
+                <h2>⏰ ¡El Reloj Sigue Corriendo!</h2>
+                
+                <div class="cta-highlight">
+                    <p style="font-size: 1.4em; margin-bottom: 15px; color: #D4AF37; font-weight: bold;">Detén la Pérdida de $<span id="cta-cost">--</span> USD Ahora</p>
+                    <p style="font-size: 1.1em;">No dejes que el caos te cueste un mes más</p>
+                </div>
+
+                <h3 style="font-size: 1.6em; margin: 30px 0 20px; color: white;">Agenda tu Sesión Estratégica 1:1 GRATUITA</h3>
+                <p style="font-size: 1.2em; margin-bottom: 20px;">En solo 15 minutos, utilizaremos este diagnóstico para:</p>
+                
+                <ol class="cta-steps">
+                    <li>✓ Confirmar el origen exacto de tu Causa de Muerte Empresarial</li>
+                    <li>✓ Diseñar tu Plan de Vacunación Empresarial personalizado</li>
+                    <li>✓ Mostrarte el primer paso para implementar tu Pilar P.U.D.E.R. y recuperar tu vida</li>
+                </ol>
+
+                <p style="font-size: 1.1em; margin: 25px 0;"><strong>Esta sesión no tiene costo ni compromiso.</strong><br>Solo tienes $<span id="cta-cost-2">--</span> USD que perder si no actúas.</p>
+
+                <a href="https://estrategiaempresaria.systeme.io/sesionestrategica1a1" class="btn-cta" target="_blank">
+                    📅 AGENDA TU SESIÓN GRATUITA AHORA
+                </a>
+
+                <div class="consultant-badge">
+                    <div class="consultant-photo"></div>
+                    <p style="font-size: 1.2em; font-weight: bold; color: #D4AF37;">Claudio Flores | Coach</p>
+                    <p style="font-size: 1em; opacity: 0.9;">Estratega Empresarial</p>
+                    <p style="font-size: 0.95em; margin-top: 15px; opacity: 0.85;">+17 años transformando empresarios en 22 países</p>
+                </div>
+            </div>
         </div>
 
         <!-- Back Link -->
@@ -267,138 +754,107 @@
     </div>
 
     <script>
-        // Cargar datos desde localStorage
         function loadResults() {
-            console.log('🔍 Iniciando carga de resultados...');
+            console.log('🔍 Cargando resultados...');
             
-            // Intentar recuperar datos de localStorage
             const dataString = localStorage.getItem('diagnosticResults');
-            console.log('📦 Datos recuperados de localStorage:', dataString);
-            
             if (!dataString) {
-                console.error('❌ No se encontraron datos en localStorage');
-                showError('No se encontraron resultados. Por favor, completa el diagnóstico primero.');
+                console.error('❌ No hay datos');
+                alert('No se encontraron resultados. Por favor, completa el diagnóstico primero.');
+                window.location.href = 'index.html';
                 return;
             }
 
-            let data;
-            try {
-                data = JSON.parse(dataString);
-                console.log('✅ Datos parseados exitosamente:', data);
-            } catch (e) {
-                console.error('❌ Error al parsear datos:', e);
-                showError('Error al cargar los resultados. Por favor, intenta nuevamente.');
-                return;
-            }
+            const data = JSON.parse(dataString);
+            console.log('✅ Datos cargados:', data);
 
-            // Validar que tenemos los datos necesarios
-            if (data.totalScore === undefined || data.totalScore === null) {
-                console.error('❌ totalScore no está definido en los datos');
-                showError('Datos incompletos. Por favor, completa el diagnóstico nuevamente.');
-                return;
-            }
+            // Score y categoría
+            document.getElementById('score').textContent = data.totalScore || 0;
+            document.getElementById('category-badge').textContent = data.category || 'Sin categoría';
 
-            console.log('📊 Procesando resultados con puntuación:', data.totalScore);
-
-            // Mostrar puntuación
-            document.getElementById('score').textContent = data.totalScore;
-            document.getElementById('category-text').textContent = data.category || 'Categoría no disponible';
-
-            // Mostrar diagnóstico
+            // Diagnóstico
             document.getElementById('main-cme').textContent = data.mainCME || 'No disponible';
             document.getElementById('weakest-pillar').textContent = data.weakestPillar || 'No disponible';
 
-            // Determinar el costo mensual y anual (usar múltiples fuentes por compatibilidad)
+            // Costos
             const monthlyCost = data.monthlyCost || data.monthlyLoss || 0;
             const yearlyCost = data.yearlyCost || data.yearlyLoss || 0;
             
-            console.log('💰 Costos calculados:');
-            console.log('  - Mensual:', monthlyCost);
-            console.log('  - Anual:', yearlyCost);
+            document.getElementById('monthly-cost').textContent = monthlyCost.toLocaleString('en-US');
+            document.getElementById('yearly-cost').textContent = yearlyCost.toLocaleString('en-US');
+            document.getElementById('cta-cost').textContent = monthlyCost.toLocaleString('en-US');
+            document.getElementById('cta-cost-2').textContent = monthlyCost.toLocaleString('en-US');
+            document.getElementById('current-cost').textContent = `Perdiendo $${monthlyCost.toLocaleString('en-US')} mensual`;
 
-            // Mostrar costo del caos
-            if (monthlyCost > 0) {
-                document.getElementById('monthly-cost').textContent = '$' + monthlyCost.toLocaleString('en-US');
-                document.getElementById('cta-cost').textContent = monthlyCost.toLocaleString('en-US');
-                document.getElementById('cta-cost-2').textContent = monthlyCost.toLocaleString('en-US');
-            } else {
-                document.getElementById('monthly-cost').textContent = 'Calculando...';
-                document.getElementById('cta-cost').textContent = '---';
-                document.getElementById('cta-cost-2').textContent = '---';
-            }
-
-            if (yearlyCost > 0) {
-                document.getElementById('yearly-cost-text').textContent = '$' + yearlyCost.toLocaleString('en-US');
-            } else {
-                document.getElementById('yearly-cost-text').textContent = 'Calculando...';
-            }
-
-            // Ejemplos de costo según el monto anual
+            // Ejemplos de costos
             let costExamples = [];
             if (yearlyCost > 100000) {
                 costExamples = [
-                    'El sueldo anual de 2-3 empleados clave',
-                    'Una casa o departamento en una ciudad mediana',
-                    'El capital para abrir una nueva sucursal'
+                    '💼 El sueldo anual de 2-3 empleados clave',
+                    '🏠 Una casa o departamento en una ciudad mediana',
+                    '🏢 El capital para abrir una nueva sucursal'
                 ];
             } else if (yearlyCost > 50000) {
                 costExamples = [
-                    'El sueldo anual de un Gerente de Operaciones',
-                    'Dos años de colegio privado para tus hijos',
-                    'El capital para invertir en una nueva línea de negocio'
+                    '💼 El sueldo anual de un Gerente de Operaciones',
+                    '🎓 Dos años de colegio privado para tus hijos',
+                    '📈 El capital para invertir en una nueva línea de negocio'
                 ];
             } else if (yearlyCost > 20000) {
                 costExamples = [
-                    'Un vehículo nuevo para tu negocio',
-                    'Un año de colegio privado para tus hijos',
-                    'Equipamiento tecnológico completo para tu empresa'
+                    '🚗 Un vehículo nuevo para tu negocio',
+                    '🎓 Un año de colegio privado para tus hijos',
+                    '💻 Equipamiento tecnológico completo para tu empresa'
                 ];
             } else if (yearlyCost > 5000) {
                 costExamples = [
-                    'Varios meses de renta de oficina',
-                    'Un sistema de software empresarial completo',
-                    'Capacitación profesional para todo tu equipo'
+                    '🏢 Varios meses de renta de oficina',
+                    '📊 Un sistema de software empresarial completo',
+                    '👥 Capacitación profesional para todo tu equipo'
                 ];
             } else {
                 costExamples = [
-                    'Equipamiento de oficina nuevo',
-                    'Herramientas digitales premium por un año',
-                    'Consultoría especializada en áreas clave'
+                    '🖥️ Equipamiento de oficina nuevo',
+                    '🔧 Herramientas digitales premium por un año',
+                    '📚 Consultoría especializada en áreas clave'
                 ];
             }
 
-            document.getElementById('cost-example').innerHTML = costExamples.map(e => '• ' + e).join('<br>');
+            const examplesHTML = costExamples.map(e => 
+                `<div class="comparison-item"><span class="comparison-icon">•</span><span>${e}</span></div>`
+            ).join('');
+            document.getElementById('cost-examples').innerHTML = examplesHTML;
 
-            // Mostrar pilar débil
-            document.getElementById('pillar-name').textContent = data.weakestPillar || 'No disponible';
+            // Pilar débil
+            const weakestPillar = data.weakestPillar || 'Desarrollarse';
+            document.getElementById('pillar-focus').textContent = weakestPillar.toUpperCase();
+            
+            // Destacar pilar débil en visualización
+            document.querySelectorAll('.pillar').forEach(pillar => {
+                if (pillar.dataset.pillar === weakestPillar) {
+                    pillar.classList.add('weak');
+                }
+            });
 
-            console.log('✅ Resultados cargados exitosamente');
+            // Animar aguja del medidor
+            animateNeedle(data.totalScore);
         }
 
-        function showError(message) {
-            const container = document.querySelector('.container');
-            container.innerHTML = `
-                <div class="error-message">
-                    <h2>⚠️ Error al Cargar Resultados</h2>
-                    <p>${message}</p>
-                    <p style="margin-top: 20px;">
-                        <a href="index.html" style="color: #721c24; font-weight: bold; text-decoration: underline;">
-                            ← Volver al Diagnóstico
-                        </a>
-                    </p>
-                </div>
-            `;
+        function animateNeedle(score) {
+            // Calcular ángulo basado en el score (0-141)
+            // 0 = -90deg (izquierda), 141 = 90deg (derecha)
+            const percentage = Math.min(score / 141, 1);
+            const angle = (percentage * 180) - 90; // De -90 a 90 grados
+            
+            const needle = document.getElementById('needle');
+            setTimeout(() => {
+                needle.style.transform = `rotate(${angle}deg)`;
+            }, 500);
         }
 
-        // Cargar resultados al abrir la página
-        window.addEventListener('load', function() {
-            console.log('🚀 Página cargada, iniciando loadResults()...');
-            loadResults();
-        });
-
-        // También intentar cargar si ya está listo
+        // Cargar resultados al inicio
+        window.addEventListener('load', loadResults);
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
-            console.log('📄 Documento ya listo, cargando resultados inmediatamente...');
             loadResults();
         }
     </script>
