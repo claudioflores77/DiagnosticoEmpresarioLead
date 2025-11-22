@@ -16,1222 +16,212 @@
             background: linear-gradient(135deg, #1a1a1a 0%, #3d1a1a 100%);
             color: #333;
             line-height: 1.6;
-            padding: 20px 10px;
+            padding: 20px;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
             background-color: #fff;
+            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
         .header {
-            background: linear-gradient(135deg, #DC143C, #8B0000);
-            color: white;
             text-align: center;
-            padding: 40px 20px;
-            position: relative;
-        }
-
-        .header-logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background-image: url('FBA Logo Sin Fondo.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #DC143C;
+            padding-bottom: 20px;
         }
 
         .header h1 {
-            font-size: 2em;
+            color: #c0392b;
+            font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .content {
-            padding: 40px 30px;
-        }
-
-        /* Severity Meter */
-        .severity-section {
-            text-align: center;
-            margin-bottom: 50px;
-            padding: 30px 20px;
-            background: linear-gradient(to bottom, #fff, #f8f9fa);
-            border-radius: 10px;
-        }
-
-        .severity-meter {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            height: 250px;
-            margin: 30px auto;
-        }
-
-        .meter-arc {
-            width: 100%;
-            height: 100%;
-        }
-
-        .meter-needle {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 4px;
-            height: 45%;
-            background: #333;
-            transform-origin: bottom center;
-            transition: transform 1s ease-out;
-            z-index: 10;
-        }
-
-        .meter-needle::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-bottom: 15px solid #333;
-        }
-
-        .meter-needle::before {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 24px;
-            height: 24px;
-            background: #333;
-            border-radius: 50%;
-            border: 3px solid #fff;
         }
 
         .score-display {
-            font-size: 3em;
-            font-weight: 900;
-            color: #DC143C;
-            margin: 20px 0 10px;
-        }
-
-        .category-badge {
-            display: inline-block;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.2em;
+            font-size: 1.8em;
+            color: #2980b9;
             font-weight: bold;
-            margin-top: 20px;
-            background: #DC143C;
-            color: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 15px 0;
         }
 
-        /* Cost Impact Section */
-        .cost-impact {
-            background: #fff5e6;
-            border: 3px solid #DC143C;
-            border-radius: 10px;
-            padding: 40px 30px;
+        .impact-section {
+            background-color: #f9e6e6;
+            border: 3px solid #c0392b;
+            padding: 30px;
             margin: 40px 0;
+            border-radius: 8px;
             text-align: center;
         }
 
-        .cost-impact h2 {
-            color: #DC143C;
-            font-size: 2em;
-            margin-bottom: 30px;
-        }
-
-        .cost-visual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-
-        .cost-box {
-            background: white;
-            border: 2px solid #DC143C;
-            border-radius: 10px;
-            padding: 25px;
-            min-width: 200px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .cost-box .label {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .cost-box .value {
-            font-size: 2.5em;
+        .cost-value {
+            font-size: 4em;
             font-weight: 900;
-            color: #DC143C;
+            color: #c0392b;
             line-height: 1;
-        }
-
-        .cost-comparisons {
-            background: white;
-            border-radius: 8px;
-            padding: 25px;
-            margin-top: 30px;
-            text-align: left;
-        }
-
-        .cost-comparisons h3 {
-            color: #DC143C;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .comparison-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .comparison-item:last-child {
-            border-bottom: none;
-        }
-
-        .comparison-icon {
-            font-size: 1.5em;
-            margin-right: 15px;
-            min-width: 30px;
-        }
-
-        /* Diagnosis Section */
-        .diagnosis-section {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 40px 30px;
-            margin: 40px 0;
-        }
-
-        .diagnosis-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .diagnosis-card {
-            background: white;
-            border-left: 5px solid #DC143C;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .diagnosis-card h3 {
-            color: #DC143C;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-        }
-
-        .diagnosis-card .value {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #333;
-        }
-
-        /* P.U.D.E.R. Method Visual */
-        .poder-section {
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            color: white;
-            border-radius: 10px;
-            padding: 40px 30px;
-            margin: 40px 0;
-        }
-
-        .poder-section h2 {
-            color: #D4AF37;
-            text-align: center;
-            font-size: 2em;
-            margin-bottom: 30px;
-        }
-
-        .pillars-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            margin: 40px 0;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .pillar {
-            text-align: center;
-            flex: 1;
-            min-width: 80px;
-            opacity: 0.4;
-            transition: all 0.3s ease;
-        }
-
-        .pillar.weak {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        .pillar-bar {
-            width: 100%;
-            background: #666;
-            border-radius: 5px 5px 0 0;
-            margin-bottom: 10px;
-            position: relative;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-
-        .pillar.weak .pillar-bar {
-            background: linear-gradient(to top, #DC143C, #FF6B6B);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .pillar-label {
-            font-size: 0.9em;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .pillar.weak .pillar-label {
-            color: #D4AF37;
-            font-size: 1.1em;
-        }
-
-        .vaccine-box {
-            background: rgba(212, 175, 55, 0.1);
-            border: 2px solid #D4AF37;
-            border-radius: 10px;
-            padding: 25px;
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .vaccine-box h3 {
-            color: #D4AF37;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-        }
-
-        .vaccine-box .pillar-focus {
-            font-size: 2em;
-            font-weight: 900;
-            color: #D4AF37;
             margin: 20px 0;
         }
 
-        /* Before/After Section */
-        .transformation-section {
-            background: white;
-            border-radius: 10px;
-            padding: 40px 30px;
-            margin: 40px 0;
+        .cost-subtitle {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 20px;
         }
 
-        .transformation-section h2 {
-            color: #DC143C;
-            text-align: center;
-            font-size: 2em;
-            margin-bottom: 40px;
+        .cost-details {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-size: 1.1em;
         }
 
-        .comparison-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 30px 0;
-        }
-
-        .comparison-box {
-            border-radius: 10px;
+        .solution-section {
+            background-color: #fff5e6;
+            border-radius: 8px;
             padding: 30px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 30px 0;
+            border-left: 5px solid #D4AF37;
         }
 
-        .comparison-box.before {
-            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+        .solution-section h2 {
+            color: #DC143C;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .pillar-highlight {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #D4AF37;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .cta-section {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 40px;
+            margin-top: 40px;
+            border-radius: 8px;
+            text-align: center;
             border: 2px solid #DC143C;
         }
 
-        .comparison-box.after {
-            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-            border: 2px solid #4CAF50;
-        }
-
-        .comparison-box h3 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-
-        .comparison-box.before h3 {
-            color: #DC143C;
-        }
-
-        .comparison-box.after h3 {
-            color: #2e7d32;
-        }
-
-        .comparison-list {
-            text-align: left;
-            list-style: none;
-            padding: 0;
-        }
-
-        .comparison-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            font-size: 1.05em;
-        }
-
-        .comparison-list li:last-child {
-            border-bottom: none;
-        }
-
-        .comparison-box.before .comparison-list li::before {
-            content: "❌ ";
-            margin-right: 10px;
-        }
-
-        .comparison-box.after .comparison-list li::before {
-            content: "✅ ";
-            margin-right: 10px;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            color: white;
-            padding: 50px 30px;
-            margin-top: 40px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            color: #D4AF37;
+        .cta-section h3 {
             font-size: 2em;
             margin-bottom: 20px;
         }
 
-        .cta-highlight {
-            background: rgba(212, 175, 55, 0.1);
-            border: 2px solid #D4AF37;
-            border-radius: 10px;
-            padding: 30px;
-            margin: 30px 0;
-        }
-
-        .cta-steps {
-            text-align: left;
-            display: inline-block;
-            margin: 20px 0;
-        }
-
-        .cta-steps li {
-            padding: 10px 0;
-            font-size: 1.1em;
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            line-height: 1.8;
         }
 
         .btn-cta {
             display: inline-block;
-            background: linear-gradient(135deg, #D4AF37, #FFD700);
+            background-color: #D4AF37;
             color: #000;
-            padding: 20px 40px;
+            padding: 18px 40px;
             text-decoration: none;
-            font-size: 1.3em;
+            font-size: 1.5em;
             font-weight: bold;
-            border-radius: 50px;
-            transition: all 0.3s;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-            margin-top: 20px;
-        }
-
-        .btn-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
-        }
-
-        .btn-print {
-            display: inline-block;
-            background: white;
-            color: #DC143C;
-            padding: 15px 35px;
-            text-decoration: none;
-            font-size: 1.1em;
-            font-weight: bold;
-            border-radius: 50px;
-            border: 2px solid #DC143C;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            margin: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: none;
             cursor: pointer;
         }
 
-        .btn-print:hover {
-            background: #DC143C;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(220, 20, 60, 0.4);
+        .btn-cta:hover {
+            background-color: #C19A1B;
+            color: #fff;
         }
 
-        .print-buttons {
-            text-align: center;
-            margin: 30px 0;
+        .diagnosis-box {
+            background-color: #f0f0f0;
+            border-left: 4px solid #DC143C;
             padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
         }
 
-        .consultant-badge {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 2px solid rgba(255,255,255,0.2);
-        }
-
-        .consultant-photo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            background-image: url('Diseño sin título (1).png');
-            background-size: cover;
-            background-position: center;
-            border: 4px solid #D4AF37;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        .diagnosis-box strong {
+            color: #DC143C;
+            font-size: 1.1em;
         }
 
         .back-link {
             text-align: center;
-            padding: 30px;
-            background: #f8f9fa;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
         }
 
         .back-link a {
             color: #DC143C;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.1em;
         }
 
-        /* Responsive */
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #f5c6cb;
+            margin: 20px 0;
+        }
+
         @media (max-width: 768px) {
-            .content {
-                padding: 30px 20px;
+            .container {
+                padding: 20px;
             }
 
             .header h1 {
-                font-size: 1.5em;
+                font-size: 1.8em;
             }
 
-            .score-display {
+            .cost-value {
                 font-size: 2.5em;
             }
 
-            .category-badge {
-                font-size: 1em;
+            .cta-section {
+                padding: 20px;
+            }
+
+            .btn-cta {
                 padding: 12px 25px;
-            }
-
-            .cost-visual {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .cost-box {
-                width: 100%;
-            }
-
-            .pillars-container {
-                justify-content: center;
-            }
-
-            .pillar {
-                min-width: 60px;
-            }
-
-            .comparison-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media print {
-            body {
-                background: white;
-            }
-            .container {
-                box-shadow: none;
-            }
-            .btn-cta, .btn-print, .print-buttons, .back-link {
-                display: none;
-            }
-            .header {
-                background: #DC143C;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-            .cost-impact, .diagnosis-section, .poder-section, .transformation-section, .cta-section {
-                page-break-inside: avoid;
+                font-size: 1.1em;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="main-container">
         <!-- Header -->
         <div class="header">
-            <div class="header-logo"></div>
-            <h1>Tu Diagnóstico Estratégico Empresarial</h1>
-            <p style="font-size: 1.1em; opacity: 0.95;">Método P.U.D.E.R. - Análisis Completo</p>
+            <h1>¡ATENCIÓN! Tu Diagnóstico Revela una Crisis Empresarial</h1>
+            <div class="score-display">Tu Puntuación de Madurez Empresarial es: <span id="score">--</span>/141</div>
+            <p id="category-text" style="font-size: 1.2em; color: #666; margin-top: 15px;"></p>
         </div>
 
-        <div class="content">
-            <!-- Print Buttons -->
-            <div class="print-buttons">
-                <h3 style="color: #DC143C; margin-bottom: 15px;">📄 Guarda tus Resultados</h3>
-                <button onclick="window.print()" class="btn-print">🖨️ Imprimir / Guardar como PDF</button>
-                <button onclick="sendResultsByEmail()" class="btn-print" id="email-btn">📧 Enviar por Email</button>
-                <p style="margin-top: 15px; color: #666; font-size: 0.95em;">Tip: Usa "Imprimir" y selecciona "Guardar como PDF" en tu navegador</p>
-            </div>
-
-            <!-- Severity Meter -->
-            <div class="severity-section">
-                <h2 style="color: #DC143C; font-size: 1.8em; margin-bottom: 20px;">🌡️ Termómetro de Situación Empresarial</h2>
-                
-                <div class="severity-meter">
-                    <svg class="meter-arc" viewBox="0 0 200 100">
-                        <!-- Green Zone -->
-                        <path d="M 10 90 A 80 80 0 0 1 50 20" fill="none" stroke="#4CAF50" stroke-width="20" stroke-linecap="round"/>
-                        <!-- Yellow Zone -->
-                        <path d="M 50 20 A 80 80 0 0 1 100 10" fill="none" stroke="#FFC107" stroke-width="20" stroke-linecap="round"/>
-                        <!-- Orange Zone -->
-                        <path d="M 100 10 A 80 80 0 0 1 150 20" fill="none" stroke="#FF9800" stroke-width="20" stroke-linecap="round"/>
-                        <!-- Red Zone -->
-                        <path d="M 150 20 A 80 80 0 0 1 190 90" fill="none" stroke="#DC143C" stroke-width="20" stroke-linecap="round"/>
-                        
-                        <!-- Labels -->
-                        <text x="20" y="95" font-size="8" fill="#333" font-weight="bold">ÓPTIMO</text>
-                        <text x="170" y="95" font-size="8" fill="#333" font-weight="bold" text-anchor="end">CRISIS</text>
-                    </svg>
-                    <div class="meter-needle" id="needle"></div>
-                </div>
-
-                <div class="score-display"><span id="score">--</span> / 141</div>
-                <p style="color: #666; font-size: 1.1em;">Puntuación de Madurez Empresarial</p>
-                <div class="category-badge" id="category-badge">--</div>
-            </div>
-
-            <!-- Cost Impact -->
-            <div class="cost-impact">
-                <h2>💸 El Costo Oculto de la Inacción</h2>
-                <p style="font-size: 1.2em; color: #666; margin-bottom: 30px;">Basado en tu propia valoración</p>
-                
-                <div class="cost-visual">
-                    <div class="cost-box">
-                        <div class="label">Pérdida Diaria</div>
-                        <div class="value" style="font-size: 2em;">U$D <span id="daily-cost">--</span></div>
-                    </div>
-                    <div class="cost-box">
-                        <div class="label">Pérdida Mensual</div>
-                        <div class="value">U$D <span id="monthly-cost">--</span></div>
-                    </div>
-                    <div class="cost-box">
-                        <div class="label">Pérdida Anual</div>
-                        <div class="value">U$D <span id="yearly-cost">--</span></div>
-                    </div>
-                </div>
-
-                <div style="background: white; border-radius: 8px; padding: 20px; margin-top: 25px; border-left: 4px solid #FFC107;">
-                    <h3 style="color: #DC143C; margin-bottom: 15px; text-align: center;">⏱️ Tiempo Perdido en Ineficiencias</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center;">
-                        <div>
-                            <div style="font-size: 2em; font-weight: bold; color: #FF9800;"><span id="daily-hours">--</span>h</div>
-                            <div style="color: #666; font-size: 0.9em;">Por día</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 2em; font-weight: bold; color: #FF9800;"><span id="monthly-hours">--</span>h</div>
-                            <div style="color: #666; font-size: 0.9em;">Por mes</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 2em; font-weight: bold; color: #FF9800;"><span id="yearly-hours">--</span>h</div>
-                            <div style="color: #666; font-size: 0.9em;">Por año</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cost-comparisons">
-                    <h3>Tu crisis te está costando el equivalente a:</h3>
-                    <div id="cost-examples"></div>
-                </div>
-            </div>
-
-            <!-- Diagnosis -->
-            <div class="diagnosis-section">
-                <h2 style="color: #DC143C; font-size: 1.8em; text-align: center; margin-bottom: 20px;">🔍 Tu Diagnóstico Específico</h2>
-                
-                <div class="diagnosis-grid">
-                    <div class="diagnosis-card">
-                        <h3>Causa de Muerte Empresarial Principal</h3>
-                        <div class="value" id="main-cme">--</div>
-                    </div>
-                    <div class="diagnosis-card">
-                        <h3>Pilar P.U.D.E.R. Más Débil</h3>
-                        <div class="value" id="weakest-pillar">--</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- P.U.D.E.R. Method -->
-            <div class="poder-section">
-                <h2>💉 El Método P.U.D.E.R. - Tu Vacuna Estratégica</h2>
-                <p style="text-align: center; font-size: 1.1em; margin-bottom: 30px;">Sistema probado en 22 países para recuperar el control empresarial</p>
-                
-                <div class="pillars-container">
-                    <div class="pillar" data-pillar="Planear">
-                        <div class="pillar-bar" style="height: 120px;"></div>
-                        <div class="pillar-label">PLANEAR</div>
-                    </div>
-                    <div class="pillar" data-pillar="Único">
-                        <div class="pillar-bar" style="height: 100px;"></div>
-                        <div class="pillar-label">ÚNICO</div>
-                    </div>
-                    <div class="pillar" data-pillar="Desarrollarse">
-                        <div class="pillar-bar" style="height: 140px;"></div>
-                        <div class="pillar-label">DESARROLLARSE</div>
-                    </div>
-                    <div class="pillar" data-pillar="Estandarizar">
-                        <div class="pillar-bar" style="height: 110px;"></div>
-                        <div class="pillar-label">ESTANDARIZAR</div>
-                    </div>
-                    <div class="pillar" data-pillar="Repetir">
-                        <div class="pillar-bar" style="height: 90px;"></div>
-                        <div class="pillar-label">REPETIR</div>
-                    </div>
-                </div>
-
-                <div class="vaccine-box">
-                    <h3>🎯 Tu Pilar de Enfoque Urgente</h3>
-                    <div class="pillar-focus" id="pillar-focus">--</div>
-                    <p style="font-size: 1.1em;">Este pilar es la clave para neutralizar tu principal riesgo y comenzar a construir un negocio que trabaje para ti.</p>
-                </div>
-            </div>
-
-            <!-- Before/After -->
-            <div class="transformation-section">
-                <h2>🚀 La Transformación que te Espera</h2>
-                
-                <div class="comparison-container">
-                    <div class="comparison-box before">
-                        <h3>❌ Tu Situación Actual</h3>
-                        <ul class="comparison-list">
-                            <li>Trabajando 60+ horas semanales</li>
-                            <li>Indispensable en la operación</li>
-                            <li>Estrés y agotamiento constante</li>
-                            <li>Poco tiempo para la familia</li>
-                            <li>Decisiones en soledad</li>
-                            <li id="current-cost">Perdiendo U$D X mensual</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="comparison-box after">
-                        <h3>✅ Tu Futuro Posible</h3>
-                        <ul class="comparison-list">
-                            <li>50% menos horas de trabajo</li>
-                            <li>Empresa funcionando sin ti</li>
-                            <li>Energía y claridad mental</li>
-                            <li>Balance vida-trabajo</li>
-                            <li>Decisiones con respaldo experto</li>
-                            <li>25-40% más de rentabilidad</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div style="background: #f8f9fa; border-radius: 8px; padding: 25px; margin-top: 30px; text-align: center;">
-                    <h3 style="color: #DC143C; margin-bottom: 15px;">📊 Resultados Reales de Empresarios como Tú</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
-                        <div>
-                            <div style="font-size: 2.5em; font-weight: bold; color: #4CAF50;">50%</div>
-                            <div style="color: #666;">Reducción en horas de trabajo</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 2.5em; font-weight: bold; color: #4CAF50;">25-40%</div>
-                            <div style="color: #666;">Incremento en rentabilidad</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 2.5em; font-weight: bold; color: #4CAF50;">97%</div>
-                            <div style="color: #666;">Logran independencia operativa</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA -->
-            <div class="cta-section">
-                <h2>⏰ ¡El Reloj Sigue Corriendo!</h2>
-                
-                <div class="cta-highlight">
-                    <p style="font-size: 1.4em; margin-bottom: 15px; color: #D4AF37; font-weight: bold;">Detén la Pérdida de U$D <span id="cta-cost">--</span> Ahora</p>
-                    <p style="font-size: 1.1em;">No dejes que el caos te cueste un mes más</p>
-                </div>
-
-                <h3 style="font-size: 1.6em; margin: 30px 0 20px; color: white;">Agenda tu Sesión Estratégica 1:1 GRATUITA</h3>
-                <p style="font-size: 1.2em; margin-bottom: 20px;">En solo 15 minutos, utilizaremos este diagnóstico para:</p>
-                
-                <ol class="cta-steps">
-                    <li>✓ Confirmar el origen exacto de tu Causa de Muerte Empresarial</li>
-                    <li>✓ Diseñar tu Plan de Vacunación Empresarial personalizado</li>
-                    <li>✓ Mostrarte el primer paso para implementar tu Pilar P.U.D.E.R. y recuperar tu vida</li>
-                </ol>
-
-                <p style="font-size: 1.1em; margin: 25px 0;"><strong>Esta sesión no tiene costo ni compromiso.</strong><br>Solo tienes U$D <span id="cta-cost-2">--</span> que perder si no actúas.</p>
-
-                <a href="https://estrategiaempresaria.systeme.io/sesionestrategica1a1" class="btn-cta" target="_blank">
-                    📅 AGENDA TU SESIÓN GRATUITA AHORA
-                </a>
-
-                <div class="consultant-badge">
-                    <div class="consultant-photo"></div>
-                    <p style="font-size: 1.2em; font-weight: bold; color: #D4AF37;">Claudio Flores | Coach</p>
-                    <p style="font-size: 1em; opacity: 0.9;">Estratega Empresarial</p>
-                    <p style="font-size: 0.95em; margin-top: 15px; opacity: 0.85;">+17 años transformando empresarios en 22 países</p>
-                </div>
-            </div>
+        <!-- Diagnosis -->
+        <div class="diagnosis-box">
+            <p><strong>Causa de Muerte Empresarial Principal:</strong> <span id="main-cme">--</span></p>
+            <p><strong>Pilar P.U.D.E.R. Más Débil:</strong> <span id="weakest-pillar">--</span></p>
         </div>
 
-        <!-- Back Link -->
-        <div class="back-link">
-            <a href="index.html">← Volver al Diagnóstico</a>
-        </div>
-    </div>
-
-    <script>
-        // Variable global para almacenar respuestas
-let diagnosticData = {};
-
-function proceedToContactForm() {
-    console.log('📝 Iniciando proceedToContactForm()');
-    
-    // Validar que se hayan respondido todas las preguntas de radio
-    const radioQuestions = [
-        'q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 
-        'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 
-        'q3_1', 'q3_2', 'q3_4', 
-        'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'
-    ];
-    
-    let allAnswered = true;
-    let firstUnanswered = null;
-    
-    for (let q of radioQuestions) {
-        if (!document.querySelector(`input[name="${q}"]:checked`)) {
-            allAnswered = false;
-            if (!firstUnanswered) {
-                firstUnanswered = q;
-            }
-        }
-    }
-
-    if (!allAnswered) {
-        alert(`Por favor, responde todas las preguntas antes de continuar.\n\nPrimera pregunta sin responder: ${firstUnanswered}`);
-        return;
-    }
-
-    console.log('✅ Todas las preguntas respondidas');
-
-    // Guardar todas las respuestas
-    diagnosticData = collectDiagnosticData();
-    console.log('💾 Datos del diagnóstico recopilados:', diagnosticData);
-
-    // Ocultar formulario de diagnóstico y mostrar formulario de contacto
-    document.getElementById('diagnostic-form').style.display = 'none';
-    document.getElementById('contact-form').style.display = 'block';
-    document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
-}
-
-function collectDiagnosticData() {
-    const data = {};
-    
-    const radioQuestions = [
-        'q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 
-        'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 
-        'q3_1', 'q3_2', 'q3_4', 
-        'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'
-    ];
-    
-    radioQuestions.forEach(q => {
-        const selected = document.querySelector(`input[name="${q}"]:checked`);
-        data[q] = selected ? selected.value : '';
-    });
-
-    // Recopilar checkboxes
-    const checkboxes = document.querySelectorAll('input[name="q3_3"]:checked');
-    data.q3_3_count = checkboxes.length;
-    data.q3_3_items = Array.from(checkboxes).map(cb => cb.parentElement.textContent.trim()).join('; ');
-
-    return data;
-}
-
-function submitAndShowResults() {
-    console.log('🎯 Iniciando submitAndShowResults()');
-    
-    const fullName = document.getElementById('fullName').value.trim();
-    const company = document.getElementById('company').value.trim();
-    const position = document.getElementById('position').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const yearsLeader = document.getElementById('yearsLeader').value;
-    const employees = document.getElementById('employees').value;
-
-    if (!fullName || !company || !position || !email || !phone || !yearsLeader || !employees) {
-        alert('Por favor, completa todos los campos para continuar.');
-        return;
-    }
-
-    if (!email.includes('@')) {
-        alert('Por favor, ingresa un email válido.');
-        return;
-    }
-
-    // Deshabilitar botón y mostrar loading
-    const submitBtn = document.getElementById('submitBtn');
-    const loadingMsg = document.getElementById('loadingMsg');
-    submitBtn.disabled = true;
-    loadingMsg.style.display = 'block';
-
-    console.log('📊 Calculando resultados...');
-
-    // Calcular resultados
-    const results = calculateResults();
-    console.log('✅ Resultados calculados:', results);
-    
-    // Calcular diagnóstico (CME y Pilar P.U.D.E.R.)
-    const diagnosis = identifyMainCauseAndPillar();
-    console.log('✅ Diagnóstico identificado:', diagnosis);
-    
-    // Calcular Costo del Caos
-    const costOfChaos = calculateCostOfChaos();
-    console.log('✅ Costo del caos calculado:', costOfChaos);
-
-    // Preparar datos completos para Google Sheets Y EMAIL
-    const completeData = {
-        timestamp: new Date().toISOString(),
-        fullName: fullName,
-        company: company,
-        position: position,
-        email: email,
-        phone: phone,
-        yearsLeader: yearsLeader,
-        employees: employees,
-        totalScore: results.totalScore,
-        category: results.category,
-        timeLost: results.timeLost,
-        lonelinessIndex: results.lonelinessIndex,
-        hourlyValue: results.hourlyValue,
-        durationYears: results.durationYears,
-        monthlyLoss: results.monthlyLoss,
-        yearlyLoss: results.yearlyLoss,
-        accumulatedLoss: results.accumulatedLoss,
-        mainCME: diagnosis.mainCME,
-        weakestPillar: diagnosis.weakestPillar,
-        monthlyCost: costOfChaos.monthlyCost,
-        yearlyCost: costOfChaos.yearlyCost,
-        monthlyHours: costOfChaos.monthlyHours,
-        timeLostPercentage: costOfChaos.timeLostPercentage,
-        // Flag para indicar que debe enviar email
-        sendEmail: 'true',
-        ...diagnosticData
-    };
-
-    console.log('📦 Datos completos preparados para envío:', completeData);
-
-    // Enviar a Google Sheets (que también enviará el email)
-    sendToGoogleSheetsAndEmail(completeData, results, costOfChaos, diagnosis);
-}
-
-function sendToGoogleSheetsAndEmail(data, results, costOfChaos, diagnosis) {
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzw20z9MY7kdRh8vgb4yGT9WEN-U9_Ua3GLxNN1zE2hDiSl4uxsPkvHUxTYKloG-EyX/exec';
-    
-    console.log('📧 Enviando datos a Google Apps Script...');
-    console.log('📦 Datos a enviar:', data);
-    
-    // PRIMERO: Guardar en localStorage inmediatamente
-    redirectToResults(results, costOfChaos, diagnosis);
-    
-    // SEGUNDO: Enviar a Google Sheets (sin bloquear)
-    fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-    .then(() => {
-        console.log('✅ Datos enviados a Google Sheets');
-    })
-    .catch(error => {
-        console.error('❌ Error al enviar a Google Sheets:', error);
-    });
-    
-    // TERCERO: Enviar email (llamada separada)
-    const emailData = {
-        to: data.email,
-        email: data.email,
-        fullName: data.fullName,
-        company: data.company,
-        totalScore: data.totalScore,
-        category: data.category,
-        mainCME: data.mainCME,
-        weakestPillar: data.weakestPillar,
-        monthlyCost: data.monthlyCost,
-        yearlyCost: data.yearlyCost,
-        monthlyHours: data.monthlyHours,
-        timeLostPercentage: data.timeLostPercentage
-    };
-    
-    console.log('📧 Enviando email con datos:', emailData);
-    
-    fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(emailData)
-    })
-    .then(() => {
-        console.log('✅ Email enviado correctamente');
-    })
-    .catch(error => {
-        console.error('❌ Error al enviar email:', error);
-    });
-}
-
-function calculateResults() {
-    let totalScore = 0;
-    
-    const getRadioValue = (name) => {
-        const element = document.querySelector(`input[name="${name}"]:checked`);
-        return element ? parseInt(element.value) : 0;
-    };
-    
-    // Sección 1
-    totalScore += getRadioValue('q1_1');
-    totalScore += getRadioValue('q1_2');
-    totalScore += getRadioValue('q1_3');
-    totalScore += getRadioValue('q1_4');
-    totalScore += getRadioValue('q1_5');
-    
-    // Sección 2
-    totalScore += getRadioValue('q2_1');
-    totalScore += getRadioValue('q2_2');
-    totalScore += getRadioValue('q2_3');
-    totalScore += getRadioValue('q2_4');
-    totalScore += getRadioValue('q2_5');
-    totalScore += getRadioValue('q2_6');
-    
-    // Sección 3
-    totalScore += getRadioValue('q3_1');
-    const checkboxes = document.querySelectorAll('input[name="q3_3"]:checked');
-    totalScore += checkboxes.length;
-    totalScore += getRadioValue('q3_4');
-    
-    // Sección 4
-    totalScore += getRadioValue('q4_1');
-    totalScore += getRadioValue('q4_2');
-    totalScore += getRadioValue('q4_3');
-    totalScore += getRadioValue('q4_4');
-    totalScore += getRadioValue('q4_5');
-
-    // Calcular tiempo perdido y valor por hora
-    const timeLost = getRadioValue('q3_1');
-    const hourlyValue = parseFloat(document.querySelector('input[name="q3_2"]:checked')?.value || 0);
-    const durationYears = getRadioValue('q3_4');
-
-    // Calcular índice de soledad
-    const lonelinessIndex = 
-        getRadioValue('q1_4') +
-        getRadioValue('q2_3') +
-        getRadioValue('q2_6') +
-        getRadioValue('q4_3');
-
-    // Cálculos económicos
-    const monthlyHours = Math.round((timeLost / 100) * 40 * 4.33);
-    const yearlyHours = Math.round((timeLost / 100) * 40 * 52);
-    const monthlyLoss = Math.round(monthlyHours * hourlyValue);
-    const yearlyLoss = Math.round(yearlyHours * hourlyValue);
-    const accumulatedLoss = yearlyLoss * durationYears;
-
-    // Determinar categoría
-    let category = '';
-    if (totalScore <= 25) {
-        category = 'LÍDER ESTRATÉGICO CONSOLIDADO';
-    } else if (totalScore <= 53) {
-        category = 'EMPRESARIO EN EVOLUCIÓN';
-    } else if (totalScore <= 85) {
-        category = 'CRISIS DE CRECIMIENTO ACTIVA';
-    } else {
-        category = 'EMPRENDEDOR|EMPRESARIO EN CRISIS SEVERA';
-    }
-
-    return {
-        totalScore,
-        timeLost,
-        lonelinessIndex,
-        hourlyValue,
-        durationYears,
-        monthlyHours,
-        yearlyHours,
-        monthlyLoss,
-        yearlyLoss,
-        accumulatedLoss,
-        category
-    };
-}
-
-function identifyMainCauseAndPillar() {
-    const data = {};
-    const questions = [
-        'q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 
-        'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 
-        'q3_1', 'q3_2', 'q3_4', 
-        'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'
-    ];
-    
-    questions.forEach(q => {
-        const selected = document.querySelector(`input[name="${q}"]:checked`);
-        data[q] = selected ? parseInt(selected.value) : 0;
-    });
-    
-    const cmeScores = {
-        'CME1_PlanLargoPlazo': data.q1_1,
-        'CME2_SerUnico': data.q1_5,
-        'CME3_AdaptacionRoles': data.q1_2 + data.q1_3 + data.q1_4 + data.q2_3,
-        'CME4_GestionFinanciera': data.q4_1,
-        'CME5_Innovacion': data.q2_1
-    };
-    
-    const pillarScores = {
-        'P_Planear': data.q1_1,
-        'U_Unico': data.q1_5,
-        'D_Desarrollarse': data.q1_2 + data.q1_3 + data.q1_4 + data.q4_1 + data.q4_2,
-        'E_Estandarizar': data.q2_4,
-        'R_Repetir': data.q2_1
-    };
-    
-    let mainCME = 'CME3_AdaptacionRoles';
-    let maxCMEScore = cmeScores['CME3_AdaptacionRoles'];
-    
-    for (const [cme, score] of Object.entries(cmeScores)) {
-        if (score > maxCMEScore) {
-            maxCMEScore = score;
-            mainCME = cme;
-        }
-    }
-    
-    let weakestPillar = 'D_Desarrollarse';
-    let maxPillarScore = pillarScores['D_Desarrollarse'];
-    
-    for (const [pillar, score] of Object.entries(pillarScores)) {
-        if (score > maxPillarScore) {
-            maxPillarScore = score;
-            weakestPillar = pillar;
-        }
-    }
-    
-    const cmeNames = {
-        'CME1_PlanLargoPlazo': 'Falta de Plan a Largo Plazo',
-        'CME2_SerUnico': 'Falta de ser Único',
-        'CME3_AdaptacionRoles': 'Falta de Adaptación al Cambio de Roles',
-        'CME4_GestionFinanciera': 'Falta de Gestión Financiera',
-        'CME5_Innovacion': 'Falta de Gestión de Innovación'
-    };
-    
-    const pillarNames = {
-        'P_Planear': 'Planear',
-        'U_Unico': 'Único',
-        'D_Desarrollarse': 'Desarrollarse',
-        'E_Estandarizar': 'Estandarizar',
-        'R_Repetir': 'Repetir'
-    };
-    
-    return {
-        mainCME: cmeNames[mainCME],
-        weakestPillar: pillarNames[weakestPillar]
-    };
-}
-
-function calculateCostOfChaos() {
-    const timeLostElement = document.querySelector('input[name="q3_1"]:checked');
-    const hourlyValueElement = document.querySelector('input[name="q3_2"]:checked');
-    
-    if (!timeLostElement || !hourlyValueElement) {
-        return {
-            monthlyCost: 0,
-            yearlyCost: 0,
-            monthlyHours: 0,
-            timeLostPercentage: 0
-        };
-    }
-    
-    const timeLostPercentage = parseInt(timeLostElement.value);
-    const hourlyValue = parseFloat(hourlyValueElement.value);
-    
-    const weeksPerMonth = 4.33;
-    const monthlyHours = Math.round((timeLostPercentage / 100) * 40 * weeksPerMonth);
-    const monthlyCost = Math.round(monthlyHours * hourlyValue);
-    const yearlyCost = Math.round(monthlyCost * 12);
-    
-    return {
-        monthlyCost: monthlyCost,
-        yearlyCost: yearlyCost,
-        monthlyHours: monthlyHours,
-        timeLostPercentage: timeLostPercentage
-    };
-}
-
-function redirectToResults(results, costOfChaos, diagnosis) {
-    const resultData = {
-        totalScore: results.totalScore,
-        category: results.category,
-        monthlyLoss: results.monthlyLoss,
-        yearlyLoss: results.yearlyLoss,
-        mainCME: diagnosis.mainCME,
-        weakestPillar: diagnosis.weakestPillar,
-        monthlyCost: costOfChaos.monthlyCost,
-        yearlyCost: costOfChaos.yearlyCost,
-        monthlyHours: costOfChaos.monthlyHours,
-        timeLostPercentage: costOfChaos.timeLostPercentage,
-        accumulatedLoss: results.accumulatedLoss,
-        hourlyValue: results.hourlyValue,
-        durationYears: results.durationYears,
-        lonelinessIndex: results.lonelinessIndex
-    };
-    
-    console.log('💾 Guardando en localStorage:', resultData);
-    localStorage.setItem('diagnosticResults', JSON.stringify(resultData));
-    
-    console.log('✅ Redirigiendo a results.html');
-    window.location.href = 'results.html';
-}
-    </script>
-</body>
-</html>
+        <!-- Cost of Chaos -->
+        <div class="impact-section">
+            <h2>💸 El Costo Oculto de la Inacción</h2>
+            <p class
