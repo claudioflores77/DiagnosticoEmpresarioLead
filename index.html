@@ -784,13 +784,12 @@
     </div>
 
     <script>
-        // Variable global para almacenar respuestas
+// Variable global para almacenar respuestas
 let diagnosticData = {};
 
 function proceedToContactForm() {
     console.log('📝 Iniciando proceedToContactForm()');
     
-    // Validar que se hayan respondido todas las preguntas de radio
     const radioQuestions = [
         'q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 
         'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 
@@ -804,9 +803,7 @@ function proceedToContactForm() {
     for (let q of radioQuestions) {
         if (!document.querySelector(`input[name="${q}"]:checked`)) {
             allAnswered = false;
-            if (!firstUnanswered) {
-                firstUnanswered = q;
-            }
+            if (!firstUnanswered) firstUnanswered = q;
         }
     }
 
@@ -816,12 +813,9 @@ function proceedToContactForm() {
     }
 
     console.log('✅ Todas las preguntas respondidas');
-
-    // Guardar todas las respuestas
     diagnosticData = collectDiagnosticData();
     console.log('💾 Datos del diagnóstico recopilados:', diagnosticData);
 
-    // Ocultar formulario de diagnóstico y mostrar formulario de contacto
     document.getElementById('diagnostic-form').style.display = 'none';
     document.getElementById('contact-form').style.display = 'block';
     document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
@@ -829,7 +823,6 @@ function proceedToContactForm() {
 
 function collectDiagnosticData() {
     const data = {};
-    
     const radioQuestions = [
         'q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 
         'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 
@@ -842,7 +835,6 @@ function collectDiagnosticData() {
         data[q] = selected ? selected.value : '';
     });
 
-    // Recopilar checkboxes
     const checkboxes = document.querySelectorAll('input[name="q3_3"]:checked');
     data.q3_3_count = checkboxes.length;
     data.q3_3_items = Array.from(checkboxes).map(cb => cb.parentElement.textContent.trim()).join('; ');
@@ -871,211 +863,140 @@ function submitAndShowResults() {
         return;
     }
 
-    // Deshabilitar botón y mostrar loading
     const submitBtn = document.getElementById('submitBtn');
     const loadingMsg = document.getElementById('loadingMsg');
     submitBtn.disabled = true;
     loadingMsg.style.display = 'block';
+    loadingMsg.textContent = 'Procesando resultados...';
 
     console.log('📊 Calculando resultados...');
 
-    // Calcular resultados
     const results = calculateResults();
-    console.log('✅ Resultados calculados:', results);
+    console.log('✅ Resultados:', results);
     
-    // Calcular diagnóstico (CME y Pilar P.U.D.E.R.)
     const diagnosis = identifyMainCauseAndPillar();
-    console.log('✅ Diagnóstico identificado:', diagnosis);
+    console.log('✅ Diagnóstico:', diagnosis);
     
-    // Calcular Costo del Caos
     const costOfChaos = calculateCostOfChaos();
-    console.log('✅ Costo del caos calculado:', costOfChaos);
+    console.log('✅ Costo del caos:', costOfChaos);
 
-    // Preparar datos completos para Google Sheets Y EMAIL
-    const completeData = {
-        timestamp: new Date().toISOString(),
-        fullName: fullName,
-        company: company,
-        position: position,
-        email: email,
-        phone: phone,
-        yearsLeader: yearsLeader,
-        employees: employees,
+    // GUARDAR EN LOCALSTORAGE PRIMERO
+    const resultData = {
         totalScore: results.totalScore,
         category: results.category,
-        timeLost: results.timeLost,
-        lonelinessIndex: results.lonelinessIndex,
-        hourlyValue: results.hourlyValue,
-        durationYears: results.durationYears,
         monthlyLoss: results.monthlyLoss,
         yearlyLoss: results.yearlyLoss,
-        accumulatedLoss: results.accumulatedLoss,
         mainCME: diagnosis.mainCME,
         weakestPillar: diagnosis.weakestPillar,
         monthlyCost: costOfChaos.monthlyCost,
         yearlyCost: costOfChaos.yearlyCost,
         monthlyHours: costOfChaos.monthlyHours,
         timeLostPercentage: costOfChaos.timeLostPercentage,
-        // Flag para indicar que debe enviar email
-        sendEmail: 'true',
+        accumulatedLoss: results.accumulatedLoss,
+        hourlyValue: results.hourlyValue,
+        durationYears: results.durationYears,
+        lonelinessIndex: results.lonelinessIndex
+    };
+    
+    console.log('💾 Guardando en localStorage:', resultData);
+    localStorage.setItem('diagnosticResults', JSON.stringify(resultData));
+    console.log('✅ Guardado verificado:', localStorage.getItem('diagnosticResults'));
+
+    // DATOS PARA GOOGLE SHEETS
+    const sheetData = {
+        timestamp: new Date().toISOString(),
+        fullName, company, position, email, phone, yearsLeader, employees,
+        totalScore: results.totalScore,
+        category: results.category,
+        mainCME: diagnosis.mainCME,
+        weakestPillar: diagnosis.weakestPillar,
+        monthlyCost: costOfChaos.monthlyCost,
+        yearlyCost: costOfChaos.yearlyCost,
+        monthlyHours: costOfChaos.monthlyHours,
+        timeLostPercentage: costOfChaos.timeLostPercentage,
         ...diagnosticData
     };
 
-    console.log('📦 Datos completos preparados para envío:', completeData);
+    // DATOS PARA EMAIL (con campo 'to')
+    const emailData = {
+        to: email,
+        email: email,
+        fullName: fullName,
+        company: company,
+        totalScore: results.totalScore,
+        category: results.category,
+        mainCME: diagnosis.mainCME,
+        weakestPillar: diagnosis.weakestPillar,
+        monthlyCost: costOfChaos.monthlyCost,
+        yearlyCost: costOfChaos.yearlyCost,
+        monthlyHours: costOfChaos.monthlyHours
+    };
 
-    // Enviar a Google Sheets (que también enviará el email)
-    sendToGoogleSheetsAndEmail(completeData, results, costOfChaos, diagnosis);
+    console.log('📤 Enviando a Google Sheets...');
+    sendToGoogleAppsScript(sheetData, emailData);
+    
+    // REDIRIGIR DESPUÉS DE 1 SEGUNDO
+    loadingMsg.textContent = 'Redirigiendo a tus resultados...';
+    setTimeout(() => {
+        console.log('🔄 Redirigiendo...');
+        window.location.href = 'results.html';
+    }, 1000);
 }
 
-function sendToGoogleSheetsAndEmail(data, results, costOfChaos, diagnosis) {
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzw20z9MY7kdRh8vgb4yGT9WEN-U9_Ua3GLxNN1zE2hDiSl4uxsPkvHUxTYKloG-EyX/exec';
+function sendToGoogleAppsScript(sheetData, emailData) {
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzw20z9MY7kdRh8vgb4yGT9WEN-U9_Ua3GLxNN1zE2hDiSl4uxsPkvHUxTYKloG-EyX/exec';
     
-    console.log('📧 Enviando datos a Google Apps Script...');
-    console.log('📦 Datos a enviar:', data);
-    
-    // PRIMERO: Guardar en localStorage inmediatamente
-    redirectToResults(results, costOfChaos, diagnosis);
-    
-    // SEGUNDO: Enviar a Google Sheets (sin bloquear)
-    fetch(GOOGLE_SCRIPT_URL, {
+    // ENVIAR DATOS PARA SHEETS
+    fetch(SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-    .then(() => {
-        console.log('✅ Datos enviados a Google Sheets');
-    })
-    .catch(error => {
-        console.error('❌ Error al enviar a Google Sheets:', error);
-    });
+        body: JSON.stringify(sheetData)
+    }).then(() => console.log('✅ Datos enviados a Sheets'))
+      .catch(e => console.error('❌ Error Sheets:', e));
     
-    // TERCERO: Enviar email (llamada separada)
-    const emailData = {
-        to: data.email,
-        email: data.email,
-        fullName: data.fullName,
-        company: data.company,
-        totalScore: data.totalScore,
-        category: data.category,
-        mainCME: data.mainCME,
-        weakestPillar: data.weakestPillar,
-        monthlyCost: data.monthlyCost,
-        yearlyCost: data.yearlyCost,
-        monthlyHours: data.monthlyHours,
-        timeLostPercentage: data.timeLostPercentage
-    };
-    
-    console.log('📧 Enviando email con datos:', emailData);
-    
-    fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(emailData)
-    })
-    .then(() => {
-        console.log('✅ Email enviado correctamente');
-    })
-    .catch(error => {
-        console.error('❌ Error al enviar email:', error);
-    });
+    // ENVIAR DATOS PARA EMAIL
+    setTimeout(() => {
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify(emailData)
+        }).then(() => console.log('✅ Email enviado'))
+          .catch(e => console.error('❌ Error Email:', e));
+    }, 500);
 }
 
 function calculateResults() {
     let totalScore = 0;
-    
     const getRadioValue = (name) => {
-        const element = document.querySelector(`input[name="${name}"]:checked`);
-        return element ? parseInt(element.value) : 0;
+        const el = document.querySelector(`input[name="${name}"]:checked`);
+        return el ? parseInt(el.value) : 0;
     };
     
-    // Sección 1
-    totalScore += getRadioValue('q1_1');
-    totalScore += getRadioValue('q1_2');
-    totalScore += getRadioValue('q1_3');
-    totalScore += getRadioValue('q1_4');
-    totalScore += getRadioValue('q1_5');
-    
-    // Sección 2
-    totalScore += getRadioValue('q2_1');
-    totalScore += getRadioValue('q2_2');
-    totalScore += getRadioValue('q2_3');
-    totalScore += getRadioValue('q2_4');
-    totalScore += getRadioValue('q2_5');
-    totalScore += getRadioValue('q2_6');
-    
-    // Sección 3
-    totalScore += getRadioValue('q3_1');
-    const checkboxes = document.querySelectorAll('input[name="q3_3"]:checked');
-    totalScore += checkboxes.length;
-    totalScore += getRadioValue('q3_4');
-    
-    // Sección 4
-    totalScore += getRadioValue('q4_1');
-    totalScore += getRadioValue('q4_2');
-    totalScore += getRadioValue('q4_3');
-    totalScore += getRadioValue('q4_4');
-    totalScore += getRadioValue('q4_5');
+    totalScore += getRadioValue('q1_1') + getRadioValue('q1_2') + getRadioValue('q1_3') + getRadioValue('q1_4') + getRadioValue('q1_5');
+    totalScore += getRadioValue('q2_1') + getRadioValue('q2_2') + getRadioValue('q2_3') + getRadioValue('q2_4') + getRadioValue('q2_5') + getRadioValue('q2_6');
+    totalScore += getRadioValue('q3_1') + document.querySelectorAll('input[name="q3_3"]:checked').length + getRadioValue('q3_4');
+    totalScore += getRadioValue('q4_1') + getRadioValue('q4_2') + getRadioValue('q4_3') + getRadioValue('q4_4') + getRadioValue('q4_5');
 
-    // Calcular tiempo perdido y valor por hora
     const timeLost = getRadioValue('q3_1');
     const hourlyValue = parseFloat(document.querySelector('input[name="q3_2"]:checked')?.value || 0);
     const durationYears = getRadioValue('q3_4');
+    const lonelinessIndex = getRadioValue('q1_4') + getRadioValue('q2_3') + getRadioValue('q2_6') + getRadioValue('q4_3');
 
-    // Calcular índice de soledad
-    const lonelinessIndex = 
-        getRadioValue('q1_4') +
-        getRadioValue('q2_3') +
-        getRadioValue('q2_6') +
-        getRadioValue('q4_3');
-
-    // Cálculos económicos
     const monthlyHours = Math.round((timeLost / 100) * 40 * 4.33);
     const yearlyHours = Math.round((timeLost / 100) * 40 * 52);
     const monthlyLoss = Math.round(monthlyHours * hourlyValue);
     const yearlyLoss = Math.round(yearlyHours * hourlyValue);
     const accumulatedLoss = yearlyLoss * durationYears;
 
-    // Determinar categoría
-    let category = '';
-    if (totalScore <= 25) {
-        category = 'LÍDER ESTRATÉGICO CONSOLIDADO';
-    } else if (totalScore <= 53) {
-        category = 'EMPRESARIO EN EVOLUCIÓN';
-    } else if (totalScore <= 85) {
-        category = 'CRISIS DE CRECIMIENTO ACTIVA';
-    } else {
-        category = 'EMPRENDEDOR|EMPRESARIO EN CRISIS SEVERA';
-    }
+    let category = 'EMPRENDEDOR|EMPRESARIO EN CRISIS SEVERA';
+    if (totalScore <= 25) category = 'LÍDER ESTRATÉGICO CONSOLIDADO';
+    else if (totalScore <= 53) category = 'EMPRESARIO EN EVOLUCIÓN';
+    else if (totalScore <= 85) category = 'CRISIS DE CRECIMIENTO ACTIVA';
 
-    return {
-        totalScore,
-        timeLost,
-        lonelinessIndex,
-        hourlyValue,
-        durationYears,
-        monthlyHours,
-        yearlyHours,
-        monthlyLoss,
-        yearlyLoss,
-        accumulatedLoss,
-        category
-    };
+    return {totalScore, timeLost, lonelinessIndex, hourlyValue, durationYears, monthlyHours, yearlyHours, monthlyLoss, yearlyLoss, accumulatedLoss, category};
 }
 
 function identifyMainCauseAndPillar() {
     const data = {};
-    const questions = [
-        'q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 
-        'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 
-        'q3_1', 'q3_2', 'q3_4', 
-        'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'
-    ];
+    const questions = ['q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 'q3_1', 'q3_2', 'q3_4', 'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'];
     
     questions.forEach(q => {
         const selected = document.querySelector(`input[name="${q}"]:checked`);
@@ -1098,46 +1019,20 @@ function identifyMainCauseAndPillar() {
         'R_Repetir': data.q2_1
     };
     
-    let mainCME = 'CME3_AdaptacionRoles';
-    let maxCMEScore = cmeScores['CME3_AdaptacionRoles'];
-    
+    let mainCME = 'CME3_AdaptacionRoles', maxCMEScore = cmeScores['CME3_AdaptacionRoles'];
     for (const [cme, score] of Object.entries(cmeScores)) {
-        if (score > maxCMEScore) {
-            maxCMEScore = score;
-            mainCME = cme;
-        }
+        if (score > maxCMEScore) { maxCMEScore = score; mainCME = cme; }
     }
     
-    let weakestPillar = 'D_Desarrollarse';
-    let maxPillarScore = pillarScores['D_Desarrollarse'];
-    
+    let weakestPillar = 'D_Desarrollarse', maxPillarScore = pillarScores['D_Desarrollarse'];
     for (const [pillar, score] of Object.entries(pillarScores)) {
-        if (score > maxPillarScore) {
-            maxPillarScore = score;
-            weakestPillar = pillar;
-        }
+        if (score > maxPillarScore) { maxPillarScore = score; weakestPillar = pillar; }
     }
     
-    const cmeNames = {
-        'CME1_PlanLargoPlazo': 'Falta de Plan a Largo Plazo',
-        'CME2_SerUnico': 'Falta de ser Único',
-        'CME3_AdaptacionRoles': 'Falta de Adaptación al Cambio de Roles',
-        'CME4_GestionFinanciera': 'Falta de Gestión Financiera',
-        'CME5_Innovacion': 'Falta de Gestión de Innovación'
-    };
+    const cmeNames = {'CME1_PlanLargoPlazo': 'Falta de Plan a Largo Plazo', 'CME2_SerUnico': 'Falta de ser Único', 'CME3_AdaptacionRoles': 'Falta de Adaptación al Cambio de Roles', 'CME4_GestionFinanciera': 'Falta de Gestión Financiera', 'CME5_Innovacion': 'Falta de Gestión de Innovación'};
+    const pillarNames = {'P_Planear': 'Planear', 'U_Unico': 'Único', 'D_Desarrollarse': 'Desarrollarse', 'E_Estandarizar': 'Estandarizar', 'R_Repetir': 'Repetir'};
     
-    const pillarNames = {
-        'P_Planear': 'Planear',
-        'U_Unico': 'Único',
-        'D_Desarrollarse': 'Desarrollarse',
-        'E_Estandarizar': 'Estandarizar',
-        'R_Repetir': 'Repetir'
-    };
-    
-    return {
-        mainCME: cmeNames[mainCME],
-        weakestPillar: pillarNames[weakestPillar]
-    };
+    return {mainCME: cmeNames[mainCME], weakestPillar: pillarNames[weakestPillar]};
 }
 
 function calculateCostOfChaos() {
@@ -1145,53 +1040,16 @@ function calculateCostOfChaos() {
     const hourlyValueElement = document.querySelector('input[name="q3_2"]:checked');
     
     if (!timeLostElement || !hourlyValueElement) {
-        return {
-            monthlyCost: 0,
-            yearlyCost: 0,
-            monthlyHours: 0,
-            timeLostPercentage: 0
-        };
+        return {monthlyCost: 0, yearlyCost: 0, monthlyHours: 0, timeLostPercentage: 0};
     }
     
     const timeLostPercentage = parseInt(timeLostElement.value);
     const hourlyValue = parseFloat(hourlyValueElement.value);
-    
-    const weeksPerMonth = 4.33;
-    const monthlyHours = Math.round((timeLostPercentage / 100) * 40 * weeksPerMonth);
+    const monthlyHours = Math.round((timeLostPercentage / 100) * 40 * 4.33);
     const monthlyCost = Math.round(monthlyHours * hourlyValue);
     const yearlyCost = Math.round(monthlyCost * 12);
     
-    return {
-        monthlyCost: monthlyCost,
-        yearlyCost: yearlyCost,
-        monthlyHours: monthlyHours,
-        timeLostPercentage: timeLostPercentage
-    };
-}
-
-function redirectToResults(results, costOfChaos, diagnosis) {
-    const resultData = {
-        totalScore: results.totalScore,
-        category: results.category,
-        monthlyLoss: results.monthlyLoss,
-        yearlyLoss: results.yearlyLoss,
-        mainCME: diagnosis.mainCME,
-        weakestPillar: diagnosis.weakestPillar,
-        monthlyCost: costOfChaos.monthlyCost,
-        yearlyCost: costOfChaos.yearlyCost,
-        monthlyHours: costOfChaos.monthlyHours,
-        timeLostPercentage: costOfChaos.timeLostPercentage,
-        accumulatedLoss: results.accumulatedLoss,
-        hourlyValue: results.hourlyValue,
-        durationYears: results.durationYears,
-        lonelinessIndex: results.lonelinessIndex
-    };
-    
-    console.log('💾 Guardando en localStorage:', resultData);
-    localStorage.setItem('diagnosticResults', JSON.stringify(resultData));
-    
-    console.log('✅ Redirigiendo a results.html');
-    window.location.href = 'results.html';
+    return {monthlyCost, yearlyCost, monthlyHours, timeLostPercentage};
 }
     </script>
 </body>
