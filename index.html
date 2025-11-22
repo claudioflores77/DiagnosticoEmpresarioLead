@@ -41,13 +41,14 @@
         }
 
         .logo {
-    width: 80px;
-    height: 80px;
-    background-image: url('FBA Logo Sin Fondo.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
+            width: 80px;
+            height: 80px;
+            background-image: url('FBA Logo Sin Fondo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
         .company-info h1 {
             font-size: 1.4em;
             color: #DC143C;
@@ -218,111 +219,6 @@
             transform: none;
         }
 
-        .result {
-            display: none;
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            margin: 30px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .result.active {
-            display: block;
-        }
-
-        .result-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .result-score {
-            font-size: 3em;
-            font-weight: bold;
-            color: #DC143C;
-        }
-
-        .result-category {
-            font-size: 1.5em;
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .result-green { background: #d4edda; color: #155724; }
-        .result-yellow { background: #fff3cd; color: #856404; }
-        .result-orange { background: #ffe5cc; color: #cc5500; }
-        .result-red { background: #f8d7da; color: #721c24; }
-
-        .result-details {
-            margin: 30px 0;
-            padding: 25px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .result-details h3 {
-            color: #DC143C;
-            margin-bottom: 15px;
-        }
-
-        .result-details ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .result-details li {
-            padding: 10px 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .result-details li:before {
-            content: "✓ ";
-            color: #DC143C;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .cta-box {
-            background: linear-gradient(135deg, #DC143C, #8B0000);
-            color: white;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .cta-box h2 {
-            color: white;
-            border: none;
-            margin-bottom: 20px;
-        }
-
-        .cta-box p {
-            font-size: 1.2em;
-            margin-bottom: 25px;
-        }
-
-        .btn-cta {
-            background: white;
-            color: #DC143C;
-            padding: 18px 50px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.3em;
-            cursor: pointer;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .btn-cta:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-
         .loading {
             text-align: center;
             padding: 20px;
@@ -354,7 +250,7 @@
     </style>
 </head>
 <body>
-  <div class="header">
+    <div class="header">
         <div class="header-content">
             <div class="logo-section">
                 <div class="logo"></div>
@@ -384,7 +280,6 @@
             <p style="margin: 10px 0;">Qué temas críticos requieren atención urgente en tu empresa</p>
             <p style="margin: 10px 0;">Cuántos recursos (tiempo, dinero, energía) has perdido a causa de tu situación actual</p>
             <p style="margin: 10px 0;">Cuál es el nivel de transformación que necesitas para recuperar tu vida y hacer crecer tu empresa</p>
-            <p style="margin-top: 20px; font-size: 0.95em; font-style: italic;">Este diagnóstico resulta de más de 17 años ayudando a empresarios en 22 países a recuperar el control de sus vidas mientras multiplican los resultados de sus empresas.</p>
         </div>
     </div>
 
@@ -409,7 +304,8 @@
                         Debo estar disponible constantemente para decisiones importantes
                     </label>
                     <label class="option">
-                            <input type="radio" name="q1_1" value="4"> Nada funciona si no estoy presente - soy indispensable
+                        <input type="radio" name="q1_1" value="4">
+                        Nada funciona si no estoy presente - soy indispensable
                     </label>
                 </div>
                 
@@ -417,16 +313,20 @@
                     <h3>1.5 Mi Propuesta de Valor Única</h3>
                     <p style="margin-bottom: 15px;">¿Qué tan diferenciado es tu producto/servicio de la competencia?</p>
                     <label class="option">
-                        <input type="radio" name="q1_5" value="0"> Somos líderes indiscutibles con una propuesta de valor única y clara.
+                        <input type="radio" name="q1_5" value="0">
+                        Somos líderes indiscutibles con una propuesta de valor única y clara.
                     </label>
                     <label class="option">
-                        <input type="radio" name="q1_5" value="1"> Tenemos algunas ventajas, pero la competencia nos copia rápidamente.
+                        <input type="radio" name="q1_5" value="1">
+                        Tenemos algunas ventajas, pero la competencia nos copia rápidamente.
                     </label>
                     <label class="option">
-                        <input type="radio" name="q1_5" value="3"> Ofrecemos un producto/servicio similar al de la competencia, competimos por precio.
+                        <input type="radio" name="q1_5" value="3">
+                        Ofrecemos un producto/servicio similar al de la competencia, competimos por precio.
                     </label>
                     <label class="option">
-                        <input type="radio" name="q1_5" value="5"> No tengo muy claro qué nos hace diferentes o por qué nos eligen.
+                        <input type="radio" name="q1_5" value="5">
+                        No tengo muy claro qué nos hace diferentes o por qué nos eligen.
                     </label>
                 </div>
                 
@@ -615,25 +515,30 @@
                     </label>
                 </div>
             </div>
+
             <!-- Sección 3 -->
             <div class="section">
-                <h2>💰 Sección 3: El Costo de la No Calidad: Cuantificando la Pérdida</h2>
+                <h2>💰 Sección 3: El Costo de la No Calidad</h2>
                 
                 <div class="question">
                     <h3>3.1 El Costo de la No Organización: Tiempo Improductivo</h3>
                     <p style="margin-bottom: 20px; color: #555;"><strong>Evalúa el tiempo que dedicas a tareas que podrías delegar o eliminar:</strong></p>
                     
                     <label class="option">
-                        <input type="radio" name="q3_1" value="5"> Mi tiempo se enfoca en la estrategia y liderazgo (menos del 10% en tareas operativas).
+                        <input type="radio" name="q3_1" value="5">
+                        Mi tiempo se enfoca en la estrategia y liderazgo (menos del 10% en tareas operativas).
                     </label>
                     <label class="option">
-                        <input type="radio" name="q3_1" value="15"> Dedico entre 10% y 30% de mi tiempo a tareas operativas o "apagando incendios".
+                        <input type="radio" name="q3_1" value="15">
+                        Dedico entre 10% y 30% de mi tiempo a tareas operativas o "apagando incendios".
                     </label>
                     <label class="option">
-                        <input type="radio" name="q3_1" value="30"> Más del 50% de mi tiempo se consume en la operación diaria y resolviendo urgencias.
+                        <input type="radio" name="q3_1" value="30">
+                        Más del 50% de mi tiempo se consume en la operación diaria y resolviendo urgencias.
                     </label>
                     <label class="option">
-                        <input type="radio" name="q3_1" value="50"> Prácticamente todo mi tiempo (más del 70%) es absorbido por la operación y decisiones que otros deberían tomar.
+                        <input type="radio" name="q3_1" value="50">
+                        Prácticamente todo mi tiempo (más del 70%) es absorbido por la operación y decisiones que otros deberían tomar.
                     </label>
                 </div>
 
@@ -723,6 +628,7 @@
                     </label>
                 </div>
             </div>
+
             <!-- Sección 4 -->
             <div class="section">
                 <h2>🎯 Sección 4: ¿Estás Listo para la Transformación?</h2>
@@ -790,16 +696,20 @@
                 <div class="question">
                     <h3>4.5 Apoyo del Entorno para Decisiones de Inversión</h3>
                     <label class="option">
-                        <input type="radio" name="q4_5" value="1"> Apoyo completo para decisiones de desarrollo empresarial
+                        <input type="radio" name="q4_5" value="1">
+                        Apoyo completo para decisiones de desarrollo empresarial
                     </label>
                     <label class="option">
-                        <input type="radio" name="q4_5" value="2"> Apoyo general, tengo que explicar la inversión vs. beneficios
+                        <input type="radio" name="q4_5" value="2">
+                        Apoyo general, tengo que explicar la inversión vs. beneficios
                     </label>
                     <label class="option">
-                        <input type="radio" name="q4_5" value="3"> Apoyo limitado, necesito convencer del valor de la inversión
+                        <input type="radio" name="q4_5" value="3">
+                        Apoyo limitado, necesito convencer del valor de la inversión
                     </label>
                     <label class="option">
-                        <input type="radio" name="q4_5" value="4"> Sin apoyo para inversiones (estoy sólo en esto)
+                        <input type="radio" name="q4_5" value="4">
+                        Sin apoyo para inversiones (estoy sólo en esto)
                     </label>
                 </div>
                 
@@ -807,16 +717,20 @@
                     <h3>4.4 Capacidad de Inversión</h3>
                     <p style="margin-bottom: 15px;">Esta pregunta es clave para el seguimiento. ¿Qué nivel de inversión podrías considerar para transformar tu negocio y tu vida?</p>
                     <label class="option">
-                        <input type="radio" name="q4_4" value="1"> Tengo recursos (más de U$D10.000) disponibles para invertir en transformación
+                        <input type="radio" name="q4_4" value="1">
+                        Tengo recursos (más de U$D10.000) disponibles para invertir en transformación
                     </label>
                     <label class="option">
-                        <input type="radio" name="q4_4" value="2"> Recursos limitados pero priorizaría esta inversión (aprox U$D5.000)
+                        <input type="radio" name="q4_4" value="2">
+                        Recursos limitados pero priorizaría esta inversión (aprox U$D5.000)
                     </label>
                     <label class="option">
-                        <input type="radio" name="q4_4" value="3"> Necesitaría evaluar cuidadosamente la inversión (hasta U$S1.000)
+                        <input type="radio" name="q4_4" value="3">
+                        Necesitaría evaluar cuidadosamente la inversión (hasta U$S1.000)
                     </label>
                     <label class="option">
-                        <input type="radio" name="q4_4" value="4"> Actualmente sin recursos disponibles
+                        <input type="radio" name="q4_4" value="4">
+                        Actualmente sin recursos disponibles
                     </label>
                 </div>
                 
@@ -824,7 +738,7 @@
             </div>
         </div>
 
-        <!-- Formulario de contacto (aparece después del diagnóstico) -->
+        <!-- Formulario de contacto -->
         <div id="contact-form" class="section" style="display: none;">
             <h2>📋 Datos Necesarios para Enviar tus Resultados Personalizados</h2>
             <p style="margin-bottom: 25px; color: #666;">Para enviarte el resumen de tus resultados, necesitamos:</p>
@@ -865,517 +779,429 @@
             </div>
             
             <button class="btn-primary" id="submitBtn" onclick="submitAndShowResults()">✅ Ver Mis Resultados</button>
-            <div id="loadingMsg" class="loading" style="display: none;">Procesando tu información</div>
-        </div>
-
-        <!-- Resultados -->
-        <div id="results" class="result">
-            <div class="result-header">
-                <h2>Tus Resultados del Diagnóstico Estratégico Empresarial</h2>
-                <div class="result-score" id="score-display"></div>
-                <p style="color: #666; margin-top: 10px;">de 141 puntos totales</p>
-            </div>
-
-            <div id="category-result" class="result-category"></div>
-
-            <div class="result-details">
-                <h3>📋 Análisis de tu Situación</h3>
-                <div id="situation-analysis"></div>
-            </div>
-
-            <div class="result-details">
-                <h3>🎯 Próximos Pasos Recomendados</h3>
-                <div id="next-steps"></div>
-            </div>
-
-            <div class="result-details">
-                <h3>⏰ Tiempo Perdido Semanal</h3>
-                <div id="time-analysis"></div>
-            </div>
-
-            <div class="result-details" id="economic-impact"></div>
-
-            <div class="result-details">
-                <h3>💡 Índice de Soledad del Líder</h3>
-                <div id="loneliness-index"></div>
-            </div>
-
-            <div class="result-details" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-left: 4px solid #DC143C;">
-                <h3>🎯 Resultados que Empresarios como Tú han Logrado</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="padding: 12px 0; border-bottom: 1px solid #dee2e6;">✓ <strong>50% reducción</strong> en horas de trabajo semanales</li>
-                    <li style="padding: 12px 0; border-bottom: 1px solid #dee2e6;">✓ <strong>25-40% incremento</strong> en rentabilidad en 6 meses</li>
-                    <li style="padding: 12px 0; border-bottom: 1px solid #dee2e6;">✓ <strong>97% logran</strong> independencia operativa</li>
-                    <li style="padding: 12px 0;">✓ <strong>Recuperación de las Riendas</strong> de vida personal y familiar</li>
-                </ul>
-            </div>
-
-            <div class="cta-box">
-                <h2>🚀 ¡El Momento de Transformación Ha Llegado!</h2>
-                <p style="font-size: 1.2em;"><strong>La soledad del líder y el agotamiento no son el precio que deberías pagar por el éxito.</strong></p>
-                <p style="margin: 20px 0;">Ya no tienes que cargar solo/a con el peso de todo en tu empresa.</p>
-                <a href="https://estrategiaempresaria.systeme.io/sesionestrategica1a1" class="btn-cta">
-                    📅 AGENDA TU SESIÓN ESTRATÉGICA (Valor de Mercado U$D250) 100% GRATIS
-                </a>
-                <p style="margin-top: 25px; font-size: 1em;">En la sesión analizaremos tus resultados específicos, en detalle, y diseñaremos un plan personalizado para recuperar tu vida mientras haces crecer tu empresa.</p>
-                
-                <div style="margin-top: 35px; padding-top: 25px; border-top: 2px solid rgba(255,255,255,0.3);">
-                    <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Sobre el Método P.U.D.E.R.</strong></p>
-                    <p style="font-size: 0.95em; line-height: 1.6;">Este diagnóstico está basado en el Método P.U.D.E.R. (Planear, ser Único, Desarrollar, Estandarizar, Repetir), desarrollado por Claudio Flores con más de 17 años ayudando a empresarios en 22 países a superar las 5 principales causas de muerte empresarial y lograr la transformación integral de sus negocios y sus vidas.</p>
-                </div>
-            </div>
+            <div id="loadingMsg" class="loading" style="display: none;">Procesando tu información...</div>
         </div>
     </div>
+
     <script>
+        console.log('🚀 Script cargado correctamente');
+        
         // Variable global para almacenar respuestas
-let diagnosticData = {};
+        let diagnosticData = {};
 
-function proceedToContactForm() {
-    // Validar que se hayan respondido todas las preguntas de radio
-    const radioQuestions = [
-        'q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 
-        'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 
-        'q3_1', 'q3_2', 'q3_4', 
-        'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'
-    ];
-    
-    let allAnswered = true;
-    let firstUnanswered = null;
-    
-    for (let q of radioQuestions) {
-        if (!document.querySelector(`input[name="${q}"]:checked`)) {
-            allAnswered = false;
-            if (!firstUnanswered) {
-                firstUnanswered = q;
+        function proceedToContactForm() {
+            console.log('📝 Iniciando proceedToContactForm()');
+            
+            // Validar que se hayan respondido todas las preguntas de radio
+            const radioQuestions = [
+                'q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 
+                'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 
+                'q3_1', 'q3_2', 'q3_4', 
+                'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'
+            ];
+            
+            let allAnswered = true;
+            let firstUnanswered = null;
+            
+            for (let q of radioQuestions) {
+                if (!document.querySelector(`input[name="${q}"]:checked`)) {
+                    allAnswered = false;
+                    if (!firstUnanswered) {
+                        firstUnanswered = q;
+                    }
+                }
+            }
+
+            if (!allAnswered) {
+                alert(`Por favor, responde todas las preguntas antes de continuar.\n\nPrimera pregunta sin responder: ${firstUnanswered}`);
+                return;
+            }
+
+            console.log('✅ Todas las preguntas respondidas');
+
+            // Guardar todas las respuestas
+            diagnosticData = collectDiagnosticData();
+            console.log('💾 Datos del diagnóstico recopilados:', diagnosticData);
+
+            // Ocultar formulario de diagnóstico y mostrar formulario de contacto
+            document.getElementById('diagnostic-form').style.display = 'none';
+            document.getElementById('contact-form').style.display = 'block';
+            document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function collectDiagnosticData() {
+            const data = {};
+            
+            const radioQuestions = [
+                'q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 
+                'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 
+                'q3_1', 'q3_2', 'q3_4', 
+                'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'
+            ];
+            
+            radioQuestions.forEach(q => {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                data[q] = selected ? selected.value : '';
+            });
+
+            // Recopilar checkboxes
+            const checkboxes = document.querySelectorAll('input[name="q3_3"]:checked');
+            data.q3_3_count = checkboxes.length;
+            data.q3_3_items = Array.from(checkboxes).map(cb => cb.parentElement.textContent.trim()).join('; ');
+
+            return data;
+        }
+
+        function submitAndShowResults() {
+            console.log('🎯 Iniciando submitAndShowResults()');
+            
+            const fullName = document.getElementById('fullName').value.trim();
+            const company = document.getElementById('company').value.trim();
+            const position = document.getElementById('position').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const yearsLeader = document.getElementById('yearsLeader').value;
+            const employees = document.getElementById('employees').value;
+
+            if (!fullName || !company || !position || !email || !phone || !yearsLeader || !employees) {
+                alert('Por favor, completa todos los campos para continuar.');
+                return;
+            }
+
+            if (!email.includes('@')) {
+                alert('Por favor, ingresa un email válido.');
+                return;
+            }
+
+            // Deshabilitar botón y mostrar loading
+            const submitBtn = document.getElementById('submitBtn');
+            const loadingMsg = document.getElementById('loadingMsg');
+            submitBtn.disabled = true;
+            loadingMsg.style.display = 'block';
+
+            console.log('📊 Calculando resultados...');
+
+            // Calcular resultados
+            const results = calculateResults();
+            console.log('✅ Resultados calculados:', results);
+            
+            // Calcular diagnóstico (CME y Pilar P.U.D.E.R.)
+            const diagnosis = identifyMainCauseAndPillar();
+            console.log('✅ Diagnóstico identificado:', diagnosis);
+            
+            // Calcular Costo del Caos
+            const costOfChaos = calculateCostOfChaos();
+            console.log('✅ Costo del caos calculado:', costOfChaos);
+
+            // Preparar datos completos
+            const completeData = {
+                timestamp: new Date().toISOString(),
+                fullName,
+                company,
+                position,
+                email,
+                phone,
+                yearsLeader,
+                employees,
+                ...diagnosticData,
+                totalScore: results.totalScore,
+                timeLost: results.timeLost,
+                lonelinessIndex: results.lonelinessIndex,
+                hourlyValue: results.hourlyValue,
+                durationYears: results.durationYears,
+                category: results.category,
+                monthlyLoss: results.monthlyLoss,
+                yearlyLoss: results.yearlyLoss,
+                accumulatedLoss: results.accumulatedLoss,
+                mainCME: diagnosis.mainCME,
+                weakestPillar: diagnosis.weakestPillar,
+                monthlyCost: costOfChaos.monthlyCost,
+                yearlyCost: costOfChaos.yearlyCost
+            };
+
+            console.log('📦 Datos completos preparados:', completeData);
+
+            // Enviar a Google Sheets (sin bloquear)
+            try {
+                sendToGoogleSheets(completeData);
+            } catch (error) {
+                console.error('❌ Error enviando a Google Sheets:', error);
+            }
+
+            // Redirigir a resultados
+            console.log('🔄 Redirigiendo a results.html...');
+            redirectToResults(results, costOfChaos, diagnosis);
+        }
+
+        function sendToGoogleSheets(data) {
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzw20z9MY7kdRh8vgb4yGT9WEN-U9_Ua3GLxNN1zE2hDiSl4uxsPkvHUxTYKloG-EyX/exec';
+            
+            try {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = GOOGLE_SCRIPT_URL;
+                form.target = 'hidden_iframe';
+                form.style.display = 'none';
+                
+                Object.keys(data).forEach(key => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = String(data[key]);
+                    form.appendChild(input);
+                });
+                
+                let iframe = document.getElementById('hidden_iframe');
+                if (!iframe) {
+                    iframe = document.createElement('iframe');
+                    iframe.id = 'hidden_iframe';
+                    iframe.name = 'hidden_iframe';
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
+                }
+                
+                document.body.appendChild(form);
+                console.log('📤 Enviando datos a Google Sheets...');
+                form.submit();
+                
+                setTimeout(() => {
+                    if (document.body.contains(form)) {
+                        document.body.removeChild(form);
+                    }
+                }, 2000);
+                
+                return true;
+            } catch (error) {
+                console.error('❌ Error en sendToGoogleSheets:', error);
+                return false;
             }
         }
-    }
 
-    if (!allAnswered) {
-        alert(`Por favor, responde todas las preguntas antes de continuar.\n\nPrimera pregunta sin responder: ${firstUnanswered}`);
-        return;
-    }
+        function calculateResults() {
+            let totalScore = 0;
+            
+            const getRadioValue = (name) => {
+                const element = document.querySelector(`input[name="${name}"]:checked`);
+                return element ? parseInt(element.value) : 0;
+            };
+            
+            // Sección 1
+            totalScore += getRadioValue('q1_1');
+            totalScore += getRadioValue('q1_2');
+            totalScore += getRadioValue('q1_3');
+            totalScore += getRadioValue('q1_4');
+            totalScore += getRadioValue('q1_5');
+            
+            // Sección 2
+            totalScore += getRadioValue('q2_1');
+            totalScore += getRadioValue('q2_2');
+            totalScore += getRadioValue('q2_3');
+            totalScore += getRadioValue('q2_4');
+            totalScore += getRadioValue('q2_5');
+            totalScore += getRadioValue('q2_6');
+            
+            // Sección 3
+            totalScore += getRadioValue('q3_1');
+            const checkboxes = document.querySelectorAll('input[name="q3_3"]:checked');
+            totalScore += checkboxes.length;
+            totalScore += getRadioValue('q3_4');
+            
+            // Sección 4
+            totalScore += getRadioValue('q4_1');
+            totalScore += getRadioValue('q4_2');
+            totalScore += getRadioValue('q4_3');
+            totalScore += getRadioValue('q4_4');
+            totalScore += getRadioValue('q4_5');
 
-    // Guardar todas las respuestas
-    diagnosticData = collectDiagnosticData();
+            // Calcular tiempo perdido y valor por hora
+            const timeLost = getRadioValue('q3_1');
+            const hourlyValue = parseFloat(document.querySelector('input[name="q3_2"]:checked')?.value || 0);
+            const durationYears = getRadioValue('q3_4');
 
-    // Ocultar formulario de diagnóstico y mostrar formulario de contacto
-    document.getElementById('diagnostic-form').style.display = 'none';
-    document.getElementById('contact-form').style.display = 'block';
-    document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
-}
+            console.log('📈 Valores clave:');
+            console.log('  - timeLost:', timeLost);
+            console.log('  - hourlyValue:', hourlyValue);
+            console.log('  - durationYears:', durationYears);
 
-function collectDiagnosticData() {
-    const data = {};
-    
-    // Recopilar todas las respuestas de radio
-    const radioQuestions = [
-        'q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 
-        'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 
-        'q3_1', 'q3_2', 'q3_4', 
-        'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'
-    ];
-    
-    radioQuestions.forEach(q => {
-        const selected = document.querySelector(`input[name="${q}"]:checked`);
-        data[q] = selected ? selected.value : '';
-    });
+            // Calcular índice de soledad
+            const lonelinessIndex = 
+                getRadioValue('q1_4') +
+                getRadioValue('q2_3') +
+                getRadioValue('q2_6') +
+                getRadioValue('q4_3');
 
-    // Recopilar checkboxes
-    const checkboxes = document.querySelectorAll('input[name="q3_3"]:checked');
-    data.q3_3_count = checkboxes.length;
-    data.q3_3_items = Array.from(checkboxes).map(cb => cb.parentElement.textContent.trim()).join('; ');
+            // Cálculos económicos
+            const monthlyHours = Math.round((timeLost / 100) * 40 * 4.33);
+            const yearlyHours = Math.round((timeLost / 100) * 40 * 52);
+            const monthlyLoss = Math.round(monthlyHours * hourlyValue);
+            const yearlyLoss = Math.round(yearlyHours * hourlyValue);
+            const accumulatedLoss = yearlyLoss * durationYears;
 
-    return data;
-}
+            console.log('💰 Cálculos económicos:');
+            console.log('  - monthlyHours:', monthlyHours);
+            console.log('  - monthlyLoss:', monthlyLoss);
+            console.log('  - yearlyLoss:', yearlyLoss);
 
-function submitAndShowResults() {
-    const fullName = document.getElementById('fullName').value.trim();
-    const company = document.getElementById('company').value.trim();
-    const position = document.getElementById('position').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const yearsLeader = document.getElementById('yearsLeader').value;
-    const employees = document.getElementById('employees').value;
-
-    if (!fullName || !company || !position || !email || !phone || !yearsLeader || !employees) {
-        alert('Por favor, completa todos los campos para continuar.');
-        return;
-    }
-
-    if (!email.includes('@')) {
-        alert('Por favor, ingresa un email válido.');
-        return;
-    }
-
-    // Deshabilitar botón y mostrar loading
-    const submitBtn = document.getElementById('submitBtn');
-    const loadingMsg = document.getElementById('loadingMsg');
-    submitBtn.disabled = true;
-    loadingMsg.style.display = 'block';
-
-    // Calcular resultados
-    const results = calculateResults();
-    
-    // Calcular diagnóstico (CME y Pilar P.U.D.E.R.)
-    const diagnosis = identifyMainCauseAndPillar();
-    
-    // Calcular Costo del Caos
-    const costOfChaos = calculateCostOfChaos();
-
-    // Preparar datos completos para enviar
-    const completeData = {
-        timestamp: new Date().toISOString(),
-        fullName,
-        company,
-        position,
-        email,
-        phone,
-        yearsLeader,
-        employees,
-        ...diagnosticData,
-        totalScore: results.totalScore,
-        timeLost: results.timeLost,
-        lonelinessIndex: results.lonelinessIndex,
-        hourlyValue: results.hourlyValue,
-        durationYears: results.durationYears,
-        category: results.category,
-        monthlyLoss: results.monthlyLoss,
-        yearlyLoss: results.yearlyLoss,
-        accumulatedLoss: results.accumulatedLoss,
-        mainCME: diagnosis.mainCME,
-        weakestPillar: diagnosis.weakestPillar,
-        monthlyCost: costOfChaos.monthlyCost,
-        yearlyCost: costOfChaos.yearlyCost,
-        monthlyHours: costOfChaos.monthlyHours
-    };
-
-    // NUEVO: Guardar email en localStorage para envío posterior
-    localStorage.setItem('userEmail', email);
-    localStorage.setItem('userName', fullName);
-
-    // Enviar a Google Sheets de forma asíncrona
-    try {
-        sendToGoogleSheets(completeData);
-    } catch (error) {
-        console.error('Error enviando a Google Sheets:', error);
-    }
-
-    // Redirigir a la página de resultados
-    redirectToResults(results, costOfChaos, diagnosis);
-}
-    if (!email.includes('@')) {
-        alert('Por favor, ingresa un email válido.');
-        return;
-    }
-
-    // Deshabilitar botón y mostrar loading
-    const submitBtn = document.getElementById('submitBtn');
-    const loadingMsg = document.getElementById('loadingMsg');
-    submitBtn.disabled = true;
-    loadingMsg.style.display = 'block';
-
-    // Calcular resultados
-    const results = calculateResults();
-    
-    // Calcular diagnóstico (CME y Pilar P.U.D.E.R.)
-    const diagnosis = identifyMainCauseAndPillar();
-    
-    // Calcular Costo del Caos
-    const costOfChaos = calculateCostOfChaos();
-
-    // Preparar datos completos para enviar
-    const completeData = {
-        timestamp: new Date().toISOString(),
-        fullName,
-        company,
-        position,
-        email,
-        phone,
-        yearsLeader,
-        employees,
-        ...diagnosticData,
-        totalScore: results.totalScore,
-        timeLost: results.timeLost,
-        lonelinessIndex: results.lonelinessIndex,
-        hourlyValue: results.hourlyValue,
-        durationYears: results.durationYears,
-        category: results.category,
-        monthlyLoss: results.monthlyLoss,
-        yearlyLoss: results.yearlyLoss,
-        accumulatedLoss: results.accumulatedLoss,
-        mainCME: diagnosis.mainCME,
-        weakestPillar: diagnosis.weakestPillar,
-        monthlyCost: costOfChaos.monthlyCost,
-        yearlyCost: costOfChaos.yearlyCost
-    };
-
-    // Enviar a Google Sheets de forma asíncrona
-    try {
-        sendToGoogleSheets(completeData);
-    } catch (error) {
-        console.error('Error enviando a Google Sheets:', error);
-    }
-
-    // Redirigir a la página de resultados
-    redirectToResults(results, costOfChaos, diagnosis);
-}
-
-function sendToGoogleSheets(data) {
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxInBo2l76CuTroC8n4T83odUaNjFkAdtLmNrY51QVyHtER0vPaN0vU6LNBZuwxxbdq/exec';
-    
-    try {
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = GOOGLE_SCRIPT_URL;
-        form.target = 'hidden_iframe';
-        form.style.display = 'none';
-        
-        Object.keys(data).forEach(key => {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = String(data[key]);
-            form.appendChild(input);
-        });
-        
-        let iframe = document.getElementById('hidden_iframe');
-        if (!iframe) {
-            iframe = document.createElement('iframe');
-            iframe.id = 'hidden_iframe';
-            iframe.name = 'hidden_iframe';
-            iframe.style.display = 'none';
-            document.body.appendChild(iframe);
-        }
-        
-        document.body.appendChild(form);
-        console.log('📤 Enviando datos a Google Sheets...');
-        form.submit();
-        
-        setTimeout(() => {
-            if (document.body.contains(form)) {
-                document.body.removeChild(form);
+            // Determinar categoría
+            let category = '';
+            if (totalScore <= 25) {
+                category = 'LÍDER ESTRATÉGICO CONSOLIDADO';
+            } else if (totalScore <= 53) {
+                category = 'EMPRESARIO EN EVOLUCIÓN';
+            } else if (totalScore <= 85) {
+                category = 'CRISIS DE CRECIMIENTO ACTIVA';
+            } else {
+                category = 'EMPRENDEDOR|EMPRESARIO EN CRISIS SEVERA';
             }
-        }, 2000);
-        
-        console.log('✅ Formulario enviado a Google Sheets');
-        return true;
-        
-    } catch (error) {
-        console.error('❌ Error:', error);
-        return false;
-    }
-}
 
-function calculateResults() {
-    let totalScore = 0;
-    
-    // Función auxiliar para obtener valor de radio
-    const getRadioValue = (name) => {
-        const element = document.querySelector(`input[name="${name}"]:checked`);
-        return element ? parseInt(element.value) : 0;
-    };
-    
-    // Sección 1
-    totalScore += getRadioValue('q1_1');
-    totalScore += getRadioValue('q1_2');
-    totalScore += getRadioValue('q1_3');
-    totalScore += getRadioValue('q1_4');
-    totalScore += getRadioValue('q1_5');
-    
-    // Sección 2
-    totalScore += getRadioValue('q2_1');
-    totalScore += getRadioValue('q2_2');
-    totalScore += getRadioValue('q2_3');
-    totalScore += getRadioValue('q2_4');
-    totalScore += getRadioValue('q2_5');
-    totalScore += getRadioValue('q2_6');
-    
-    // Sección 3
-    totalScore += getRadioValue('q3_1');
-    const checkboxes = document.querySelectorAll('input[name="q3_3"]:checked');
-    totalScore += checkboxes.length;
-    totalScore += getRadioValue('q3_4');
-    
-    // Sección 4
-    totalScore += getRadioValue('q4_1');
-    totalScore += getRadioValue('q4_2');
-    totalScore += getRadioValue('q4_3');
-    totalScore += getRadioValue('q4_4');
-    totalScore += getRadioValue('q4_5');
-
-    // Calcular tiempo perdido
-    const timeLost = getRadioValue('q3_1');
-    const hourlyValue = parseFloat(document.querySelector('input[name="q3_2"]:checked')?.value || 0);
-    const durationYears = getRadioValue('q3_4');
-
-    // Calcular índice de soledad
-    const lonelinessIndex = 
-        getRadioValue('q1_4') +
-        getRadioValue('q2_3') +
-        getRadioValue('q2_6') +
-        getRadioValue('q4_3');
-
-    // Cálculos económicos
-    const monthlyHours = Math.round((timeLost / 100) * 40 * 4.33);
-    const yearlyHours = Math.round((timeLost / 100) * 40 * 52);
-    const monthlyLoss = Math.round(monthlyHours * hourlyValue);
-    const yearlyLoss = Math.round(yearlyHours * hourlyValue);
-    const accumulatedLoss = yearlyLoss * durationYears;
-
-    // Determinar categoría
-    let category = '';
-    if (totalScore <= 25) {
-        category = 'LÍDER ESTRATÉGICO CONSOLIDADO';
-    } else if (totalScore <= 53) {
-        category = 'EMPRESARIO EN EVOLUCIÓN';
-    } else if (totalScore <= 85) {
-        category = 'CRISIS DE CRECIMIENTO ACTIVA';
-    } else {
-        category = 'EMPRENDEDOR|EMPRESARIO EN CRISIS SEVERA';
-    }
-
-    return {
-        totalScore,
-        timeLost,
-        lonelinessIndex,
-        hourlyValue,
-        durationYears,
-        monthlyHours,
-        yearlyHours,
-        monthlyLoss,
-        yearlyLoss,
-        accumulatedLoss,
-        category
-    };
-}
-
-function identifyMainCauseAndPillar() {
-    const data = {};
-    const questions = [
-        'q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 
-        'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 
-        'q3_1', 'q3_2', 'q3_4', 
-        'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'
-    ];
-    
-    questions.forEach(q => {
-        const selected = document.querySelector(`input[name="${q}"]:checked`);
-        data[q] = selected ? parseInt(selected.value) : 0;
-    });
-    
-    const cmeScores = {
-        'CME1_PlanLargoPlazo': data.q1_1,
-        'CME2_SerUnico': data.q1_5,
-        'CME3_AdaptacionRoles': data.q1_2 + data.q1_3 + data.q1_4 + data.q2_3 + data.q3_1,
-        'CME4_GestionFinanciera': data.q3_2 + data.q4_1,
-        'CME5_Innovacion': data.q2_1
-    };
-    
-    const pillarScores = {
-        'P_Planear': data.q1_1,
-        'U_Unico': data.q1_5,
-        'D_Desarrollarse': data.q1_2 + data.q1_3 + data.q1_4 + data.q3_2 + data.q4_1 + data.q4_2,
-        'E_Estandarizar': data.q3_1 + data.q2_4,
-        'R_Repetir': data.q2_1
-    };
-    
-    let mainCME = 'CME3_AdaptacionRoles';
-    let maxCMEScore = cmeScores['CME3_AdaptacionRoles'];
-    
-    for (const [cme, score] of Object.entries(cmeScores)) {
-        if (score > maxCMEScore) {
-            maxCMEScore = score;
-            mainCME = cme;
+            return {
+                totalScore,
+                timeLost,
+                lonelinessIndex,
+                hourlyValue,
+                durationYears,
+                monthlyHours,
+                yearlyHours,
+                monthlyLoss,
+                yearlyLoss,
+                accumulatedLoss,
+                category
+            };
         }
-    }
-    
-    let weakestPillar = 'D_Desarrollarse';
-    let maxPillarScore = pillarScores['D_Desarrollarse'];
-    
-    for (const [pillar, score] of Object.entries(pillarScores)) {
-        if (score > maxPillarScore) {
-            maxPillarScore = score;
-            weakestPillar = pillar;
+
+        function identifyMainCauseAndPillar() {
+            const data = {};
+            const questions = [
+                'q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5', 
+                'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6', 
+                'q3_1', 'q3_2', 'q3_4', 
+                'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5'
+            ];
+            
+            questions.forEach(q => {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                data[q] = selected ? parseInt(selected.value) : 0;
+            });
+            
+            const cmeScores = {
+                'CME1_PlanLargoPlazo': data.q1_1,
+                'CME2_SerUnico': data.q1_5,
+                'CME3_AdaptacionRoles': data.q1_2 + data.q1_3 + data.q1_4 + data.q2_3 + data.q3_1,
+                'CME4_GestionFinanciera': data.q3_2 + data.q4_1,
+                'CME5_Innovacion': data.q2_1
+            };
+            
+            const pillarScores = {
+                'P_Planear': data.q1_1,
+                'U_Unico': data.q1_5,
+                'D_Desarrollarse': data.q1_2 + data.q1_3 + data.q1_4 + data.q3_2 + data.q4_1 + data.q4_2,
+                'E_Estandarizar': data.q3_1 + data.q2_4,
+                'R_Repetir': data.q2_1
+            };
+            
+            let mainCME = 'CME3_AdaptacionRoles';
+            let maxCMEScore = cmeScores['CME3_AdaptacionRoles'];
+            
+            for (const [cme, score] of Object.entries(cmeScores)) {
+                if (score > maxCMEScore) {
+                    maxCMEScore = score;
+                    mainCME = cme;
+                }
+            }
+            
+            let weakestPillar = 'D_Desarrollarse';
+            let maxPillarScore = pillarScores['D_Desarrollarse'];
+            
+            for (const [pillar, score] of Object.entries(pillarScores)) {
+                if (score > maxPillarScore) {
+                    maxPillarScore = score;
+                    weakestPillar = pillar;
+                }
+            }
+            
+            const cmeNames = {
+                'CME1_PlanLargoPlazo': 'Falta de Plan a Largo Plazo',
+                'CME2_SerUnico': 'Falta de ser Único',
+                'CME3_AdaptacionRoles': 'Falta de Adaptación al Cambio de Roles',
+                'CME4_GestionFinanciera': 'Falta de Gestión Financiera',
+                'CME5_Innovacion': 'Falta de Gestión de Innovación'
+            };
+            
+            const pillarNames = {
+                'P_Planear': 'Planear',
+                'U_Unico': 'Único',
+                'D_Desarrollarse': 'Desarrollarse',
+                'E_Estandarizar': 'Estandarizar',
+                'R_Repetir': 'Repetir'
+            };
+            
+            return {
+                mainCME: cmeNames[mainCME],
+                weakestPillar: pillarNames[weakestPillar],
+                cmeScores: cmeScores,
+                pillarScores: pillarScores
+            };
         }
-    }
-    
-    const cmeNames = {
-        'CME1_PlanLargoPlazo': 'Falta de Plan a Largo Plazo',
-        'CME2_SerUnico': 'Falta de ser Único',
-        'CME3_AdaptacionRoles': 'Falta de Adaptación al Cambio de Roles',
-        'CME4_GestionFinanciera': 'Falta de Gestión Financiera',
-        'CME5_Innovacion': 'Falta de Gestión de Innovación'
-    };
-    
-    const pillarNames = {
-        'P_Planear': 'Planear',
-        'U_Unico': 'Único',
-        'D_Desarrollarse': 'Desarrollarse',
-        'E_Estandarizar': 'Estandarizar',
-        'R_Repetir': 'Repetir'
-    };
-    
-    return {
-        mainCME: cmeNames[mainCME],
-        weakestPillar: pillarNames[weakestPillar],
-        cmeScores: cmeScores,
-        pillarScores: pillarScores
-    };
-}
 
-function calculateCostOfChaos() {
-    const timeLostElement = document.querySelector('input[name="q3_1"]:checked');
-    const hourlyValueElement = document.querySelector('input[name="q3_2"]:checked');
-    
-    if (!timeLostElement || !hourlyValueElement) {
-        console.error('No se encontraron los elementos necesarios para calcular el costo del caos');
-        return {
-            monthlyCost: 0,
-            yearlyCost: 0,
-            monthlyHours: 0,
-            timeLostPercentage: 0
-        };
-    }
-    
-    const timeLostPercentage = parseInt(timeLostElement.value);
-    const hourlyValue = parseFloat(hourlyValueElement.value);
-    
-    const weeksPerMonth = 4.33;
-    const monthlyHours = Math.round((timeLostPercentage / 100) * 40 * weeksPerMonth);
-    const monthlyCost = Math.round(monthlyHours * hourlyValue);
-    const yearlyCost = Math.round(monthlyCost * 12);
-    
-    return {
-        monthlyCost: monthlyCost,
-        yearlyCost: yearlyCost,
-        monthlyHours: monthlyHours,
-        timeLostPercentage: timeLostPercentage
-    };
-}
+        function calculateCostOfChaos() {
+            const timeLostElement = document.querySelector('input[name="q3_1"]:checked');
+            const hourlyValueElement = document.querySelector('input[name="q3_2"]:checked');
+            
+            if (!timeLostElement || !hourlyValueElement) {
+                console.error('❌ No se encontraron elementos para calcular costo del caos');
+                return {
+                    monthlyCost: 0,
+                    yearlyCost: 0,
+                    monthlyHours: 0,
+                    timeLostPercentage: 0
+                };
+            }
+            
+            const timeLostPercentage = parseInt(timeLostElement.value);
+            const hourlyValue = parseFloat(hourlyValueElement.value);
+            
+            const weeksPerMonth = 4.33;
+            const monthlyHours = Math.round((timeLostPercentage / 100) * 40 * weeksPerMonth);
+            const monthlyCost = Math.round(monthlyHours * hourlyValue);
+            const yearlyCost = Math.round(monthlyCost * 12);
+            
+            console.log('💸 Costo del caos calculado:');
+            console.log('  - monthlyHours:', monthlyHours);
+            console.log('  - monthlyCost:', monthlyCost);
+            console.log('  - yearlyCost:', yearlyCost);
+            
+            return {
+                monthlyCost: monthlyCost,
+                yearlyCost: yearlyCost,
+                monthlyHours: monthlyHours,
+                timeLostPercentage: timeLostPercentage
+            };
+        }
 
-function redirectToResults(results, costOfChaos, diagnosis) {
-    const resultData = {
-        totalScore: results.totalScore,
-        category: results.category,
-        monthlyLoss: results.monthlyLoss,
-        yearlyLoss: results.yearlyLoss,
-        mainCME: diagnosis.mainCME,
-        weakestPillar: diagnosis.weakestPillar,
-        monthlyCost: costOfChaos.monthlyCost,
-        yearlyCost: costOfChaos.yearlyCost,
-        monthlyHours: costOfChaos.monthlyHours,
-        timeLostPercentage: costOfChaos.timeLostPercentage,
-        accumulatedLoss: results.accumulatedLoss,
-        hourlyValue: results.hourlyValue,
-        durationYears: results.durationYears,
-        lonelinessIndex: results.lonelinessIndex
-    };
-    
-    console.log('Datos a guardar en localStorage:', resultData);
-    localStorage.setItem('diagnosticResults', JSON.stringify(resultData));
-    window.location.href = 'results.html';
-}
-</script>
+        function redirectToResults(results, costOfChaos, diagnosis) {
+            const resultData = {
+                totalScore: results.totalScore,
+                category: results.category,
+                monthlyLoss: results.monthlyLoss,
+                yearlyLoss: results.yearlyLoss,
+                mainCME: diagnosis.mainCME,
+                weakestPillar: diagnosis.weakestPillar,
+                monthlyCost: costOfChaos.monthlyCost,
+                yearlyCost: costOfChaos.yearlyCost,
+                monthlyHours: costOfChaos.monthlyHours,
+                timeLostPercentage: costOfChaos.timeLostPercentage,
+                accumulatedLoss: results.accumulatedLoss,
+                hourlyValue: results.hourlyValue,
+                durationYears: results.durationYears,
+                lonelinessIndex: results.lonelinessIndex
+            };
+            
+            console.log('💾 Guardando en localStorage:', resultData);
+            localStorage.setItem('diagnosticResults', JSON.stringify(resultData));
+            
+            console.log('✅ Datos guardados, redirigiendo a results.html');
+            window.location.href = 'results.html';
+        }
+    </script>
 </body>
 </html>
