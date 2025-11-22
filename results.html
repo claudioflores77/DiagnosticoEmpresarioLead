@@ -224,4 +224,172 @@
         <!-- Cost of Chaos -->
         <div class="impact-section">
             <h2>💸 El Costo Oculto de la Inacción</h2>
-            <p class
+            <p class="cost-subtitle">Basado en tu propia valoración, el costo de tu ineficiencia es:</p>
+            <div class="cost-value" id="monthly-cost">--</div>
+            <p class="cost-subtitle">/ Mes</p>
+            <p style="font-size: 1.1em; color: #555; margin-top: 15px;">
+                <strong id="yearly-cost-text">--</strong> al año
+            </p>
+            <div class="cost-details">
+                <p><strong>Tu Causa de Muerte Empresarial Principal te está costando el equivalente a:</strong></p>
+                <p id="cost-example" style="margin-top: 10px; font-weight: bold;">--</p>
+            </div>
+        </div>
+
+        <!-- Solution -->
+        <div class="solution-section">
+            <h2>💉 Tu Vacuna Estratégica: El Método P.U.D.E.R.</h2>
+            <p>La solución para detener esta hemorragia y transformar tu negocio está en el <strong>Método P.U.D.E.R.</strong>, un sistema probado que te permite recuperar el control y la rentabilidad.</p>
+            <p>Tu diagnóstico indica que debes aplicar la <strong>Vacuna P.U.D.E.R.</strong> enfocándote urgentemente en el pilar:</p>
+            <div class="pillar-highlight" id="pillar-name">--</div>
+            <p><em>Este pilar es la clave para neutralizar tu principal riesgo y comenzar a construir un negocio que trabaje para ti.</em></p>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h3>¡El Reloj Sigue Corriendo! Detén la Pérdida de <span id="cta-cost">--</span> USD Ahora.</h3>
+            <p>No dejes que el caos te cueste un mes más.</p>
+            <p><strong>Agenda tu Sesión Estratégica 1:1 Gratuita con Claudio Flores.</strong></p>
+            <p>En solo <strong>15 minutos</strong>, utilizaremos este diagnóstico para:</p>
+            <ol style="text-align: left; display: inline-block; margin: 20px 0;">
+                <li style="margin: 10px 0;">Confirmar el origen exacto de tu Causa de Muerte Empresarial.</li>
+                <li style="margin: 10px 0;">Diseñar tu Plan de Vacunación Empresarial personalizado.</li>
+                <li style="margin: 10px 0;">Mostrarte el primer paso para implementar tu Pilar P.U.D.E.R. y recuperar tu vida.</li>
+            </ol>
+            <p style="margin-top: 20px;"><strong>Esta sesión no tiene costo ni compromiso. Solo tienes <span id="cta-cost-2">--</span> USD que perder si no actúas.</strong></p>
+            <a href="https://estrategiaempresaria.systeme.io/sesionestrategica1a1" class="btn-cta" target="_blank">AGENDA TU SESIÓN GRATUITA Y RECUPERA TU VIDA</a>
+        </div>
+
+        <!-- Back Link -->
+        <div class="back-link">
+            <a href="index.html">← Volver al Diagnóstico</a>
+        </div>
+    </div>
+
+    <script>
+        console.log('🚀 results.html cargado');
+        
+        // Cargar datos desde localStorage
+        function loadResults() {
+            console.log('🔍 Iniciando carga de resultados...');
+            
+            // Leer localStorage
+            const dataString = localStorage.getItem('diagnosticResults');
+            console.log('📦 localStorage raw:', dataString);
+            
+            if (!dataString) {
+                console.error('❌ No hay datos en localStorage');
+                showError('No se encontraron resultados. Por favor, completa el diagnóstico primero.');
+                return;
+            }
+
+            let data;
+            try {
+                data = JSON.parse(dataString);
+                console.log('✅ Datos parseados:', data);
+            } catch (e) {
+                console.error('❌ Error al parsear:', e);
+                showError('Error al cargar los resultados.');
+                return;
+            }
+
+            // Verificar datos obligatorios
+            if (data.totalScore === undefined || data.totalScore === null) {
+                console.error('❌ totalScore no existe');
+                showError('Datos incompletos.');
+                return;
+            }
+
+            console.log('📊 Mostrando resultados...');
+
+            // PUNTUACIÓN
+            document.getElementById('score').textContent = data.totalScore;
+            console.log('✓ Score:', data.totalScore);
+
+            // CATEGORÍA
+            document.getElementById('category-text').textContent = data.category || 'Sin categoría';
+            console.log('✓ Categoría:', data.category);
+
+            // DIAGNÓSTICO
+            document.getElementById('main-cme').textContent = data.mainCME || 'No disponible';
+            document.getElementById('weakest-pillar').textContent = data.weakestPillar || 'No disponible';
+            console.log('✓ CME:', data.mainCME);
+            console.log('✓ Pilar:', data.weakestPillar);
+
+            // COSTOS
+            const monthlyCost = data.monthlyCost || data.monthlyLoss || 0;
+            const yearlyCost = data.yearlyCost || data.yearlyLoss || 0;
+            
+            console.log('💰 Costos - Mensual:', monthlyCost, 'Anual:', yearlyCost);
+
+            document.getElementById('monthly-cost').textContent = '$' + monthlyCost.toLocaleString('en-US');
+            document.getElementById('yearly-cost-text').textContent = '$' + yearlyCost.toLocaleString('en-US');
+            document.getElementById('cta-cost').textContent = monthlyCost.toLocaleString('en-US');
+            document.getElementById('cta-cost-2').textContent = monthlyCost.toLocaleString('en-US');
+
+            // EJEMPLOS DE COSTO
+            let costExamples = [];
+            if (yearlyCost > 100000) {
+                costExamples = [
+                    'El sueldo anual de 2-3 empleados clave',
+                    'Una casa o departamento en una ciudad mediana',
+                    'El capital para abrir una nueva sucursal'
+                ];
+            } else if (yearlyCost > 50000) {
+                costExamples = [
+                    'El sueldo anual de un Gerente de Operaciones',
+                    'Dos años de colegio privado para tus hijos',
+                    'El capital para invertir en una nueva línea de negocio'
+                ];
+            } else if (yearlyCost > 20000) {
+                costExamples = [
+                    'Un vehículo nuevo para tu negocio',
+                    'Un año de colegio privado para tus hijos',
+                    'Equipamiento tecnológico completo para tu empresa'
+                ];
+            } else if (yearlyCost > 5000) {
+                costExamples = [
+                    'Varios meses de renta de oficina',
+                    'Un sistema de software empresarial completo',
+                    'Capacitación profesional para todo tu equipo'
+                ];
+            } else {
+                costExamples = [
+                    'Equipamiento de oficina nuevo',
+                    'Herramientas digitales premium por un año',
+                    'Consultoría especializada en áreas clave'
+                ];
+            }
+
+            document.getElementById('cost-example').innerHTML = costExamples.map(e => '• ' + e).join('<br>');
+
+            // PILAR DÉBIL
+            document.getElementById('pillar-name').textContent = data.weakestPillar || 'No disponible';
+
+            console.log('✅ ¡Todos los resultados cargados correctamente!');
+        }
+
+        function showError(message) {
+            const container = document.getElementById('main-container');
+            container.innerHTML = `
+                <div class="error-message">
+                    <h2>⚠️ Error al Cargar Resultados</h2>
+                    <p>${message}</p>
+                    <p style="margin-top: 20px;">
+                        <a href="index.html" style="color: #721c24; font-weight: bold; text-decoration: underline;">
+                            ← Volver al Diagnóstico
+                        </a>
+                    </p>
+                </div>
+            `;
+        }
+
+        // Ejecutar al cargar la página
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadResults);
+        } else {
+            loadResults();
+        }
+    </script>
+</body>
+</html>
