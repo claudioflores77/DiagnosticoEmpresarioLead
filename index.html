@@ -354,12 +354,12 @@
         <h1>Diagnóstico Integral del Motor de Crecimiento Empresarial</h1>
         <p style="font-size: 1.3em; margin-bottom: 25px;">¿Tu empresa es un Motor de Crecimiento... o una prisión que consume tu vida?</p>
         <div class="hero-box">
-            <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>En solo 5 minutos, descubrirás:</strong></p>
+            <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>En solo 12 minutos, descubrirás:</strong></p>
             <p>✓ El nivel REAL de madurez de tu empresa (no lo que crees, sino lo que ES)</p>
-            <p>✓ Los pilares críticos de tu negocio y cuál te está costando más </p>
-            <p>✓ Cuánto tiempo, dinero y VIDA estás PERDIENDO cada mes por la situación actual</p>
-            <p>✓ El diagnóstico exacto de qué "Causa de Muerte Empresarial" está ACECHANDO tu negocio</p>
-            <p>✓ Tu plan de acción personalizado basado en Nuestro Método P.U.D.E.R.</p>
+            <p>✓ Los pilares críticos de tu negocio y cuál te está costando más dinero</p>
+            <p>✓ Cuánto tiempo, dinero y vida estás PERDIENDO cada mes por el caos actual</p>
+            <p>✓ El diagnóstico exacto de qué "Causa de Muerte Empresarial" está matando tu negocio</p>
+            <p>✓ Tu plan de acción personalizado basado en el Método P.U.D.E.R.</p>
         </div>
     </div>
 
@@ -1079,7 +1079,7 @@
         </div>
     </div>
 
-    <script src="diagnostic-logic-v2.js"></script>
+    <script src="diagnostic-logic.js"></script>
     <script>
         // ACTUALIZAR PROGRESO
         const allQuestions = [
@@ -1089,6 +1089,10 @@
             'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5',
             'q5_1', 'q5_2', 'q5_3', 'q5_4', 'q5_5', 'q5_6', 'q5_7', 'q5_8', 'q5_9'
         ];
+        
+        console.log('✅ SISTEMA INICIADO');
+        console.log(`📊 Total preguntas configuradas: ${allQuestions.length}`);
+        console.log(`🔧 Verificando función proceedToContactForm: ${typeof proceedToContactForm}`);
         
         function updateProgress() {
             let answered = 0;
@@ -1117,6 +1121,23 @@
         
         // Inicializar
         updateProgress();
+        
+        // Verificar que el botón esté conectado
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('🔍 Verificando elementos críticos...');
+            
+            const btn = document.querySelector('button[onclick="proceedToContactForm()"]');
+            if (btn) {
+                console.log('✅ Botón encontrado y conectado');
+            } else {
+                console.error('❌ BOTÓN NO ENCONTRADO - Revisar HTML');
+            }
+            
+            const totalQuestions = document.querySelectorAll('input[type="radio"]').length / 4; // Aprox
+            console.log(`📋 Preguntas en HTML: ~${Math.round(totalQuestions)}`);
+            
+            console.log('✅ Sistema listo para usar');
+        });
     </script>
 </body>
 </html>
