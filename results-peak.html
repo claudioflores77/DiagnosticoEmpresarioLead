@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Diagnóstico Estratégico - Empresario Consolidado</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a3a52 0%, #2c5f8d 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* BANNER ASPIRACIONAL - Azul/Dorado */
+        .alert-banner {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(41, 128, 185, 0.4);
+            border: 2px solid #f39c12;
+        }
+
+        .alert-banner h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .alert-banner h1::before {
+            content: "🏆 ";
+        }
+
+        .alert-banner p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            opacity: 0.95;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #2980b9;
+            padding-bottom: 20px;
+        }
+
+        .score-circle {
+            display: inline-block;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+        }
+
+        .score-number {
+            font-size: 4em;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* CATEGORÍA POSITIVA */
+        .category-box {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-left: 5px solid #27ae60;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .category-box h2 {
+            color: #27ae60;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .category-box p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .diagnosis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .diagnosis-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2980b9;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .diagnosis-box h3 {
+            color: #2980b9;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .diagnosis-box .value {
+            color: #27ae60;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+
+        /* FORTALEZAS (no debilidades) */
+        .dimensions-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .dimensions-section h2 {
+            color: #27ae60;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .dimension-bar {
+            margin: 15px 0;
+        }
+
+        .dimension-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .dimension-progress {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .dimension-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            border-radius: 15px;
+            transition: width 1s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        /* OPORTUNIDAD (no pérdida) */
+        .opportunity-section {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border: 3px solid #27ae60;
+            padding: 40px;
+            margin: 40px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .opportunity-section h2 {
+            color: #27ae60;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .cost-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .cost-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .cost-card .label {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .cost-card .amount {
+            font-size: 2.5em;
+            font-weight: 900;
+            color: #27ae60;
+            line-height: 1;
+        }
+
+        .cost-card .period {
+            font-size: 0.9em;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        /* TRANSFORMACIÓN ASPIRACIONAL */
+        .transformation-section {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 5px solid #2980b9;
+            padding: 40px;
+            margin: 40px 0;
+            border-radius: 10px;
+        }
+
+        .transformation-section h2 {
+            color: #2980b9;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .transformation-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .current-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #2980b9;
+        }
+
+        .current-box h3 {
+            color: #2980b9;
+            margin-bottom: 15px;
+        }
+
+        .next-box {
+            background: linear-gradient(135deg, #fff9c4, #fff59d);
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #f39c12;
+        }
+
+        .next-box h3 {
+            color: #e67e22;
+            margin-bottom: 15px;
+        }
+
+        .pillar-highlight {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .pillar-name {
+            font-size: 3em;
+            font-weight: 900;
+            color: #f39c12;
+            margin: 20px 0;
+            text-transform: uppercase;
+        }
+
+        /* CTA ASPIRACIONAL */
+        .cta-section {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 50px;
+            margin: 40px 0;
+            border-radius: 10px;
+            text-align: center;
+            border: 3px solid #f39c12;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #f39c12;
+        }
+
+        .cta-section .value-text {
+            font-size: 1.4em;
+            margin: 20px 0;
+            color: #ecf0f1;
+        }
+
+        .cta-section .value-props {
+            text-align: left;
+            max-width: 600px;
+            margin: 30px auto;
+            font-size: 1.1em;
+        }
+
+        .cta-section .value-props li {
+            margin: 15px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .cta-section .value-props li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #f39c12, #f1c40f);
+            color: #000;
+            padding: 25px 50px;
+            text-decoration: none;
+            font-size: 1.6em;
+            font-weight: 900;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(243, 156, 18, 0.5);
+            border: none;
+            cursor: pointer;
+            margin: 20px 0;
+            text-transform: uppercase;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(243, 156, 18, 0.7);
+            background: linear-gradient(135deg, #f1c40f, #f39c12);
+        }
+
+        .testimonial-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .testimonial-section h3 {
+            color: #2980b9;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-section p {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            font-size: 1.1em;
+        }
+
+        .testimonial-section .author {
+            text-align: center;
+            margin-top: 10px;
+            color: #999;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .back-link a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid #f5c6cb;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .diagnosis-grid,
+            .cost-showcase,
+            .transformation-comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .alert-banner h1 {
+                font-size: 1.6em;
+            }
+
+            .score-circle {
+                width: 140px;
+                height: 140px;
+            }
+
+            .score-number {
+                font-size: 3em;
+            }
+
+            .btn-cta {
+                padding: 20px 35px;
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-container">
+        <!-- Alert Banner Aspiracional -->
+        <div class="alert-banner">
+            <h1>EMPRESARIO CONSOLIDADO</h1>
+            <p>Has alcanzado lo que el 70% de empresarios nunca logrará. Ahora viene la pregunta importante: <strong>¿Qué sigue?</strong></p>
+        </div>
+
+        <!-- Score Principal -->
+        <div class="header">
+            <h2 style="color: #666; margin-bottom: 20px;">Tu Índice de Madurez Empresarial</h2>
+            <div class="score-circle">
+                <div class="score-number" id="score">--</div>
+                <div class="score-label">/ 150 puntos</div>
+            </div>
+        </div>
+
+        <!-- Categoría Positiva -->
+        <div class="category-box">
+            <h2 id="category-title">--</h2>
+            <p id="category-description">--</p>
+        </div>
+
+        <!-- Diagnóstico Principal -->
+        <div class="diagnosis-grid">
+            <div class="diagnosis-box">
+                <h3>🎯 Tu Área de Mayor Oportunidad</h3>
+                <p class="value" id="main-cme">--</p>
+            </div>
+            <div class="diagnosis-box">
+                <h3>🔧 Tu Pilar de Apalancamiento</h3>
+                <p class="value" id="weakest-pillar">--</p>
+            </div>
+        </div>
+
+        <!-- FORTALEZAS (no debilidades) -->
+        <div class="dimensions-section">
+            <h2>💪 Tus Áreas de Mayor Fortaleza</h2>
+            <p style="margin-bottom: 20px; color: #666;">Estas son las dimensiones donde ya demuestras excelencia empresarial:</p>
+            
+            <div class="dimension-bar">
+                <div class="dimension-label">
+                    <span id="dim1-name">--</span>
+                    <span id="dim1-percent" style="color: #27ae60; font-weight: bold;">--</span>
+                </div>
+                <div class="dimension-progress">
+                    <div class="dimension-fill" id="dim1-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="dimension-bar">
+                <div class="dimension-label">
+                    <span id="dim2-name">--</span>
+                    <span id="dim2-percent" style="color: #27ae60; font-weight: bold;">--</span>
+                </div>
+                <div class="dimension-progress">
+                    <div class="dimension-fill" id="dim2-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="dimension-bar">
+                <div class="dimension-label">
+                    <span id="dim3-name">--</span>
+                    <span id="dim3-percent" style="color: #27ae60; font-weight: bold;">--</span>
+                </div>
+                <div class="dimension-progress">
+                    <div class="dimension-fill" id="dim3-fill" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OPORTUNIDAD (no crisis) -->
+        <div class="opportunity-section">
+            <h2>💎 Tu Oportunidad de Optimización</h2>
+            <p style="font-size: 1.2em; margin-bottom: 30px;">No es una crisis, es el siguiente nivel esperándote:</p>
+            
+            <div class="cost-showcase">
+                <div class="cost-card">
+                    <div class="label">ROI Mensual Potencial</div>
+                    <div class="amount">$<span id="monthly-cost">--</span></div>
+                    <div class="period">recuperables cada mes</div>
+                </div>
+                <div class="cost-card">
+                    <div class="label">ROI Anual Proyectado</div>
+                    <div class="amount">$<span id="yearly-cost">--</span></div>
+                    <div class="period">en optimización anual</div>
+                </div>
+                <div class="cost-card">
+                    <div class="label">Impacto Acumulado</div>
+                    <div class="amount">$<span id="accumulated-cost">--</span></div>
+                    <div class="period" id="duration-text">--</div>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 25px; border-radius: 10px; margin-top: 30px;">
+                <h3 style="color: #27ae60; margin-bottom: 15px;">⏰ Tu Inversión de Tiempo para el Siguiente Nivel:</h3>
+                <p style="font-size: 1.3em; color: #666;">
+                    Con mentoría estratégica, puedes recuperar aproximadamente <strong style="color: #27ae60; font-size: 1.2em;"><span id="daily-gain">--</span> horas/mes</strong>
+                </p>
+                <p style="margin-top: 15px; color: #999;">
+                    Tiempo que puedes dedicar a estrategia de alto impacto y legado
+                </p>
+            </div>
+        </div>
+
+        <!-- Transformación Aspiracional -->
+        <div class="transformation-section">
+            <h2>🎯 Del Éxito al Impacto Trascendente</h2>
+            <p style="font-size: 1.2em; margin-bottom: 30px;">
+                Ya tienes éxito. La pregunta es: <strong>¿Cómo generas impacto histórico?</strong>
+            </p>
+
+            <div class="transformation-comparison">
+                <div class="current-box">
+                    <h3>🏆 TU REALIDAD ACTUAL</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>✅ Tu empresa funciona sin crisis</li>
+                        <li>✅ Tienes recursos para invertir</li>
+                        <li>✅ Tu tiempo está relativamente libre</li>
+                        <li>✅ Has alcanzado estabilidad</li>
+                        <li>✅ Resultados predecibles</li>
+                        <li>⚠️ Pero algo falta...</li>
+                        <li>⚠️ Soledad en la cima</li>
+                        <li>⚠️ Sin mentor que te desafíe</li>
+                    </ul>
+                </div>
+
+                <div class="next-box">
+                    <h3>🌟 TU SIGUIENTE NIVEL</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>⭐ Pertenencia al 1% de impacto</li>
+                        <li>⭐ Mentor que te guía estratégicamente</li>
+                        <li>⭐ Legado que trasciende tu empresa</li>
+                        <li>⭐ Comunidad de pares de élite</li>
+                        <li>⭐ Crecimiento exponencial vs lineal</li>
+                        <li>⭐ Optimización al máximo nivel</li>
+                        <li>⭐ Liderazgo que inspira generaciones</li>
+                        <li>⭐ Tu nombre en la historia empresarial</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pillar-highlight">
+                <p style="color: #666; font-size: 1.1em;">Tu Pilar de Apalancamiento para el 1%:</p>
+                <div class="pillar-name" id="pillar-focus">--</div>
+                <p style="color: #666; margin-top: 15px;">
+                    Este es tu punto de máximo impacto para generar legado trascendente
+                </p>
+            </div>
+        </div>
+
+        <!-- CTA Aspiracional -->
+        <div class="cta-section">
+            <h2>🎓 Conversación Estratégica de Alto Impacto</h2>
+            
+            <div class="value-text">
+                No es una "sesión gratuita". Es una <strong>conversación entre sensei y líder consolidado.</strong>
+            </div>
+
+            <p style="font-size: 1.3em; margin: 30px 0;">
+                <strong>15 minutos de estrategia de élite con Claudio Flores</strong>
+            </p>
+
+            <ul class="value-props">
+                <li>Confirmaremos tu siguiente nivel de liderazgo estratégico</li>
+                <li>Diseñaremos tu camino al 1% de impacto empresarial</li>
+                <li>Identificaremos tu área de máximo apalancamiento</li>
+                <li>Exploraremos cómo tu legado puede trascender tu empresa</li>
+                <li>Determinaremos si hay fit para mentoría de élite</li>
+            </ul>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <p style="margin-bottom: 10px;">✅ Sin costo | ✅ Sin compromiso | ✅ 100% Confidencial</p>
+                <p style="font-size: 1.1em; color: #f39c12; font-weight: bold;">
+                    "Los grandes líderes no llegan solos al 1%"
+                </p>
+            </div>
+
+            <a href="https://estrategiaempresaria.systeme.io/sesionestrategica1a1" class="btn-cta" target="_blank">
+                🎯 Agendar Mi Conversación Estratégica
+            </a>
+
+            <p style="font-size: 1.1em; margin-top: 30px; color: #f39c12;">
+                <strong>⚡ Plazas Limitadas:</strong> Solo 15 conversaciones estratégicas por mes<br>
+                para garantizar mentoría de máxima calidad
+            </p>
+        </div>
+
+        <!-- Testimonial Aspiracional -->
+        <div class="testimonial-section">
+            <h3>Resultados de Empresarios que Pasaron del Éxito al Impacto</h3>
+            <p>
+                "Ya era exitoso, pero me sentía solo en la cima. Claudio no me 'salvó', me elevó. 
+                Pasé de empresario consolidado a líder de impacto en mi industria. Mi empresa creció 40%, 
+                pero más importante: ahora sé que estoy construyendo algo trascendente."
+            </p>
+            <p class="author">
+                - [TESTIMONIAL DE EMPRESARIO CONSOLIDADO - Por agregar]
+            </p>
+        </div>
+
+        <!-- Back Link -->
+        <div class="back-link">
+            <a href="index.html">← Volver al Diagnóstico</a>
+        </div>
+    </div>
+
+    <script>
+        console.log('🏆 Página PEAK cargada (Empresario Consolidado)');
+        
+        function loadResults() {
+            console.log('🔍 Cargando resultados desde localStorage...');
+            
+            const dataString = localStorage.getItem('diagnosticResults');
+            
+            if (!dataString) {
+                console.error('❌ No hay datos en localStorage');
+                showError('No se encontraron resultados. Por favor, completa el diagnóstico primero.');
+                return;
+            }
+
+            let data;
+            try {
+                data = JSON.parse(dataString);
+                console.log('✅ Datos parseados:', data);
+            } catch (e) {
+                console.error('❌ Error al parsear:', e);
+                showError('Error al cargar los resultados. Por favor, intenta nuevamente.');
+                return;
+            }
+
+            if (data.totalScore === undefined) {
+                console.error('❌ Datos incompletos');
+                showError('Datos incompletos. Por favor, completa el diagnóstico nuevamente.');
+                return;
+            }
+
+            console.log('📊 Mostrando resultados en versión PEAK (Aspiracional)');
+
+            // Score y Categoría
+            document.getElementById('score').textContent = data.totalScore;
+            document.getElementById('category-title').textContent = data.category;
+            document.getElementById('category-description').textContent = data.categoryDescription || '';
+            
+            // Área de oportunidad (no "causa de muerte")
+            document.getElementById('main-cme').textContent = data.mainCME || 'No determinado';
+            document.getElementById('weakest-pillar').textContent = data.weakestPillar || 'No determinado';
+            document.getElementById('pillar-focus').textContent = data.weakestPillar || 'No determinado';
+
+            // FORTALEZAS (invertir - mostrar las MEJORES 3)
+            if (data.allDimensions && data.allDimensions.length >= 3) {
+                // Las 3 mejores (invertir el sort)
+                const strongest3 = [...data.allDimensions].sort((a, b) => a.percentage - b.percentage).slice(0, 3);
+                
+                strongest3.forEach((dim, index) => {
+                    const strengthPercentage = 100 - dim.percentage; // Invertir para mostrar fortaleza
+                    document.getElementById(`dim${index + 1}-name`).textContent = dim.name;
+                    document.getElementById(`dim${index + 1}-percent`).textContent = `${strengthPercentage}% fuerte`;
+                    
+                    setTimeout(() => {
+                        document.getElementById(`dim${index + 1}-fill`).style.width = `${strengthPercentage}%`;
+                        document.getElementById(`dim${index + 1}-fill`).textContent = `${strengthPercentage}%`;
+                    }, 300 * (index + 1));
+                });
+            }
+
+            // OPORTUNIDAD (no "pérdida")
+            const monthlyGain = data.monthlyLoss || 0;
+            const yearlyGain = data.yearlyLoss || 0;
+            const accumulatedGain = data.accumulatedLoss || 0;
+            const durationYears = data.durationYears || 1;
+            
+            document.getElementById('monthly-cost').textContent = monthlyGain.toLocaleString('en-US');
+            document.getElementById('yearly-cost').textContent = yearlyGain.toLocaleString('en-US');
+            document.getElementById('accumulated-cost').textContent = accumulatedGain.toLocaleString('en-US');
+            document.getElementById('duration-text').textContent = `en ${durationYears} año${durationYears > 1 ? 's' : ''}`;
+            
+            // Tiempo recuperable (en horas, no en pérdida)
+            const hoursGain = data.monthlyHoursLost || 0;
+            document.getElementById('daily-gain').textContent = hoursGain;
+
+            console.log('✅ Resultados PEAK cargados exitosamente');
+        }
+
+        function showError(message) {
+            const container = document.getElementById('main-container');
+            container.innerHTML = `
+                <div class="error-message">
+                    <h2>⚠️ Error al Cargar Resultados</h2>
+                    <p style="font-size: 1.2em; margin: 20px 0;">${message}</p>
+                    <p style="margin-top: 30px;">
+                        <a href="index.html" style="display: inline-block; background: #2980b9; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                            ← Completar Diagnóstico Nuevamente
+                        </a>
+                    </p>
+                </div>
+            `;
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadResults);
+        } else {
+            loadResults();
+        }
+    </script>
+</body>
+</html>
