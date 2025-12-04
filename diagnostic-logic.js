@@ -487,7 +487,7 @@ function submitAndShowResults() {
     loadingMsg.textContent = 'Redirigiendo a tus resultados...';
     setTimeout(() => {
         console.log('🔄 Redirigiendo...');
-        window.location.href = 'results-v2.html';
+        window.location.href = 'results.html';
     }, 1000);
 }
 
