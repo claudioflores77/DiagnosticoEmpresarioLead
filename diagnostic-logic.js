@@ -215,7 +215,7 @@ function calculateResults() {
     const secondWeakest = weaknesses[weaknesses.length - 2];
     
     // ============================================================
-    // CALCULAR COSTO ECONÓMICO
+    // CALCULAR COSTO ECONÓMICO (COHERENTE CON SCORE)
     // ============================================================
     const timeLostPercentage = data.q5_3; // Porcentaje de tiempo perdido
     const hourlyValue = data.q5_4; // Valor por hora
@@ -226,11 +226,32 @@ function calculateResults() {
     const weeksPerMonth = 4.33;
     const monthsPerYear = 12;
     
-    const monthlyHoursLost = Math.round((timeLostPercentage / 100) * hoursPerWeek * weeksPerMonth);
+    // Calcular horas perdidas base
+    let monthlyHoursLost = Math.round((timeLostPercentage / 100) * hoursPerWeek * weeksPerMonth);
     const yearlyHoursLost = Math.round((timeLostPercentage / 100) * hoursPerWeek * 52);
     
+    // AJUSTAR costos según score para coherencia
+    // LOW (0-45): Multiplica por 0.5-0.8 (oportunidad, no crisis)
+    // MEDIUM (45-80): Multiplica por 0.8-1.2 (ineficiencia real)
+    // HIGH (80-150): Multiplica por 1.2-2.0 (crisis severa)
+    let costMultiplier = 1.0;
+    
+    if (totalScore <= 45) {
+        // LOW: Empresarios consolidados - "oportunidad de optimización"
+        costMultiplier = 0.5 + (totalScore / 45) * 0.3; // 0.5 a 0.8
+    } else if (totalScore <= 80) {
+        // MEDIUM: En crecimiento - ineficiencias reales
+        costMultiplier = 0.8 + ((totalScore - 45) / 35) * 0.4; // 0.8 a 1.2
+    } else {
+        // HIGH: Crisis - pérdidas exponenciales
+        costMultiplier = 1.2 + ((totalScore - 80) / 70) * 0.8; // 1.2 a 2.0
+    }
+    
+    // Aplicar multiplicador
+    monthlyHoursLost = Math.round(monthlyHoursLost * costMultiplier);
+    
     const monthlyLoss = Math.round(monthlyHoursLost * hourlyValue);
-    const yearlyLoss = Math.round(yearlyHoursLost * hourlyValue);
+    const yearlyLoss = Math.round(yearlyHoursLost * hourlyValue * costMultiplier);
     const accumulatedLoss = Math.round(yearlyLoss * durationYears);
     
     // ============================================================
@@ -482,12 +503,26 @@ function submitAndShowResults() {
     sendToGoogleAppsScript(sheetData, emailData);
     
     // ============================================================
-    // REDIRIGIR A RESULTADOS
+    // REDIRIGIR A RESULTADOS SEGÚN SEGMENTO
     // ============================================================
     loadingMsg.textContent = 'Redirigiendo a tus resultados...';
     setTimeout(() => {
         console.log('🔄 Redirigiendo...');
-        window.location.href = 'results.html';
+        
+        // Determinar template según score
+        let resultsPage = 'results-rescue.html'; // Default: HIGH
+        
+        if (results.totalScore <= 45) {
+            resultsPage = 'results-peak.html'; // LOW: Aspiracional
+            console.log('📊 Segmento: PEAK (Empresario Consolidado)');
+        } else if (results.totalScore <= 80) {
+            resultsPage = 'results-growth.html'; // MEDIUM: Estratégico
+            console.log('📊 Segmento: GROWTH (Oportunidad de Crecimiento)');
+        } else {
+            console.log('📊 Segmento: RESCUE (Rescate Estratégico)');
+        }
+        
+        window.location.href = resultsPage;
     }, 1000);
 }
 
