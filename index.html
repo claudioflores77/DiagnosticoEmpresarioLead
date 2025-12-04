@@ -5,7 +5,1160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diagnóstico Estratégico Empresarial</title>
     <style>
+        * {<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Estratégico Empresarial</title>
+    <style>
         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #3d1a1a 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+            font-weight: 900;
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+        }
+        
+        .logo::before {
+            content: "FBA";
+            font-family: 'Arial Black', sans-serif;
+            letter-spacing: -2px;
+        }
+
+        .company-info h1 {
+            font-size: 1.4em;
+            color: #DC143C;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .company-info p {
+            color: #666;
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        .consultant-info {
+            text-align: right;
+        }
+
+        .consultant-info p {
+            margin: 5px 0;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .consultant-info a {
+            color: #0077b5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .consultant-info a:hover {
+            color: #005885;
+            text-decoration: underline;
+        }
+
+        .linkedin-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(220, 20, 60, 0.95), rgba(61, 26, 26, 0.95));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+
+        .hero-box {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-box p {
+            margin: 10px 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* BARRA DE PROGRESO */
+        .progress-bar-container {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .progress-text {
+            font-weight: bold;
+            color: #DC143C;
+            font-size: 1.1em;
+        }
+
+        .progress-percentage {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #DC143C, #27ae60);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* GRUPOS DE PREGUNTAS */
+        .question-group {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .question {
+            margin-bottom: 35px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #DC143C;
+            transition: all 0.3s ease;
+        }
+
+        .question.answered {
+            border-left-color: #27ae60;
+            background: #f0f8f5;
+        }
+
+        .question h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .question-number {
+            display: inline-block;
+            background: #DC143C;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .question-helper {
+            font-size: 1.15em;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .option {
+            display: block;
+            margin: 10px 0;
+            padding: 12px 15px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: #DC143C;
+            background: #f0f4ff;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .input-group input[type="number"],
+        .input-group input[type="text"],
+        .input-group input[type="email"],
+        .input-group input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #DC143C, #8B0000);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
+            display: block;
+            margin: 30px auto;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.6);
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* SEPARADOR VISUAL ENTRE GRUPOS */
+        .group-separator {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #DC143C, transparent);
+            margin: 50px 0;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            .question-group {
+                padding: 25px;
+            }
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .logo-section {
+                flex-direction: column;
+            }
+            .consultant-info {
+                text-align: center;
+            }
+            .company-info h1 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo"></div>
+                <div class="company-info">
+                    <h1>Consultora Estratégica Empresarial</h1>
+                    <p>Transformamos emprendedores, empresarios y organizaciones en Motores de Crecimiento</p>
+                </div>
+            </div>
+            <div class="consultant-info">
+                <p><strong>Estratega Empresarial</strong></p>
+                <p>
+                    <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0077b5">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    <a href="https://www.linkedin.com/in/claudioflores-coach" target="_blank">Claudio Flores|Coach</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>Diagnóstico Integral del Motor de Crecimiento Empresarial</h1>
+        <p style="font-size: 1.3em; margin-bottom: 25px;">¿Tu empresa es un Motor de Crecimiento... o una prisión que consume tu vida?</p>
+        <div class="hero-box">
+            <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>En solo 12 minutos, descubrirás:</strong></p>
+            <p>✓ El nivel REAL de madurez de tu empresa (no lo que crees, sino lo que ES)</p>
+            <p>✓ Los pilares críticos de tu negocio y cuál te está costando más dinero</p>
+            <p>✓ Cuánto tiempo, dinero y vida estás PERDIENDO cada mes por el caos actual</p>
+            <p>✓ El diagnóstico exacto de qué "Causa de Muerte Empresarial" está matando tu negocio</p>
+            <p>✓ Tu plan de acción personalizado basado en el Método P.U.D.E.R.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- BARRA DE PROGRESO -->
+        <div class="progress-bar-container">
+            <div class="progress-info">
+                <span class="progress-text" id="progress-text">Pregunta 0 de 26</span>
+                <span class="progress-percentage" id="progress-percentage">0% completado</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <div id="diagnostic-form">
+            <!-- GRUPO 1 -->
+            <div class="question-group">
+                <div class="question" data-question="q1_1">
+                    <span class="question-number">1.1</span>
+                    <p class="question-helper">¿Qué pasa con tu empresa cuando no estás?</p>
+                    <label class="option">
+                        <input type="radio" name="q1_1" value="0">
+                        Mi empresa opera exitosamente sin mi presencia diaria - puedo ausentarme semanas
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_1" value="2">
+                        Puedo ausentarme 7-10 días sin impacto crítico, pero debo estar disponible
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_1" value="4">
+                        Debo estar disponible constantemente - nada importante se decide sin mí
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_1" value="5">
+                        Todo se detiene si no estoy - soy absolutamente indispensable
+                    </label>
+                </div>
+                
+                <div class="question" data-question="q1_2">
+                    <span class="question-number">1.2</span>
+                    <p class="question-helper">¿Tu empresa funciona por sistemas o por tu memoria?</p>
+                    <label class="option">
+                        <input type="radio" name="q1_2" value="0">
+                        Tenemos procesos clave documentados que cualquier persona nueva puede seguir
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_2" value="2">
+                        Algunos procesos están documentados, otros están en la cabeza del equipo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_2" value="4">
+                        Los procesos críticos solo los sé yo - no están documentados
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_2" value="5">
+                        No hay procesos - improvisamos todo según la situación
+                    </label>
+                </div>
+
+                <div class="question" data-question="q1_3">
+                    <span class="question-number">1.3</span>
+                    <p class="question-helper">¿Tienes un plan claro para los próximos 1-3 años?</p>
+                    <label class="option">
+                        <input type="radio" name="q1_3" value="0">
+                        Tenemos plan estratégico a 3 años con objetivos claros y medibles que revisamos trimestralmente
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_3" value="2">
+                        Tenemos objetivos anuales generales, pero no un plan detallado de largo plazo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_3" value="4">
+                        Planificamos mes a mes o trimestre a trimestre - no hay visión de largo plazo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_3" value="5">
+                        Vivimos en modo supervivencia - no hay tiempo para planificar
+                    </label>
+                </div>
+
+                <div class="question" data-question="q1_4">
+                    <span class="question-number">1.4</span>
+                    <p class="question-helper">¿Puedes confiar en tu equipo con decisiones importantes?</p>
+                    <label class="option">
+                        <input type="radio" name="q1_4" value="0">
+                        Mi equipo toma decisiones alineadas autónomamente - confío plenamente
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_4" value="2">
+                        Delego operaciones rutinarias, pero superviso decisiones estratégicas
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_4" value="4">
+                        Solo delego tareas simples - las importantes las manejo yo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_4" value="5">
+                        No delego nada importante porque "nadie lo hace como yo"
+                    </label>
+                </div>
+
+                <div class="question" data-question="q1_5">
+                    <span class="question-number">1.5</span>
+                    <p class="question-helper">¿Por qué los clientes te eligen a ti y no a la competencia?</p>
+                    <label class="option">
+                        <input type="radio" name="q1_5" value="0">
+                        Somos líderes indiscutibles con una propuesta de valor única y clara
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_5" value="2">
+                        Tenemos ventajas claras, aunque la competencia está cerrando la brecha
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_5" value="4">
+                        Somos similares a la competencia - competimos principalmente por precio
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1_5" value="5">
+                        No tengo claro qué nos hace diferentes - los clientes nos ven como uno más
+                    </label>
+                </div>
+            </div>
+
+            <div class="group-separator"></div>
+
+            <!-- GRUPO 2 -->
+            <div class="question-group">
+                <div class="question" data-question="q2_1">
+                    <span class="question-number">2.1</span>
+                    <p class="question-helper">¿Cómo llegan nuevos clientes potenciales a tu negocio?</p>
+                    <label class="option">
+                        <input type="radio" name="q2_1" value="0">
+                        Tenemos un sistema automatizado que genera oportunidades calificadas constantemente
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_1" value="2">
+                        Generamos oportunidades de forma consistente pero requiere supervisión
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_1" value="4">
+                        Es irregular - cuando vendemos, descuidamos la operación y viceversa
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_1" value="5">
+                        Dependemos de referencias o que los clientes nos busquen - sin sistema activo
+                    </label>
+                </div>
+
+                <div class="question" data-question="q2_2">
+                    <span class="question-number">2.2</span>
+                    <p class="question-helper">De 10 personas interesadas, ¿cuántas terminan comprando?</p>
+                    <label class="option">
+                        <input type="radio" name="q2_2" value="0">
+                        Más de 4 de cada 10 (40%+) - Tenemos un proceso de ventas efectivo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_2" value="2">
+                        Entre 2 y 4 de cada 10 (20-40%) - Convertimos razonablemente
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_2" value="4">
+                        1 o 2 de cada 10 (10-20%) - Perdemos muchas oportunidades
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_2" value="5">
+                        Menos de 1 de cada 10 o no lo medimos - La mayoría no compra
+                    </label>
+                </div>
+
+                <div class="question" data-question="q2_3">
+                    <span class="question-number">2.3</span>
+                    <p class="question-helper">¿Sabes si tus clientes están realmente satisfechos?</p>
+                    <label class="option">
+                        <input type="radio" name="q2_3" value="0">
+                        Medimos satisfacción sistemáticamente (NPS, encuestas) y actuamos sobre resultados
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_3" value="2">
+                        Hacemos mediciones ocasionales pero no sistemáticas
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_3" value="4">
+                        Nos basamos en comentarios informales o quejas que llegan
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_3" value="5">
+                        No medimos - asumimos que si no se quejan están satisfechos
+                    </label>
+                </div>
+
+                <div class="question" data-question="q2_4">
+                    <span class="question-number">2.4</span>
+                    <p class="question-helper">Cuando un cliente tiene un problema:</p>
+                    <label class="option">
+                        <input type="radio" name="q2_4" value="0">
+                        El equipo lo resuelve eficientemente con protocolos claros, yo ni me entero
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_4" value="2">
+                        Generalmente los resolvemos bien pero de forma reactiva
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_4" value="4">
+                        Cada problema es un "incendio" que debo apagar personalmente
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_4" value="5">
+                        Los problemas se escalan frecuentemente, perdemos clientes por mal servicio
+                    </label>
+                </div>
+
+                <div class="question" data-question="q2_5">
+                    <span class="question-number">2.5</span>
+                    <p class="question-helper">¿Cuántos clientes regresan o vuelven a comprar?</p>
+                    <label class="option">
+                        <input type="radio" name="q2_5" value="0">
+                        Más del 70% regresa - Tenemos alta retención y relaciones de largo plazo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_5" value="2">
+                        40-70% regresa - Retención aceptable pero inconsistente
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_5" value="4">
+                        20-40% regresa - Muchos compran una sola vez
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_5" value="5">
+                        Menos del 20% o no lo medimos - Dependemos de clientes nuevos constantemente
+                    </label>
+                </div>
+
+                <div class="question" data-question="q2_6">
+                    <span class="question-number">2.6</span>
+                    <p class="question-helper">¿Tienes una estrategia para mantener relación con clientes?</p>
+                    <label class="option">
+                        <input type="radio" name="q2_6" value="0">
+                        Sí, tenemos programa de fidelización y comunicación regular estructurada
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_6" value="2">
+                        Contacto ocasional pero sin plan estructurado
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_6" value="4">
+                        Solo contactamos cuando queremos venderles algo más
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2_6" value="5">
+                        Una vez que compran, los "perdemos de vista" hasta que ellos nos buscan
+                    </label>
+                </div>
+            </div>
+
+            <div class="group-separator"></div>
+
+            <!-- GRUPO 3 -->
+            <div class="question-group">
+                <div class="question" data-question="q3_1">
+                    <span class="question-number">3.1</span>
+                    <p class="question-helper">¿Sabes cuánto GANAS realmente en cada venta?</p>
+                    <label class="option">
+                        <input type="radio" name="q3_1" value="0">
+                        Sí, tenemos márgenes claros por línea y tomamos decisiones basadas en rentabilidad
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_1" value="2">
+                        Conocemos márgenes generales pero no detallados por producto/servicio
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_1" value="4">
+                        Sabemos cuánto vendemos pero no cuánto ganamos realmente en cada venta
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_1" value="5">
+                        No calculamos rentabilidad - solo vemos si hay dinero en la cuenta
+                    </label>
+                </div>
+
+                <div class="question" data-question="q3_2">
+                    <span class="question-number">3.2</span>
+                    <p class="question-helper">¿Tienes control sobre hacia dónde va tu dinero?</p>
+                    <label class="option">
+                        <input type="radio" name="q3_2" value="0">
+                        Tenemos presupuestos por área, monitoreamos mensualmente y corregimos desviaciones
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_2" value="2">
+                        Revisamos costos periódicamente pero sin presupuestos formales
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_2" value="4">
+                        Solo nos damos cuenta cuando "falta dinero" a fin de mes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_2" value="5">
+                        No tenemos visibilidad clara - frecuentemente nos sorprenden gastos elevados
+                    </label>
+                </div>
+
+                <div class="question" data-question="q3_3">
+                    <span class="question-number">3.3</span>
+                    <p class="question-helper">¿Puedes dormir tranquilo sabiendo que hay dinero para el próximo mes?</p>
+                    <label class="option">
+                        <input type="radio" name="q3_3" value="0">
+                        Muy predecible - Proyecciones a 90 días y reserva de emergencia
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_3" value="2">
+                        Generalmente estable con sorpresas ocasionales
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_3" value="4">
+                        Impredecible - Algunos meses sobra, otros falta y es angustiante
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_3" value="5">
+                        Vivimos mes a mes sin visibilidad - A veces no alcanza para nómina
+                    </label>
+                </div>
+
+                <div class="question" data-question="q3_4">
+                    <span class="question-number">3.4</span>
+                    <p class="question-helper">¿Sabes cuánto cuesta adquirir un cliente vs cuánto genera?</p>
+                    <label class="option">
+                        <input type="radio" name="q3_4" value="0">
+                        Sí, medimos CAC (Costo de Adquisición) y LTV (Valor de Vida del Cliente)
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_4" value="2">
+                        Tenemos una idea aproximada pero no métricas precisas
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_4" value="4">
+                        No lo medimos de forma sistemática
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_4" value="5">
+                        No tengo idea de estas métricas - nunca las he calculado
+                    </label>
+                </div>
+
+                <div class="question" data-question="q3_5">
+                    <span class="question-number">3.5</span>
+                    <p class="question-helper">Si aparece una oportunidad urgente que requiere capital:</p>
+                    <label class="option">
+                        <input type="radio" name="q3_5" value="0">
+                        Tengo reservas y/o acceso inmediato a financiamiento
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_5" value="2">
+                        Podría conseguirlo con esfuerzo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_5" value="4">
+                        Sería muy difícil - Nuestros números no son atractivos para prestamistas
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3_5" value="5">
+                        Imposible - Estamos sobreendeudados o sin respaldo financiero
+                    </label>
+                </div>
+            </div>
+
+            <div class="group-separator"></div>
+
+            <!-- GRUPO 4 -->
+            <div class="question-group">
+                <div class="question" data-question="q4_1">
+                    <span class="question-number">4.1</span>
+                    <p class="question-helper">¿Con quién compartes las decisiones críticas del negocio?</p>
+                    <label class="option">
+                        <input type="radio" name="q4_1" value="0">
+                        Tengo mentores/asesores confiables con quien pensar estrategias
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_1" value="2">
+                        Ocasionalmente consulto decisiones críticas con personas de confianza
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_1" value="4">
+                        Raramente analizo con alguien más los desafíos reales del negocio
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_1" value="5">
+                        Tomo todas las decisiones críticas completamente solo - no tengo con quién
+                    </label>
+                </div>
+
+                <div class="question" data-question="q4_2">
+                    <span class="question-number">4.2</span>
+                    <p class="question-helper">¿Cómo describirías a tu equipo actual?</p>
+                    <label class="option">
+                        <input type="radio" name="q4_2" value="0">
+                        Equipo comprometido que comparte la visión empresarial
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_2" value="2">
+                        Equipo competente, pero puede mejorar alineación con la visión
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_2" value="4">
+                        Rotación frecuente, desafíos para retener talento
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_2" value="5">
+                        Desafíos constantes de desempeño y compromiso - es agotador
+                    </label>
+                </div>
+
+                <div class="question" data-question="q4_3">
+                    <span class="question-number">4.3</span>
+                    <p class="question-helper">¿Tu equipo sabe qué hacer sin que tengas que estar detrás de ellos?</p>
+                    <label class="option">
+                        <input type="radio" name="q4_3" value="0">
+                        Excelente - Todos saben qué hacer, reuniones efectivas, información fluye
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_3" value="2">
+                        Buena - Funciona la mayoría del tiempo con áreas de mejora
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_3" value="4">
+                        Deficiente - Malentendidos frecuentes, información no llega, descoordinación
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_3" value="5">
+                        Caótica - Nadie sabe qué hacen los demás, constantemente hay sorpresas
+                    </label>
+                </div>
+
+                <div class="question" data-question="q4_4">
+                    <span class="question-number">4.4</span>
+                    <p class="question-helper">¿Cómo te ve el mercado?</p>
+                    <label class="option">
+                        <input type="radio" name="q4_4" value="0">
+                        Muy consistente - Presencia profesional, mensajes claros, comunicación regular
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_4" value="2">
+                        Razonablemente consistente aunque podríamos mejorar
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_4" value="4">
+                        Inconsistente - Comunicamos cuando podemos, sin estrategia clara
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_4" value="5">
+                        Prácticamente inexistente - Sin presencia profesional ni comunicación regular
+                    </label>
+                </div>
+
+                <div class="question" data-question="q4_5">
+                    <span class="question-number">4.5</span>
+                    <p class="question-helper">¿Cómo te sientes con la responsabilidad de tu rol?</p>
+                    <label class="option">
+                        <input type="radio" name="q4_5" value="0">
+                        Disfruto de mi responsabilidad de dirigir y liderar
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_5" value="2">
+                        Manejo adecuadamente el peso de las responsabilidades
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_5" value="4">
+                        Me pesa la responsabilidad hacia colaboradores y sus familias
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4_5" value="5">
+                        Soy responsable de todo - Este peso me afecta significativamente
+                    </label>
+                </div>
+            </div>
+
+            <div class="group-separator"></div>
+
+            <!-- GRUPO 5 -->
+            <div class="question-group">
+                <div class="question" data-question="q5_1">
+                    <span class="question-number">5.1</span>
+                    <p class="question-helper">¿Cuántas horas trabajas realmente cada semana?</p>
+                    <label class="option">
+                        <input type="radio" name="q5_1" value="0">
+                        40 horas o menos - Tengo tiempo para familia y actividades personales
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_1" value="2">
+                        45-55 horas semanales - Balance imperfecto pero manejable
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_1" value="4">
+                        60-70 horas semanales - Tiempo personal muy limitado
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_1" value="5">
+                        Más de 70 horas semanales - Prácticamente sin vida personal
+                    </label>
+                </div>
+
+                <div class="question" data-question="q5_2">
+                    <span class="question-number">5.2</span>
+                    <p class="question-helper">¿Cómo te levantas cada mañana?</p>
+                    <label class="option">
+                        <input type="radio" name="q5_2" value="0">
+                        Energizado y motivado - Disfruto mi rol empresarial
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_2" value="2">
+                        Cansancio ocasional que puedo manejar
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_2" value="4">
+                        Frecuentemente abrumado con estrés constante
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_2" value="5">
+                        Agotado - Esto está afectando mi salud y relaciones personales
+                    </label>
+                </div>
+
+                <div class="question" data-question="q5_3">
+                    <span class="question-number">5.3</span>
+                    <p class="question-helper">Del 100% de tu tiempo, ¿cuánto dedicas a "apagar incendios" y tareas que otros deberían hacer?</p>
+                    <label class="option">
+                        <input type="radio" name="q5_3" value="5">
+                        Menos del 10% - Mi tiempo está en estrategia y liderazgo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_3" value="20">
+                        10-30% del tiempo en operativo/urgencias
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_3" value="40">
+                        40-60% del tiempo en operación diaria
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_3" value="70">
+                        Más del 70% - Prácticamente todo mi tiempo es operativo
+                    </label>
+                </div>
+
+                <div class="question" data-question="q5_4">
+                    <span class="question-number">5.4</span>
+                    <p class="question-helper">Para calcular el costo económico, ¿cuánto vale tu hora?</p>
+                    <label class="option">
+                        <input type="radio" name="q5_4" value="37.5">
+                        USD 25-50/hora - Emprendedor inicial o negocio pequeño
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_4" value="75">
+                        USD 50-100/hora - Empresario establecido en crecimiento
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_4" value="150">
+                        USD 100-200/hora - Empresa consolidada con buen volumen
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_4" value="300">
+                        USD 200-400/hora - Empresario exitoso con alto impacto
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_4" value="500">
+                        USD 400+/hora - Líder de empresa con facturación significativa
+                    </label>
+                </div>
+
+                <div class="question" data-question="q5_5">
+                    <span class="question-number">5.5</span>
+                    <p class="question-helper">¿Hace cuánto tiempo vives en este caos/estrés?</p>
+                    <label class="option">
+                        <input type="radio" name="q5_5" value="1">
+                        Menos de 6 meses
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_5" value="2">
+                        6 meses a 1 año
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_5" value="3">
+                        1 a 3 años
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_5" value="5">
+                        Más de 3 años - Ya no recuerdo cómo era vivir tranquilo
+                    </label>
+                </div>
+
+                <div class="question" data-question="q5_6">
+                    <span class="question-number">5.6</span>
+                    <p class="question-helper">¿Tienes tiempo para las personas que amas?</p>
+                    <label class="option">
+                        <input type="radio" name="q5_6" value="0">
+                        Sí, mantengo relaciones saludables y tiempo de calidad con seres queridos
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_6" value="2">
+                        Tengo algunas relaciones aunque el trabajo limita mi vida social
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_6" value="4">
+                        Círculo social reducido significativamente por demandas laborales
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_6" value="5">
+                        Muy poco o nada de tiempo para relaciones significativas
+                    </label>
+                </div>
+
+                <div class="question" data-question="q5_7">
+                    <span class="question-number">5.7</span>
+                    <p class="question-helper">¿Qué tan urgente es para ti resolver esta situación?</p>
+                    <label class="option">
+                        <input type="radio" name="q5_7" value="1">
+                        Puedo mantener la situación actual un tiempo más
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_7" value="3">
+                        Necesito cambios en los próximos 6-12 meses
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_7" value="5">
+                        CRÍTICO - Necesito transformación inmediata o colapsaré
+                    </label>
+                </div>
+
+                <div class="question" data-question="q5_8">
+                    <span class="question-number">5.8</span>
+                    <p class="question-helper">Si encontraras LA solución que transforme tu negocio y tu vida, ¿qué inversión podrías hacer?</p>
+                    <label class="option">
+                        <input type="radio" name="q5_8" value="4">
+                        Más de USD 10,000 - Tengo recursos disponibles para invertir en transformación
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_8" value="3">
+                        USD 5,000-10,000 - Recursos limitados pero priorizaría esta inversión
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_8" value="2">
+                        USD 1,000-5,000 - Necesitaría evaluar cuidadosamente
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_8" value="1">
+                        Menos de USD 1,000 - Recursos muy limitados actualmente
+                    </label>
+                </div>
+
+                <div class="question" data-question="q5_9">
+                    <span class="question-number">5.9</span>
+                    <p class="question-helper">¿Tu familia/socios apoyan que inviertas en resolver esto?</p>
+                    <label class="option">
+                        <input type="radio" name="q5_9" value="1">
+                        Apoyo completo - Me empujan a buscar ayuda
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_9" value="2">
+                        Apoyo general si demuestro el valor
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_9" value="3">
+                        Apoyo limitado - Necesito convencerlos
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5_9" value="4">
+                        Sin apoyo - Estoy solo en esto
+                    </label>
+                </div>
+                
+                <button type="button" class="btn-primary" onclick="proceedToContactForm()">Calcular Mi Diagnóstico Completo</button>
+            </div>
+        </div>
+
+        <!-- Formulario de contacto -->
+        <div id="contact-form" class="question-group" style="display: none;">
+            <h2 style="color: #DC143C; text-align: center; margin-bottom: 30px;">Datos para Enviar Tu Diagnóstico Personalizado</h2>
+            <p style="margin-bottom: 25px; color: #666; text-align: center;">Para enviarte el análisis completo de tus resultados:</p>
+            
+            <div class="input-group">
+                <label>Nombre Completo *</label>
+                <input type="text" id="fullName" required>
+            </div>
+            
+            <div class="input-group">
+                <label>Empresa *</label>
+                <input type="text" id="company" required>
+            </div>
+            
+            <div class="input-group">
+                <label>Cargo *</label>
+                <input type="text" id="position" required>
+            </div>
+            
+            <div class="input-group">
+                <label>Email *</label>
+                <input type="email" id="email" required>
+            </div>
+            
+            <div class="input-group">
+                <label>Teléfono (con código de país) *</label>
+                <input type="tel" id="phone" required placeholder="+54 9 11 XXXX-XXXX">
+            </div>
+            
+            <div class="input-group">
+                <label>Años como empresario/líder *</label>
+                <input type="number" id="yearsLeader" min="0" required>
+            </div>
+            
+            <div class="input-group">
+                <label>Número de empleados *</label>
+                <input type="number" id="employees" min="0" required>
+            </div>
+            
+            <button class="btn-primary" id="submitBtn" onclick="submitAndShowResults()">Ver Mis Resultados Completos</button>
+            <div id="loadingMsg" style="display: none; text-align: center; padding: 20px; color: #DC143C;">
+                Procesando tu información...
+            </div>
+        </div>
+    </div>
+
+    <script src="diagnostic-logic.js"></script>
+    <script>
+        // ACTUALIZAR PROGRESO
+        const allQuestions = [
+            'q1_1', 'q1_2', 'q1_3', 'q1_4', 'q1_5',
+            'q2_1', 'q2_2', 'q2_3', 'q2_4', 'q2_5', 'q2_6',
+            'q3_1', 'q3_2', 'q3_3', 'q3_4', 'q3_5',
+            'q4_1', 'q4_2', 'q4_3', 'q4_4', 'q4_5',
+            'q5_1', 'q5_2', 'q5_3', 'q5_4', 'q5_5', 'q5_6', 'q5_7', 'q5_8', 'q5_9'
+        ];
+        
+        console.log('✅ SISTEMA INICIADO');
+        console.log(`📊 Total preguntas configuradas: ${allQuestions.length}`);
+        console.log(`🔧 Verificando función proceedToContactForm: ${typeof proceedToContactForm}`);
+        
+        function updateProgress() {
+            let answered = 0;
+            allQuestions.forEach(q => {
+                if (document.querySelector(`input[name="${q}"]:checked`)) {
+                    answered++;
+                    // Marcar pregunta como respondida
+                    const questionDiv = document.querySelector(`[data-question="${q}"]`);
+                    if (questionDiv) questionDiv.classList.add('answered');
+                }
+            });
+            
+            const percentage = Math.round((answered / allQuestions.length) * 100);
+            
+            document.getElementById('progress-text').textContent = `Pregunta ${answered} de ${allQuestions.length}`;
+            document.getElementById('progress-percentage').textContent = `${percentage}% completado`;
+            document.getElementById('progress-fill').style.width = `${percentage}%`;
+        }
+        
+        // Escuchar cambios en todas las preguntas
+        document.addEventListener('change', function(e) {
+            if (e.target.type === 'radio') {
+                updateProgress();
+            }
+        });
+        
+        // Inicializar
+        updateProgress();
+        
+        // Verificar que el botón esté conectado
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('🔍 Verificando elementos críticos...');
+            
+            const btn = document.querySelector('button[onclick="proceedToContactForm()"]');
+            if (btn) {
+                console.log('✅ Botón encontrado y conectado');
+            } else {
+                console.error('❌ BOTÓN NO ENCONTRADO - Revisar HTML');
+            }
+            
+            const totalQuestions = document.querySelectorAll('input[type="radio"]').length / 4; // Aprox
+            console.log(`📋 Preguntas en HTML: ~${Math.round(totalQuestions)}`);
+            
+            console.log('✅ Sistema listo para usar');
+        });
+    </script>
+</body>
+</html>
             margin: 0;
             padding: 0;
             box-sizing: border-box;
