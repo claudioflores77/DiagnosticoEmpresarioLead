@@ -367,7 +367,7 @@ function calculateResults() {
 // ========================================================================
 // ENVIAR Y MOSTRAR RESULTADOS
 // ========================================================================
-async function submitAndShowResults() {
+function submitAndShowResults() {
     console.log('🎯 Iniciando submitAndShowResults()');
     
     // Validar campos del formulario
@@ -396,166 +396,165 @@ async function submitAndShowResults() {
     loadingMsg.style.display = 'block';
     loadingMsg.textContent = 'Procesando tu diagnóstico...';
 
-    try {
-        console.log('📊 Calculando resultados...');
+    console.log('📊 Calculando resultados...');
 
-        // Calcular todos los resultados
-        const results = calculateResults();
-        console.log('✅ Resultados:', results);
+    // Calcular todos los resultados
+    const results = calculateResults();
+    console.log('✅ Resultados:', results);
 
-        // ============================================================
-        // GUARDAR EN LOCALSTORAGE
-        // ============================================================
-        const resultData = {
-            // Datos básicos
-            fullName: fullName,
-            company: company,
-            email: email,
-
-            // Resultados principales
-            totalScore: results.totalScore,
-            category: results.category,
-            categoryDescription: results.categoryDescription,
-            mainCME: results.mainCME,
-            weakestPillar: results.weakestPillar,
-
-            // Dimensiones
-            weakestDimension: results.weakestDimension,
-            secondWeakest: results.secondWeakest,
-            allDimensions: results.allDimensions,
-
-            // Costos
-            timeLostPercentage: results.timeLostPercentage,
-            hourlyValue: results.hourlyValue,
-            monthlyHoursLost: results.monthlyHoursLost,
-            monthlyLoss: results.monthlyLoss,
-            yearlyLoss: results.yearlyLoss,
-            accumulatedLoss: results.accumulatedLoss,
-            durationYears: results.durationYears,
-
-            // Índices
-            lonelinessIndex: results.lonelinessIndex,
-            urgencyIndex: results.urgencyIndex,
-            investmentCapacity: results.investmentCapacity,
-            supportIndex: results.supportIndex,
-
-            // Prioridad
-            isHighPriority: results.isHighPriority,
-            isMediumPriority: results.isMediumPriority
-        };
+    // ============================================================
+    // GUARDAR EN LOCALSTORAGE
+    // ============================================================
+    const resultData = {
+        // Datos básicos
+        fullName: fullName,
+        company: company,
+        email: email,
         
-        console.log('💾 Guardando en localStorage:', resultData);
-        localStorage.setItem('diagnosticResults', JSON.stringify(resultData));
-        console.log('✅ Guardado verificado');
-
-        // ============================================================
-        // PREPARAR DATOS PARA GOOGLE SHEETS
-        // ============================================================
-        const sheetData = {
-            timestamp: new Date().toISOString(),
-            fullName: fullName,
-            company: company,
-            position: position,
-            email: email,
-            phone: phone,
-            yearsLeader: yearsLeader,
-            employees: employees,
-
-            // Resultados
-            totalScore: results.totalScore,
-            category: results.category,
-            mainCME: results.mainCME,
-            weakestPillar: results.weakestPillar,
-            weakestDimension: results.weakestDimension.name,
-
-            // Costos
-            monthlyLoss: results.monthlyLoss,
-            yearlyLoss: results.yearlyLoss,
-            accumulatedLoss: results.accumulatedLoss,
-
-            // Prioridad para seguimiento
-            priority: results.isHighPriority ? 'HIGH' : (results.isMediumPriority ? 'MEDIUM' : 'LOW'),
-            urgencyIndex: results.urgencyIndex,
-            investmentCapacity: results.investmentCapacity,
-
-            // Todas las respuestas
-            ...diagnosticData
-        };
-
-        // ============================================================
-        // ENVIAR A GOOGLE APPS SCRIPT (Y ESPERAR RESPUESTA)
-        // ============================================================
-        console.log('📤 Enviando a Google Sheets...');
-        loadingMsg.textContent = 'Guardando tu información de forma segura...';
+        // Resultados principales
+        totalScore: results.totalScore,
+        category: results.category,
+        categoryDescription: results.categoryDescription,
+        mainCME: results.mainCME,
+        weakestPillar: results.weakestPillar,
         
-        const success = await sendToGoogleAppsScript(sheetData);
+        // Dimensiones
+        weakestDimension: results.weakestDimension,
+        secondWeakest: results.secondWeakest,
+        allDimensions: results.allDimensions,
+        
+        // Costos
+        timeLostPercentage: results.timeLostPercentage,
+        hourlyValue: results.hourlyValue,
+        monthlyHoursLost: results.monthlyHoursLost,
+        monthlyLoss: results.monthlyLoss,
+        yearlyLoss: results.yearlyLoss,
+        accumulatedLoss: results.accumulatedLoss,
+        durationYears: results.durationYears,
+        
+        // Índices
+        lonelinessIndex: results.lonelinessIndex,
+        urgencyIndex: results.urgencyIndex,
+        investmentCapacity: results.investmentCapacity,
+        supportIndex: results.supportIndex,
+        
+        // Prioridad
+        isHighPriority: results.isHighPriority,
+        isMediumPriority: results.isMediumPriority
+    };
+    
+    console.log('💾 Guardando en localStorage:', resultData);
+    localStorage.setItem('diagnosticResults', JSON.stringify(resultData));
+    console.log('✅ Guardado verificado');
 
-        if (success) {
-            console.log('✅ Envío exitoso. Redirigiendo...');
+    // ============================================================
+    // PREPARAR DATOS PARA GOOGLE SHEETS
+    // ============================================================
+    const sheetData = {
+        timestamp: new Date().toISOString(),
+        fullName: fullName,
+        company: company,
+        position: position,
+        email: email,
+        phone: phone,
+        yearsLeader: yearsLeader,
+        employees: employees,
+        
+        // Resultados
+        totalScore: results.totalScore,
+        category: results.category,
+        mainCME: results.mainCME,
+        weakestPillar: results.weakestPillar,
+        weakestDimension: results.weakestDimension.name,
+        
+        // Costos
+        monthlyLoss: results.monthlyLoss,
+        yearlyLoss: results.yearlyLoss,
+        accumulatedLoss: results.accumulatedLoss,
+        
+        // Prioridad para seguimiento
+        priority: results.isHighPriority ? 'HIGH' : (results.isMediumPriority ? 'MEDIUM' : 'LOW'),
+        urgencyIndex: results.urgencyIndex,
+        investmentCapacity: results.investmentCapacity,
+        
+        // Todas las respuestas
+        ...diagnosticData
+    };
 
-            // ============================================================
-            // REDIRIGIR A RESULTADOS SEGÚN SEGMENTO
-            // ============================================================
-            loadingMsg.textContent = 'Redirigiendo a tus resultados...';
+    // ============================================================
+    // PREPARAR DATOS PARA EMAIL
+    // ============================================================
+    const emailData = {
+        to: email,
+        fullName: fullName,
+        company: company,
+        totalScore: results.totalScore,
+        category: results.category,
+        mainCME: results.mainCME,
+        weakestPillar: results.weakestPillar,
+        monthlyLoss: results.monthlyLoss,
+        yearlyLoss: results.yearlyLoss
+    };
 
-            // Determinar template según score
-            let resultsPage = 'results-rescue.html'; // Default: HIGH
-
-            if (results.totalScore <= 45) {
-                resultsPage = 'results-peak.html'; // LOW: Aspiracional
-                console.log('📊 Segmento: PEAK (Empresario Consolidado)');
-            } else if (results.totalScore <= 80) {
-                resultsPage = 'results-growth.html'; // MEDIUM: Estratégico
-                console.log('📊 Segmento: GROWTH (Oportunidad de Crecimiento)');
-            } else {
-                console.log('📊 Segmento: RESCUE (Rescate Estratégico)');
-            }
-
-            window.location.href = resultsPage;
-
+    // ============================================================
+    // ENVIAR A GOOGLE APPS SCRIPT
+    // ============================================================
+    console.log('📤 Enviando a Google Sheets...');
+    sendToGoogleAppsScript(sheetData, emailData);
+    
+    // ============================================================
+    // REDIRIGIR A RESULTADOS SEGÚN SEGMENTO
+    // ============================================================
+    loadingMsg.textContent = 'Redirigiendo a tus resultados...';
+    setTimeout(() => {
+        console.log('🔄 Redirigiendo...');
+        
+        // Determinar template según score
+        let resultsPage = 'results-rescue.html'; // Default: HIGH
+        
+        if (results.totalScore <= 45) {
+            resultsPage = 'results-peak.html'; // LOW: Aspiracional
+            console.log('📊 Segmento: PEAK (Empresario Consolidado)');
+        } else if (results.totalScore <= 80) {
+            resultsPage = 'results-growth.html'; // MEDIUM: Estratégico
+            console.log('📊 Segmento: GROWTH (Oportunidad de Crecimiento)');
         } else {
-            throw new Error('El servidor no pudo guardar los datos.');
+            console.log('📊 Segmento: RESCUE (Rescate Estratégico)');
         }
-
-    } catch (error) {
-        console.error('❌ Error en el proceso de envío:', error);
-        alert('Hubo un error al guardar tu diagnóstico. Por favor, revisa tu conexión a internet e inténtalo de nuevo.');
-
-        // Re-habilitar el botón para que el usuario pueda reintentar
-        submitBtn.disabled = false;
-        loadingMsg.style.display = 'none';
-    }
+        
+        window.location.href = resultsPage;
+    }, 1000);
 }
 
 // ========================================================================
 // ENVIAR A GOOGLE APPS SCRIPT
 // ========================================================================
-async function sendToGoogleAppsScript(sheetData) {
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw5H3FHicn9hvZ9xBjqInUf0oS0XihavSkevzP9nQLQTLf9ld_-Xijzn9e5NlXgtTJRTQ/exec';
+function sendToGoogleAppsScript(sheetData, emailData) {
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwKhvadGq6WxlBNTdMPehTYZiz8x1I6uiEiFRqdf4sfe1jhDnv-rDMdjgBI6yYrWnwrpA/exec';
     
-    try {
-        const response = await fetch(SCRIPT_URL, {
+    // ENVIAR DATOS PARA SHEETS
+    fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(sheetData)
+    }).then(() => console.log('✅ Datos enviados a Sheets'))
+      .catch(e => console.error('❌ Error Sheets:', e));
+    
+    // ENVIAR DATOS PARA EMAIL (con delay)
+    setTimeout(() => {
+        fetch(SCRIPT_URL, {
             method: 'POST',
+            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(sheetData)
-        });
-
-        if (response.ok) {
-            const result = await response.json();
-            console.log('✅ Respuesta del servidor:', result);
-            return result.success; // Devuelve true si el script de Google confirma el éxito
-        } else {
-            // Manejar errores de red o HTTP (e.g., 404, 500)
-            console.error('❌ Error de Red/HTTP:', response.status, response.statusText);
-            return false;
-        }
-    } catch (error) {
-        // Manejar errores en la petición fetch (e.g., no hay conexión, error de DNS)
-        console.error('❌ Error en la función fetch:', error);
-        throw error; // Propagar el error para que submitAndShowResults lo capture y muestre un mensaje
-    }
+            body: JSON.stringify(emailData)
+        }).then(() => console.log('✅ Email enviado'))
+          .catch(e => console.error('❌ Error Email:', e));
+    }, 500);
 }
 
 // ========================================================================
