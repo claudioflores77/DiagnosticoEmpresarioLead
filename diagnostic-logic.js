@@ -231,14 +231,15 @@ function calculateResults() {
     const yearlyHoursLost = Math.round((timeLostPercentage / 100) * hoursPerWeek * 52);
     
     // AJUSTAR costos según score para coherencia
-    // LOW (0-45): Multiplica por 0.5-0.8 (oportunidad, no crisis)
+    // LOW (0-45): Multiplica por 2.0-2.5 (inversión en legado y aceleración al 1%)
     // MEDIUM (45-80): Multiplica por 0.8-1.2 (ineficiencia real)
     // HIGH (80-150): Multiplica por 1.2-2.0 (crisis severa)
     let costMultiplier = 1.0;
     
     if (totalScore <= 45) {
-        // LOW: Empresarios consolidados - "oportunidad de optimización"
-        costMultiplier = 0.5 + (totalScore / 45) * 0.3; // 0.5 a 0.8
+        // LOW: Empresarios consolidados - "inversión en mentor y legado"
+        // Usa multiplicador MAYOR porque es "costo de oportunidad de crecer solo"
+        costMultiplier = 2.0 + (totalScore / 45) * 0.5; // 2.0 a 2.5
     } else if (totalScore <= 80) {
         // MEDIUM: En crecimiento - ineficiencias reales
         costMultiplier = 0.8 + ((totalScore - 45) / 35) * 0.4; // 0.8 a 1.2
@@ -482,25 +483,10 @@ function submitAndShowResults() {
     };
 
     // ============================================================
-    // PREPARAR DATOS PARA EMAIL
-    // ============================================================
-    const emailData = {
-        to: email,
-        fullName: fullName,
-        company: company,
-        totalScore: results.totalScore,
-        category: results.category,
-        mainCME: results.mainCME,
-        weakestPillar: results.weakestPillar,
-        monthlyLoss: results.monthlyLoss,
-        yearlyLoss: results.yearlyLoss
-    };
-
-    // ============================================================
-    // ENVIAR A GOOGLE APPS SCRIPT
+    // ENVIAR A GOOGLE APPS SCRIPT (1 SOLO REQUEST)
     // ============================================================
     console.log('📤 Enviando a Google Sheets...');
-    sendToGoogleAppsScript(sheetData, emailData);
+    sendToGoogleAppsScript(sheetData);
     
     // ============================================================
     // REDIRIGIR A RESULTADOS SEGÚN SEGMENTO
@@ -529,10 +515,10 @@ function submitAndShowResults() {
 // ========================================================================
 // ENVIAR A GOOGLE APPS SCRIPT
 // ========================================================================
-function sendToGoogleAppsScript(sheetData, emailData) {
+function sendToGoogleAppsScript(sheetData) {
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwKhvadGq6WxlBNTdMPehTYZiz8x1I6uiEiFRqdf4sfe1jhDnv-rDMdjgBI6yYrWnwrpA/exec';
     
-    // ENVIAR DATOS PARA SHEETS
+    // ENVIAR DATOS (incluye todo lo necesario para Sheet Y Email)
     fetch(SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
@@ -540,21 +526,8 @@ function sendToGoogleAppsScript(sheetData, emailData) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(sheetData)
-    }).then(() => console.log('✅ Datos enviados a Sheets'))
-      .catch(e => console.error('❌ Error Sheets:', e));
-    
-    // ENVIAR DATOS PARA EMAIL (con delay)
-    setTimeout(() => {
-        fetch(SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(emailData)
-        }).then(() => console.log('✅ Email enviado'))
-          .catch(e => console.error('❌ Error Email:', e));
-    }, 500);
+    }).then(() => console.log('✅ Datos enviados y email en camino'))
+      .catch(e => console.error('❌ Error:', e));
 }
 
 // ========================================================================
